@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_FFFFFF"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/main_top_search_section"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon_top_notice"
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginEnd="@dimen/globe_dimen_38"
+            android:background="@mipmap/icon_notice_alrt"
+            app:layout_constraintBottom_toBottomOf="@+id/main_top_search_section"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/main_top_search_section" />
+
+        <View
+            android:id="@+id/search_section_view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_60"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_24"
+            android:background="@drawable/search_section_bg"
+            app:layout_constraintBottom_toBottomOf="@+id/main_top_search_section"
+            app:layout_constraintEnd_toStartOf="@+id/icon_top_notice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/main_top_search_section" />
+
+        <ImageView
+            android:id="@+id/icon_top_search"
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_20"
+            android:background="@mipmap/icon_search"
+            app:layout_constraintBottom_toBottomOf="@+id/main_top_search_section"
+            app:layout_constraintStart_toStartOf="@+id/search_section_view"
+            app:layout_constraintTop_toTopOf="@+id/main_top_search_section" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_10"
+            android:text="@string/search_hint"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_24"
+            app:layout_constraintBottom_toBottomOf="@+id/main_top_search_section"
+            app:layout_constraintStart_toEndOf="@+id/icon_top_search"
+            app:layout_constraintTop_toTopOf="@+id/main_top_search_section" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_section_view">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.zhpan.bannerview.BannerViewPager
+                    android:id="@+id/banner_view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_20"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    app:bvp_auto_play="true"
+                    app:bvp_can_loop="true"
+                    app:layout_constraintDimensionRatio="2.46:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.info.yikao.view.DrawableIndicator
+                    android:id="@+id/banner_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/globe_dimen_12"
+                    android:layout_marginBottom="@dimen/globe_dimen_12"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@+id/banner_view"
+                    app:layout_constraintEnd_toEndOf="@+id/banner_view"
+                    app:layout_constraintStart_toStartOf="@+id/banner_view" />
+
+                <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scrollbars="none"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/banner_view" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_FFFFFF"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_84"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_40"
+            android:layout_height="@dimen/globe_dimen_40"
+            app:layout_constraintTop_toTopOf="@+id/title_view"
+            app:layout_constraintBottom_toBottomOf="@+id/title_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/globe_dimen_38"
+            android:background="@mipmap/icon_notice_alrt"
+            />
+
+        <View
+            android:id="@+id/user_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_158"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_view" />
+
+        <ImageView
+            android:id="@+id/user_head"
+            android:layout_width="@dimen/globe_dimen_116"
+            android:layout_height="@dimen/globe_dimen_116"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_10"
+            android:background="@mipmap/icon_default_user_head"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_layout" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_14"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_36"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/user_head"
+            app:layout_constraintTop_toTopOf="@+id/user_head"
+            tools:text="未登录" />
+
+        <TextView
+            android:id="@+id/user_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/globe_dimen_14"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toBottomOf="@+id/user_head"
+            app:layout_constraintStart_toStartOf="@id/user_name"
+            tools:text="请点击头像登录" />
+
+        <TextView
+            android:id="@+id/user_edit_btn"
+            android:layout_width="@dimen/globe_dimen_140"
+            android:layout_height="@dimen/globe_dimen_46"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:background="@drawable/user_un_edit"
+            android:gravity="center"
+            android:text="@string/edit_user_info"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="@dimen/font_text_size_24"
+            app:layout_constraintBottom_toBottomOf="@id/user_head"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_head" />
+
+        <View
+            android:id="@+id/user_content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/color_F5F5F5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_layout" />
+
+        <View
+            android:id="@+id/user_func_info"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_144"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:background="@drawable/user_func_bg"
+            app:layout_constraintEnd_toStartOf="@+id/user_func_exam"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_content_layout"
+
+            />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_72"
+            android:layout_height="@dimen/globe_dimen_72"
+            android:layout_marginStart="@dimen/globe_dimen_40"
+            android:background="@mipmap/icon_user_info"
+            app:layout_constraintBottom_toBottomOf="@+id/user_func_info"
+            app:layout_constraintStart_toStartOf="@+id/user_func_info"
+            app:layout_constraintTop_toTopOf="@+id/user_func_info" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_144"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            android:text="@string/edit_user_info"
+            app:layout_constraintBottom_toBottomOf="@+id/user_func_info"
+            app:layout_constraintStart_toStartOf="@+id/user_func_info"
+            app:layout_constraintTop_toTopOf="@+id/user_func_info" />
+
+        <View
+            android:id="@+id/user_func_exam"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_144"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:background="@drawable/user_func_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_func_info"
+            app:layout_constraintTop_toTopOf="@+id/user_content_layout" />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_72"
+            android:layout_height="@dimen/globe_dimen_72"
+            android:layout_marginStart="@dimen/globe_dimen_40"
+            android:background="@mipmap/icon_user_exam"
+            app:layout_constraintBottom_toBottomOf="@+id/user_func_exam"
+            app:layout_constraintStart_toStartOf="@+id/user_func_exam"
+            app:layout_constraintTop_toTopOf="@+id/user_func_exam" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_144"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            android:text="@string/user_func_exam"
+            app:layout_constraintBottom_toBottomOf="@+id/user_func_exam"
+            app:layout_constraintStart_toStartOf="@+id/user_func_exam"
+            app:layout_constraintTop_toTopOf="@+id/user_func_exam" />
+
+        <View
+            android:id="@+id/user_func_order"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_144"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:background="@drawable/user_func_bg"
+            app:layout_constraintEnd_toStartOf="@+id/user_func_setting"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_func_info"
+            />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_72"
+            android:layout_height="@dimen/globe_dimen_72"
+            android:layout_marginStart="@dimen/globe_dimen_40"
+            android:background="@mipmap/icon_user_order"
+            app:layout_constraintBottom_toBottomOf="@+id/user_func_order"
+            app:layout_constraintStart_toStartOf="@+id/user_func_order"
+            app:layout_constraintTop_toTopOf="@+id/user_func_order" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_144"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            android:text="@string/user_func_order"
+            app:layout_constraintBottom_toBottomOf="@+id/user_func_order"
+            app:layout_constraintStart_toStartOf="@+id/user_func_order"
+            app:layout_constraintTop_toTopOf="@+id/user_func_order" />
+
+        <View
+            android:id="@+id/user_func_setting"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_144"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:background="@drawable/user_func_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/user_func_order"
+            app:layout_constraintTop_toBottomOf="@+id/user_func_info" />
+
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_72"
+            android:layout_height="@dimen/globe_dimen_72"
+            android:layout_marginStart="@dimen/globe_dimen_40"
+            android:background="@mipmap/icon_user_setting"
+            app:layout_constraintBottom_toBottomOf="@+id/user_func_setting"
+            app:layout_constraintStart_toStartOf="@+id/user_func_setting"
+            app:layout_constraintTop_toTopOf="@+id/user_func_setting" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_144"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            android:text="@string/user_func_setting"
+            app:layout_constraintBottom_toBottomOf="@+id/user_func_setting"
+            app:layout_constraintStart_toStartOf="@+id/user_func_setting"
+            app:layout_constraintTop_toTopOf="@+id/user_func_setting" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

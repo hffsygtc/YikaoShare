@@ -1,0 +1,59 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    def kotlin_ersion = "1.5.21"
+    //gradle构建依赖的仓库
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://mvn.mob.com/android' }
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        maven { url 'https://azureai.azureedge.net/maven/' }
+        google()
+        mavenCentral()
+    }
+
+
+    //为Gradle构建添加依赖，能服用更多的功能
+    dependencies {
+        //classpath依赖后的这些文件不会被编译打包，implementation依赖的库会编译打包到最终的apk
+        classpath 'com.android.tools.build:gradle:7.0.0'
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.28-alpha'
+        classpath 'com.alibaba:arouter-register:1.0.2'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21'
+        classpath "com.mob.sdk:MobSDK:2018.0319.1724"
+        classpath "com.huawei.agconnect:agcp:1.6.0.300"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+
+}
+
+
+//为所有的工程进行配置
+allprojects {
+    //为工程添加仓库
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://developer.huawei.com/repo/' }
+        maven { url 'https://repo1.maven.org/maven2/' }
+        maven { url 'https://azureai.azureedge.net/maven/' }
+        google() // MavenArtifactRepository google()就是google 的 maven 仓库
+        mavenCentral() //maven 中央仓库
+//        jcenter() //这个要关闭了，很多都已经迁移到了mavenCentral
+    }
+
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+    }
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

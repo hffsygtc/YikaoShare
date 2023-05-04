@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/loadsir_main"
+    android:background="@color/color_FFFFFF"
+    tools:ignore="MissingClass">
+
+    <ImageView
+        android:id="@+id/empty_img"
+        android:layout_width="@dimen/globe_dimen_260"
+        android:layout_height="@dimen/globe_dimen_230"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/globe_dimen_160"
+
+        />
+
+    <TextView
+        android:id="@+id/empty_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络请求错误"
+        android:layout_marginTop="@dimen/globe_dimen_30"
+        android:textSize="@dimen/font_text_size_24"
+        android:textColor="@color/color_999999"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_img" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

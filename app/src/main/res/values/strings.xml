@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Yikao</string>
+    <string name="search_hint">搜索老师、机构、学校...</string>
+
+    <string name="tab_home">首页</string>
+    <string name="tab_sign_up">报名</string>
+    <string name="tab_message">消息</string>
+    <string name="tab_user">我的</string>
+    <string name="sign_up">报名</string>
+    <string name="text_class_type">考级科目：</string>
+    <string name="text_method">考级方式：</string>
+    <string name="sign_location">举办地址：</string>
+    <string name="sign_method">报名方式：</string>
+    <string name="edit_user_info">编辑资料</string>
+    <string name="user_func_info">考生信息</string>
+    <string name="user_func_exam">我的考试</string>
+    <string name="user_func_order">报考订单</string>
+    <string name="user_func_setting">设置中心</string>
+    <string name="time_discount">剩余</string>
+    <string name="time_close">自动关闭</string>
+    <string name="pay_order">立即支付</string>
+    <string name="cancel_order">取消订单</string>
+</resources>

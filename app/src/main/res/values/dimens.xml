@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="globe_dimen_2">1dp</dimen>
+    <dimen name="globe_dimen_3">1.5dp</dimen>
+    <dimen name="globe_dimen_4">2dp</dimen>
+    <dimen name="globe_dimen_6">3dp</dimen>
+    <dimen name="globe_dimen_8">4dp</dimen>
+    <dimen name="globe_dimen_10">5dp</dimen>
+    <dimen name="globe_dimen_12">6dp</dimen>
+    <dimen name="globe_dimen_14">7dp</dimen>
+    <dimen name="globe_dimen_16">8dp</dimen>
+    <dimen name="globe_dimen_18">9dp</dimen>
+    <dimen name="globe_dimen_20">10dp</dimen>
+    <dimen name="globe_dimen_22">11dp</dimen>
+    <dimen name="globe_dimen_24">12dp</dimen>
+    <dimen name="globe_dimen_26">13dp</dimen>
+    <dimen name="globe_dimen_28">14dp</dimen>
+    <dimen name="globe_dimen_30">15dp</dimen>
+    <dimen name="globe_dimen_32">16dp</dimen>
+    <dimen name="globe_dimen_34">17dp</dimen>
+    <dimen name="globe_dimen_36">18dp</dimen>
+    <dimen name="globe_dimen_38">19dp</dimen>
+    <dimen name="globe_dimen_40">20dp</dimen>
+    <dimen name="globe_dimen_42">21dp</dimen>
+    <dimen name="globe_dimen_44">22dp</dimen>
+    <dimen name="globe_dimen_46">23dp</dimen>
+    <dimen name="globe_dimen_48">24dp</dimen>
+    <dimen name="globe_dimen_50">25dp</dimen>
+    <dimen name="globe_dimen_52">26dp</dimen>
+    <dimen name="globe_dimen_54">27dp</dimen>
+    <dimen name="globe_dimen_56">28dp</dimen>
+    <dimen name="globe_dimen_58">29dp</dimen>
+    <dimen name="globe_dimen_60">30dp</dimen>
+    <dimen name="globe_dimen_62">31dp</dimen>
+    <dimen name="globe_dimen_66">33dp</dimen>
+    <dimen name="globe_dimen_68">34dp</dimen>
+    <dimen name="globe_dimen_70">35dp</dimen>
+    <dimen name="globe_dimen_72">36dp</dimen>
+    <dimen name="globe_dimen_76">38dp</dimen>
+    <dimen name="globe_dimen_78">39dp</dimen>
+    <dimen name="globe_dimen_80">40dp</dimen>
+    <dimen name="globe_dimen_84">42dp</dimen>
+    <dimen name="globe_dimen_88">44dp</dimen>
+    <dimen name="globe_dimen_90">45dp</dimen>
+    <dimen name="globe_dimen_92">46dp</dimen>
+    <dimen name="globe_dimen_96">48dp</dimen>
+    <dimen name="globe_dimen_98">49dp</dimen>
+    <dimen name="globe_dimen_100">50dp</dimen>
+    <dimen name="globe_dimen_106">53dp</dimen>
+    <dimen name="globe_dimen_108">54dp</dimen>
+    <dimen name="globe_dimen_110">55dp</dimen>
+    <dimen name="globe_dimen_116">58dp</dimen>
+    <dimen name="globe_dimen_120">60dp</dimen>
+    <dimen name="globe_dimen_126">63dp</dimen>
+    <dimen name="globe_dimen_130">65dp</dimen>
+    <dimen name="globe_dimen_140">70dp</dimen>
+    <dimen name="globe_dimen_144">72dp</dimen>
+    <dimen name="globe_dimen_132">66dp</dimen>
+    <dimen name="globe_dimen_138">69dp</dimen>
+    <dimen name="globe_dimen_148">74dp</dimen>
+    <dimen name="globe_dimen_158">79dp</dimen>
+    <dimen name="globe_dimen_160">80dp</dimen>
+    <dimen name="globe_dimen_170">85dp</dimen>
+    <dimen name="globe_dimen_180">90dp</dimen>
+    <dimen name="globe_dimen_188">94dp</dimen>
+    <dimen name="globe_dimen_190">95dp</dimen>
+    <dimen name="globe_dimen_220">110dp</dimen>
+    <dimen name="globe_dimen_230">115dp</dimen>
+    <dimen name="globe_dimen_200">100dp</dimen>
+    <dimen name="globe_dimen_210">105dp</dimen>
+    <dimen name="globe_dimen_240">120dp</dimen>
+    <dimen name="globe_dimen_250">125dp</dimen>
+    <dimen name="globe_dimen_260">130dp</dimen>
+    <dimen name="globe_dimen_280">140dp</dimen>
+    <dimen name="globe_dimen_290">145dp</dimen>
+    <dimen name="globe_dimen_300">150dp</dimen>
+    <dimen name="globe_dimen_320">160dp</dimen>
+    <dimen name="globe_dimen_360">180dp</dimen>
+    <dimen name="globe_dimen_400">200dp</dimen>
+    <dimen name="globe_dimen_440">220dp</dimen>
+    <dimen name="globe_dimen_650">325dp</dimen>
+    <dimen name="globe_dimen_630">315dp</dimen>
+
+    <dimen name="font_text_size_10">5dp</dimen>
+    <dimen name="font_text_size_12">6dp</dimen>
+    <dimen name="font_text_size_14">7dp</dimen>
+    <dimen name="font_text_size_16">8dp</dimen>
+    <dimen name="font_text_size_18">9dp</dimen>
+    <dimen name="font_text_size_20">10dp</dimen>
+    <dimen name="font_text_size_22">11dp</dimen>
+    <dimen name="font_text_size_24">12dp</dimen>
+    <dimen name="font_text_size_26">13dp</dimen>
+    <dimen name="font_text_size_28">14dp</dimen>
+    <dimen name="font_text_size_30">15dp</dimen>
+    <dimen name="font_text_size_32">16dp</dimen>
+    <dimen name="font_text_size_34">17dp</dimen>
+    <dimen name="font_text_size_36">18dp</dimen>
+    <dimen name="font_text_size_38">19dp</dimen>
+    <dimen name="font_text_size_40">20dp</dimen>
+    <dimen name="font_text_size_46">23dp</dimen>
+    <dimen name="font_text_size_48">24dp</dimen>
+    <dimen name="font_text_size_54">27dp</dimen>
+    <dimen name="font_text_size_78">39dp</dimen>
+
+<!--    <dimen name="font_text_size_10">5sp</dimen>-->
+<!--    <dimen name="font_text_size_12">6sp</dimen>-->
+<!--    <dimen name="font_text_size_14">7sp</dimen>-->
+<!--    <dimen name="font_text_size_16">8sp</dimen>-->
+<!--    <dimen name="font_text_size_18">9sp</dimen>-->
+<!--    <dimen name="font_text_size_20">10sp</dimen>-->
+<!--    <dimen name="font_text_size_22">11sp</dimen>-->
+<!--    <dimen name="font_text_size_24">12sp</dimen>-->
+<!--    <dimen name="font_text_size_26">13sp</dimen>-->
+<!--    <dimen name="font_text_size_28">14sp</dimen>-->
+<!--    <dimen name="font_text_size_30">15sp</dimen>-->
+<!--    <dimen name="font_text_size_32">16sp</dimen>-->
+<!--    <dimen name="font_text_size_34">17sp</dimen>-->
+<!--    <dimen name="font_text_size_36">18sp</dimen>-->
+<!--    <dimen name="font_text_size_38">19sp</dimen>-->
+<!--    <dimen name="font_text_size_40">20sp</dimen>-->
+<!--    <dimen name="font_text_size_46">23sp</dimen>-->
+<!--    <dimen name="font_text_size_48">24sp</dimen>-->
+<!--    <dimen name="font_text_size_54">27sp</dimen>-->
+
+
+    <dimen name="title_icon_ver_gap">14dp</dimen>
+    <dimen name="title_icon_hor_gap">15dp</dimen>
+
+
+    <dimen name="custom_item_hor_margin">15dp</dimen>
+    <dimen name="custom_item_ver_margin">8dp</dimen>
+    <dimen name="custom_line_width">0.5dp</dimen>
+
+    <!--字体规范，分为4级
+    1：文章内页大标题，醒目的文字
+    2：列表页标题 内容摘要
+    3：单独出现的辅助文字
+    4：在有标题存在的辅助文字
+    -->
+<!--    <dimen name="custom_text_level_1">18sp</dimen>-->
+<!--    <dimen name="custom_text_level_2">15sp</dimen>-->
+<!--    <dimen name="custom_text_level_3">12sp</dimen>-->
+<!--    <dimen name="custom_text_level_4">10sp</dimen>-->
+
+
+    <dimen name="custom_text_level_1">18dp</dimen>
+    <dimen name="custom_text_level_2">15dp</dimen>
+    <dimen name="custom_text_level_3">12dp</dimen>
+    <dimen name="custom_text_level_4">10dp</dimen>
+
+    <!--间距规范-->
+    <dimen name="custom_gap_level_1">18dp</dimen>
+    <dimen name="custom_gap_level_2">15dp</dimen>
+    <dimen name="custom_gap_level_3">12dp</dimen>
+    <dimen name="custom_gap_level_4">10dp</dimen>
+
+    <dimen name="account_hor_rv_height">120dp</dimen>
+    <dimen name="stock_index_hor_rv_height">80dp</dimen>
+    <dimen name="stock_function_layout_height">80dp</dimen>
+
+    <dimen name="stock_spiral_height">200dp</dimen>
+
+    <dimen name="custom_tab_layout_height">34dp</dimen>
+    <dimen name="custom_account_head_list_width">42dp</dimen>
+
+    <dimen name="share_dialog_item_height">91dp</dimen>
+
+
+
+    <dimen name="fast_share_quick_look_witdh">258dp</dimen>
+    <dimen name="fast_share_quick_look_inner_witdh">238dp</dimen>
+    <dimen name="fast_share_quick_look_height">350dp</dimen>
+
+    <dimen name="share_preview_icon_width">114dp</dimen>
+    <dimen name="share_preview_icon_height">29dp</dimen>
+
+    <dimen name="share_preview_time_width">85dp</dimen>
+    <dimen name="share_preview_time_height">25dp</dimen>
+
+
+    <dimen name="share_preview_info_width">126dp</dimen>
+    <dimen name="share_preview_info_height">39dp</dimen>
+    <dimen name="share_preview_qr_width">52dp</dimen>
+
+
+    <dimen name="shot_fast_icon_width">109dp</dimen>
+    <dimen name="shot_fast_icon_height">30dp</dimen>
+
+    <dimen name="shot_logo_width">126.5dp</dimen>
+    <dimen name="shot_logo_heigt">38.5dp</dimen>
+
+
+    <dimen name="stock_graph_living_height">124dp</dimen>
+    <dimen name="stock_graph_single_height">95dp</dimen>
+
+    <dimen name="stock_graph_top_layout_height">149dp</dimen>
+    <dimen name="stock_graph_bottom_layout_height">124dp</dimen>
+
+    <integer name="anim_length">500</integer>
+    <integer name="anim_length_half">250</integer>
+
+    <dimen name="stock_item_content_width">90dp</dimen>
+    <dimen name="user_center_top_layout_height">170dp</dimen>
+
+    <dimen name="hot_banner_full_width">300dp</dimen>
+    <dimen name="hot_etf_item_width">1020dp</dimen>
+    <dimen name="easy_fund_item_width">970dp</dimen>
+</resources>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/globe_dimen_220">
+
+    <ImageView
+        android:id="@+id/head_icon"
+        android:layout_width="@dimen/globe_dimen_210"
+        android:layout_height="@dimen/globe_dimen_160"
+        android:background="@color/color_999999"
+        android:layout_marginStart="@dimen/globe_dimen_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/head_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/globe_dimen_26"
+        android:textStyle="bold"
+        android:textColor="@color/color_333333"
+        tools:text="2023届春季“春季畅演”大型展演火 热报名中"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_marginStart="@dimen/globe_dimen_22"
+        android:layout_marginEnd="@dimen/globe_dimen_40"
+        app:layout_constraintTop_toTopOf="@+id/head_icon"
+        />
+
+    <TextView
+        android:id="@+id/sign_up_btn"
+        android:layout_width="@dimen/globe_dimen_88"
+        android:layout_height="@dimen/globe_dimen_46"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/globe_dimen_30"
+        android:layout_marginBottom="@dimen/globe_dimen_44"
+        android:text="@string/sign_up"
+        android:gravity="center"
+        android:textColor="@color/color_52618B"
+        android:textStyle="bold"
+        android:textSize="@dimen/font_text_size_24"
+        android:background="@drawable/sign_up_bg"
+
+        />
+
+    <TextView
+        android:id="@+id/class_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/globe_dimen_24"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:textSize="@dimen/font_text_size_24"
+        android:textColor="@color/color_999999"
+        android:text="@string/sign_location"
+        />
+
+    <TextView
+        android:id="@+id/class_content_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/globe_dimen_24"
+        app:layout_constraintStart_toEndOf="@+id/class_tv"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:textSize="@dimen/font_text_size_24"
+        app:layout_constraintEnd_toStartOf="@+id/sign_up_btn"
+        android:layout_marginEnd="@dimen/globe_dimen_36"
+        android:maxLines="1"
+        tools:text="中国舞，爵士舞，钢琴，吉他，声乐，二胡等..."
+        android:ellipsize="end"
+        android:textColor="@color/color_999999"
+        android:text="@string/text_class_type"
+        />
+
+    <TextView
+        android:id="@+id/method_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/class_tv"
+        android:textSize="@dimen/font_text_size_24"
+        android:layout_marginTop="@dimen/globe_dimen_16"
+        android:textColor="@color/color_999999"
+        android:text="@string/sign_method"
+        />
+
+    <TextView
+        android:id="@+id/method_content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/globe_dimen_16"
+        app:layout_constraintStart_toEndOf="@+id/method_tv"
+        app:layout_constraintTop_toBottomOf="@+id/class_tv"
+        android:textSize="@dimen/font_text_size_24"
+        android:textColor="@color/color_999999"
+        tools:text="线上，线下"
+        />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/custom_line_width"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/color_F5F5F5"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
