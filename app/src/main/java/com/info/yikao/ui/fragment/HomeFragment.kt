@@ -31,6 +31,10 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentMainHomeBinding>() {
         mAdapter.list = mViewModel.listItems
         mAdapter.notifyDataSetChanged()
 
+        mAdapter.run {
+            enterMoreClick = {}
+        }
+
     }
 
 

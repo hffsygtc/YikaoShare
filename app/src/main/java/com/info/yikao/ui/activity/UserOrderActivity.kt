@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivitySingleListBinding
-import com.info.yikao.ext.init
-import com.info.yikao.ext.initFooter
-import com.info.yikao.ext.loadServiceInit
-import com.info.yikao.ext.showLoading
+import com.info.yikao.ext.*
 import com.info.yikao.model.OrderBean
 import com.info.yikao.ui.adapter.UserOrderListAdapter
 import com.info.yikao.viewmodel.UserOrderViewModel
@@ -70,9 +67,14 @@ class UserOrderActivity : BaseActivity<UserOrderViewModel, ActivitySingleListBin
 //            )
 //            setOnItemChildClickListener { adapter, view, position ->}
         }
+
+        loadsir.showLoading()
+        mViewModel.getListData(true)
     }
 
     override fun createObserver() {
-        super.createObserver()
+        mViewModel.listData.observe(this) {
+            loadListData(it, mAdapter, loadsir, mRecycler, mRefresh)
+        }
     }
 }

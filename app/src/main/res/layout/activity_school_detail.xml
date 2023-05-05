@@ -22,6 +22,232 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:background="@mipmap/icon_page_back"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <View
+            android:id="@+id/title_back_btn"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_84"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintEnd_toEndOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="@+id/title_layout"
+            app:layout_constraintTop_toTopOf="@+id/title_layout"
+            tools:text="标题" />
+
+        <View
+            android:id="@+id/school_top_bg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_174"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:background="@drawable/white_corner_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_layout" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/custom_line_width"
+            android:background="@color/color_F5F5F5"
+            app:layout_constraintBottom_toBottomOf="@+id/school_top_bg"
+            app:layout_constraintEnd_toEndOf="@+id/school_top_bg"
+            app:layout_constraintStart_toStartOf="@+id/school_top_bg" />
+
+        <ImageView
+            android:id="@+id/school_icon"
+            android:layout_width="@dimen/globe_dimen_116"
+            android:layout_height="@dimen/globe_dimen_116"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            app:layout_constraintBottom_toBottomOf="@+id/school_top_bg"
+            app:layout_constraintStart_toStartOf="@+id/school_top_bg"
+            app:layout_constraintTop_toTopOf="@+id/school_top_bg" />
+
+        <TextView
+            android:id="@+id/school_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_36"
+            android:layout_marginTop="@dimen/globe_dimen_12"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_34"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/school_icon"
+            app:layout_constraintTop_toTopOf="@+id/school_icon"
+            tools:text="四川音乐学院" />
+
+        <com.info.yikao.view.FlowLayout
+            android:id="@+id/school_tag_flow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            app:layout_constraintEnd_toEndOf="@+id/school_top_bg"
+            app:layout_constraintStart_toStartOf="@+id/school_name"
+            app:layout_constraintTop_toBottomOf="@+id/school_name" />
+
+        <TextView
+            android:id="@+id/school_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_corner_bottom"
+            android:paddingStart="@dimen/globe_dimen_30"
+            android:paddingTop="@dimen/globe_dimen_30"
+            android:paddingEnd="@dimen/globe_dimen_30"
+            android:paddingBottom="@dimen/globe_dimen_30"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_24"
+            app:layout_constraintEnd_toEndOf="@+id/school_top_bg"
+            app:layout_constraintStart_toStartOf="@+id/school_top_bg"
+            app:layout_constraintTop_toBottomOf="@+id/school_top_bg"
+            tools:text="四川音乐学院（Sichuan Conservatory of Music）简称“川音”，位于四川省成都市，是一所以“艺术”为主要办学特色的省属全日制普通本科高等院校，是全国11所独立设置的专业音乐学院之一..." />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_half_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_half_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <TextView
+            android:id="@+id/guide_tag_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_36"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/left_half_line"
+            app:layout_constraintStart_toStartOf="@+id/left_half_line"
+            app:layout_constraintTop_toBottomOf="@id/school_desc" />
+
+        <TextView
+            android:id="@+id/school_left_func"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/major_name"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_36"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/guide_tag_name"
+            app:layout_constraintEnd_toEndOf="@+id/left_half_line"
+            app:layout_constraintStart_toStartOf="@+id/left_half_line" />
+
+        <TextView
+            android:id="@+id/school_right_func"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/major_desc"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_30"
+            app:layout_constraintBaseline_toBaselineOf="@+id/guide_tag_name"
+            app:layout_constraintEnd_toEndOf="@+id/right_half_line"
+            app:layout_constraintStart_toStartOf="@+id/right_half_line" />
+
+        <View
+            android:id="@+id/school_detail_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:layout_marginBottom="@dimen/globe_dimen_30"
+            android:background="@drawable/user_func_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guide_tag_name" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/left_major_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:layout_marginBottom="@dimen/globe_dimen_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guide_tag_name">
+
+            <TextView
+                android:id="@+id/left_major_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/globe_dimen_30"
+                android:layout_marginTop="@dimen/globe_dimen_30"
+                android:textColor="@color/color_333333"
+                android:textSize="@dimen/font_text_size_30"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2023届夏季川音考级" />
+
+            <TextView
+                android:id="@+id/left_major_status"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/globe_dimen_36"
+                android:layout_marginStart="@dimen/globe_dimen_30"
+                android:background="@drawable/major_under_sign_red_bg"
+                android:gravity="center"
+                android:paddingLeft="@dimen/globe_dimen_6"
+                android:paddingRight="@dimen/globe_dimen_6"
+                android:text="@string/under_sign_in"
+                android:textColor="@color/color_FFFFFF"
+                android:textSize="@dimen/font_text_size_24"
+                app:layout_constraintBottom_toBottomOf="@+id/left_major_name"
+                app:layout_constraintStart_toEndOf="@+id/left_major_name"
+                app:layout_constraintTop_toTopOf="@+id/left_major_name" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/major_content_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/globe_dimen_30"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/left_major_name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/right_major_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/school_detail_bg"
+            app:layout_constraintEnd_toEndOf="@+id/school_detail_bg"
+            app:layout_constraintStart_toStartOf="@+id/school_detail_bg"
+            app:layout_constraintTop_toTopOf="@+id/school_detail_bg">
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
