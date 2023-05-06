@@ -8,6 +8,8 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 class EmptyFragment(val type:String) : BaseFragment<BaseViewModel, EmptyFragmentBinding>() {
 
+    constructor() : this("empty")
+
     override fun layoutId(): Int = R.layout.empty_fragment
 
     override fun initView(savedInstanceState: Bundle?) {

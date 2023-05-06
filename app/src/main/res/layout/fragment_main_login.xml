@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_FFFFFF"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:background="@mipmap/icon_x_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/close_btn"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_100"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_72"
+            android:layout_marginTop="@dimen/globe_dimen_210"
+            android:text="@string/login_title"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_40"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="@string/login_desc"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_30"
+            app:layout_constraintStart_toStartOf="@+id/login_title"
+            app:layout_constraintTop_toBottomOf="@+id/login_title" />
+
+        <View
+            android:id="@+id/phone_input_bg"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_76"
+            android:layout_marginStart="@dimen/globe_dimen_72"
+            android:layout_marginTop="@dimen/globe_dimen_140"
+            android:layout_marginEnd="@dimen/globe_dimen_72"
+            android:background="@drawable/login_input_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_title" />
+
+        <View
+            android:id="@+id/phone_gap_line"
+            android:layout_width="@dimen/globe_dimen_2"
+            android:layout_height="@dimen/globe_dimen_48"
+            android:layout_marginStart="@dimen/globe_dimen_116"
+            android:background="@color/color_CCCCCC"
+            app:layout_constraintBottom_toBottomOf="@+id/phone_input_bg"
+            app:layout_constraintStart_toStartOf="@+id/phone_input_bg"
+            app:layout_constraintTop_toTopOf="@+id/phone_input_bg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_china_num"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/phone_input_bg"
+            app:layout_constraintEnd_toEndOf="@+id/phone_gap_line"
+            app:layout_constraintStart_toStartOf="@+id/phone_input_bg"
+            app:layout_constraintTop_toTopOf="@+id/phone_input_bg" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/login_phone_et"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_76"
+            android:background="@null"
+            android:hint="@string/login_phone_hint"
+            android:paddingLeft="@dimen/globe_dimen_24"
+            android:paddingRight="@dimen/globe_dimen_24"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textCursorDrawable="@drawable/login_cursor"
+            android:textSize="@dimen/globe_dimen_30"
+            app:layout_constraintBottom_toBottomOf="@+id/phone_input_bg"
+            app:layout_constraintEnd_toEndOf="@+id/phone_input_bg"
+            app:layout_constraintStart_toEndOf="@+id/phone_gap_line"
+            app:layout_constraintTop_toTopOf="@+id/phone_input_bg" />
+
+
+        <View
+            android:id="@+id/random_code_bg"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_76"
+            android:layout_marginStart="@dimen/globe_dimen_72"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_72"
+            android:background="@drawable/login_input_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_input_bg" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/login_code_et"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_76"
+            android:background="@null"
+            android:hint="@string/login_code_hint"
+            android:paddingLeft="@dimen/globe_dimen_24"
+            android:paddingRight="@dimen/globe_dimen_24"
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_999999"
+            android:textCursorDrawable="@drawable/login_cursor"
+            android:textSize="@dimen/globe_dimen_30"
+            app:layout_constraintBottom_toBottomOf="@+id/random_code_bg"
+            app:layout_constraintEnd_toEndOf="@+id/random_code_bg"
+            app:layout_constraintStart_toStartOf="@+id/random_code_bg"
+            app:layout_constraintTop_toTopOf="@+id/random_code_bg" />
+
+        <com.info.yikao.view.CaptchaImageView
+            android:id="@+id/captcha_img"
+            android:layout_width="@dimen/globe_dimen_174"
+            android:layout_height="@dimen/globe_dimen_58"
+            android:layout_marginEnd="@dimen/globe_dimen_36"
+            app:layout_constraintBottom_toBottomOf="@+id/random_code_bg"
+            app:layout_constraintEnd_toEndOf="@+id/random_code_bg"
+            app:layout_constraintTop_toTopOf="@+id/random_code_bg" />
+
+        <ImageView
+            android:id="@+id/agree_tips_img"
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_62"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:background="@mipmap/icon_right_blue_empty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/random_code_bg" />
+
+        <TextView
+            android:id="@+id/agree_tips_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_agree_info"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toBottomOf="@+id/agree_tips_img"
+            app:layout_constraintStart_toEndOf="@+id/agree_tips_img"
+            app:layout_constraintTop_toTopOf="@+id/agree_tips_img" />
+
+        <TextView
+            android:id="@+id/agree_tips_private"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_agree_private"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toBottomOf="@+id/agree_tips_img"
+            app:layout_constraintStart_toEndOf="@+id/agree_tips_head"
+            app:layout_constraintTop_toTopOf="@+id/agree_tips_img" />
+
+        <TextView
+            android:id="@+id/agree_tips_and"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="和"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toBottomOf="@+id/agree_tips_img"
+            app:layout_constraintStart_toEndOf="@+id/agree_tips_private"
+            app:layout_constraintTop_toTopOf="@+id/agree_tips_img" />
+
+        <TextView
+            android:id="@+id/agree_tips_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_agree_user"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toBottomOf="@+id/agree_tips_img"
+            app:layout_constraintStart_toEndOf="@+id/agree_tips_and"
+            app:layout_constraintTop_toTopOf="@+id/agree_tips_img" />
+
+        <TextView
+            android:id="@+id/get_sms_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_76"
+            android:layout_marginStart="@dimen/globe_dimen_72"
+            android:layout_marginTop="@dimen/globe_dimen_100"
+            android:layout_marginEnd="@dimen/globe_dimen_72"
+            android:background="@drawable/login_btn_blue"
+            android:gravity="center"
+            android:text="@string/get_sms_code"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="@dimen/font_text_size_34"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/agree_tips_head" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

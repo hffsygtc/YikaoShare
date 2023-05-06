@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_F5F5F5"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_84"
+            android:background="@color/color_FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up_page"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintEnd_toEndOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="@+id/title_layout"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <TextView
+            android:id="@+id/top_guide_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="@string/sign_up_step"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_layout" />
+
+        <View
+            android:id="@+id/sign_up_step_1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_160"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_20"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:background="@drawable/white_corner_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_guide_tv" />
+
+        <View
+            android:id="@+id/sign_up_step_2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_160"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:background="@drawable/grey_e6_corner_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_step_1" />
+
+        <View
+            android:id="@+id/sign_up_step_3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_160"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:background="@drawable/grey_e6_corner_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_step_2" />
+
+        <TextView
+            android:id="@+id/step_1_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="@string/step_1_title"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_step_1"
+            app:layout_constraintTop_toTopOf="@+id/sign_up_step_1" />
+
+        <TextView
+            android:id="@+id/step_1_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_32"
+            android:layout_marginBottom="@dimen/globe_dimen_42"
+            android:text="@string/step_1_desc"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_22"
+            app:layout_constraintBottom_toBottomOf="@+id/sign_up_step_1"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_step_1" />
+
+        <TextView
+            android:id="@+id/step_1_handle"
+            android:layout_width="@dimen/globe_dimen_120"
+            android:layout_height="@dimen/globe_dimen_46"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:layout_marginBottom="@dimen/globe_dimen_30"
+            android:background="@drawable/blue_empty_corner_15"
+            android:gravity="center"
+            android:text="@string/step_1_handle"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/font_text_size_24"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/sign_up_step_1"
+            app:layout_constraintEnd_toEndOf="@+id/sign_up_step_1" />
+
+        <TextView
+            android:id="@+id/step_2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="@string/step_2_title"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_step_2"
+            app:layout_constraintTop_toTopOf="@+id/sign_up_step_2" />
+
+        <TextView
+            android:id="@+id/step_2_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_32"
+            android:layout_marginBottom="@dimen/globe_dimen_42"
+            android:text="@string/step_2_desc"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_22"
+            app:layout_constraintBottom_toBottomOf="@+id/sign_up_step_2"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_step_2" />
+
+        <TextView
+            android:id="@+id/step_2_handle"
+            android:layout_width="@dimen/globe_dimen_120"
+            android:layout_height="@dimen/globe_dimen_46"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:layout_marginBottom="@dimen/globe_dimen_30"
+            android:background="@drawable/grey_99_empty_corner_15"
+            android:gravity="center"
+            android:text="@string/step_2_handle"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_24"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/sign_up_step_2"
+            app:layout_constraintEnd_toEndOf="@+id/sign_up_step_2" />
+
+        <TextView
+            android:id="@+id/step_3_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="@string/step_3_title"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_step_3"
+            app:layout_constraintTop_toTopOf="@+id/sign_up_step_3" />
+
+        <TextView
+            android:id="@+id/step_3_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_32"
+            android:layout_marginBottom="@dimen/globe_dimen_42"
+            android:text="@string/step_3_desc"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_22"
+            app:layout_constraintBottom_toBottomOf="@+id/sign_up_step_3"
+            app:layout_constraintStart_toStartOf="@+id/sign_up_step_3" />
+
+        <TextView
+            android:id="@+id/step_3_handle"
+            android:layout_width="@dimen/globe_dimen_120"
+            android:layout_height="@dimen/globe_dimen_46"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:layout_marginBottom="@dimen/globe_dimen_30"
+            android:background="@drawable/grey_99_empty_corner_15"
+            android:gravity="center"
+            android:text="@string/step_3_handle"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_24"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/sign_up_step_3"
+            app:layout_constraintEnd_toEndOf="@+id/sign_up_step_3" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/bottom_notice_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="bottom_step,bottom_left_icon,bottom_notice_tv,bottom_right_icon,bottom_right_tv"
+            />
+
+        <View
+            android:id="@+id/bottom_step"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_66"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:layout_marginBottom="@dimen/globe_dimen_30"
+            android:background="@drawable/white_corner_15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/bottom_left_icon"
+            android:layout_width="@dimen/globe_dimen_34"
+            android:layout_height="@dimen/globe_dimen_34"
+            android:layout_marginStart="@dimen/globe_dimen_14"
+            android:background="@mipmap/icon_importent"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_step"
+            app:layout_constraintStart_toStartOf="@+id/bottom_step"
+            app:layout_constraintTop_toTopOf="@+id/bottom_step" />
+
+        <TextView
+            android:id="@+id/bottom_notice_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_54"
+            android:text="@string/step_bottom_notice"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/font_text_size_24"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_step"
+            app:layout_constraintStart_toStartOf="@+id/bottom_step"
+            app:layout_constraintTop_toTopOf="@+id/bottom_step" />
+
+        <ImageView
+            android:id="@+id/bottom_right_icon"
+            android:layout_width="@dimen/globe_dimen_20"
+            android:layout_height="@dimen/globe_dimen_20"
+            android:layout_marginEnd="@dimen/globe_dimen_14"
+            android:background="@mipmap/icon_right_angle_blue"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_step"
+            app:layout_constraintEnd_toEndOf="@+id/bottom_step"
+            app:layout_constraintTop_toTopOf="@+id/bottom_step" />
+
+        <TextView
+            android:id="@+id/bottom_right_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/globe_dimen_40"
+            android:text="@string/step_1_handle"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/font_text_size_24"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_step"
+            app:layout_constraintEnd_toEndOf="@+id/bottom_step"
+            app:layout_constraintTop_toTopOf="@+id/bottom_step" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

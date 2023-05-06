@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_FFFFFF"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:background="@mipmap/icon_back_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/close_btn"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_100"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_72"
+            android:layout_marginTop="@dimen/globe_dimen_210"
+            android:text="@string/input_phone_code"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_40"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/login_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="@string/input_phone_num"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_30"
+            app:layout_constraintStart_toStartOf="@+id/login_title"
+            app:layout_constraintTop_toBottomOf="@+id/login_title" />
+
+        <TextView
+            android:id="@+id/login_desc_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_12"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            tools:text="11111111111"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_30"
+            app:layout_constraintStart_toEndOf="@+id/login_desc"
+            app:layout_constraintTop_toBottomOf="@+id/login_title" />
+
+        <com.info.yikao.view.VerificationCodeView
+            android:id="@+id/sms_code_input"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_90"
+            android:layout_marginStart="@dimen/globe_dimen_72"
+            android:layout_marginEnd="@dimen/globe_dimen_72"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_desc_phone"
+            android:layout_marginTop="@dimen/globe_dimen_90"
+            app:vcv_et_width = "@dimen/globe_dimen_80"
+            app:vcv_et_bg="@drawable/et_login_code"
+            app:vcv_et_empty_bg="@drawable/et_login_empyt_code"
+            app:vcv_et_cursor="@drawable/et_corsor"
+            app:vcv_et_inputType="number"
+            app:vcv_et_number="6"
+            app:vcv_et_text_color="@color/color_333333"
+            app:vcv_et_text_size="@dimen/font_text_size_14"
+            />
+
+        <TextView
+            android:id="@+id/timer_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            tools:text="11111111111"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/globe_dimen_26"
+            app:layout_constraintStart_toStartOf="@+id/login_title"
+            app:layout_constraintTop_toBottomOf="@+id/sms_code_input" />
+
+
+        <TextView
+            android:id="@+id/login_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_76"
+            android:layout_marginStart="@dimen/globe_dimen_72"
+            android:layout_marginTop="@dimen/globe_dimen_160"
+            android:layout_marginEnd="@dimen/globe_dimen_72"
+            android:background="@drawable/login_btn_blue"
+            android:gravity="center"
+            android:text="@string/login"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="@dimen/font_text_size_34"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timer_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

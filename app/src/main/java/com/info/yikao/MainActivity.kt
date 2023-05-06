@@ -12,6 +12,7 @@ import com.info.yikao.ext.interceptLongClick
 import com.info.yikao.model.BannerArticle
 import com.info.yikao.ui.EmptyFragment
 import com.info.yikao.ui.fragment.HomeFragment
+import com.info.yikao.ui.fragment.HomeSignUpFragment
 import com.info.yikao.ui.fragment.HomeUserFragment
 import com.info.yikao.viewmodel.MainViewModel
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
@@ -96,7 +97,7 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
                         return HomeFragment()
                     }
                     1 -> {
-                        return EmptyFragment("1")
+                        return HomeSignUpFragment()
                     }
                     2 -> {
                         return EmptyFragment("2")
