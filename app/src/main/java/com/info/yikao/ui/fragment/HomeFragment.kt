@@ -1,5 +1,6 @@
 package com.info.yikao.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,15 +10,18 @@ import com.info.yikao.databinding.FragmentMainHomeBinding
 import com.info.yikao.ext.init
 import com.info.yikao.ext.px
 import com.info.yikao.model.BannerArticle
+import com.info.yikao.ui.activity.FastNewsListActivity
+import com.info.yikao.ui.activity.SignUpDetailActivity
 import com.info.yikao.ui.adapter.MainBannerAdapter
 import com.info.yikao.ui.adapter.MainHomeListAdapter
 import com.info.yikao.view.BannerItemViewHolder
 import com.info.yikao.viewmodel.HomeViewModel
 import com.zhpan.bannerview.BannerViewPager
+import me.hgj.jetpackmvvm.ext.util.loge
 
-class HomeFragment : BaseFragment<HomeViewModel,FragmentMainHomeBinding>() {
+class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
 
-    private val mAdapter : MainHomeListAdapter by lazy {
+    private val mAdapter: MainHomeListAdapter by lazy {
         MainHomeListAdapter(requireContext(), arrayListOf())
     }
 
@@ -26,13 +30,27 @@ class HomeFragment : BaseFragment<HomeViewModel,FragmentMainHomeBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         initBanner()
 
-        mDatabind.recyclerView.init(LinearLayoutManager(context),mAdapter)
+        mDatabind.recyclerView.init(LinearLayoutManager(context), mAdapter)
 
         mAdapter.list = mViewModel.listItems
         mAdapter.notifyDataSetChanged()
 
         mAdapter.run {
-            enterMoreClick = {}
+            enterMoreClick = { type ->
+                "click type is $type".loge()
+                when (type) {
+                    "艺考头条" -> {
+                        //艺考头条列表
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                FastNewsListActivity::class.java
+                            )
+                        )
+                    }
+                }
+
+            }
         }
 
     }

@@ -35,6 +35,24 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CertifyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SignUpListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SignUpPayActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SignUpDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SignUpCertifyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.FastNewsListActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

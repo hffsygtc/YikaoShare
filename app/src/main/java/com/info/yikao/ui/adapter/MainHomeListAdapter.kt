@@ -21,7 +21,7 @@ import com.info.yikao.ui.viewholder.TopNewsHolder
 class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<MainListWarpper>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var enterMoreClick: ((Int) -> Unit)? = null
+    var enterMoreClick: ((String) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view: View? = null
@@ -116,7 +116,7 @@ class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<Mai
         holder.titleTv.text = bean.titleName
 
         holder.moreBtn.setOnClickListener {
-            enterMoreClick?.invoke(1)
+            enterMoreClick?.invoke(bean.titleName?:"")
         }
     }
 

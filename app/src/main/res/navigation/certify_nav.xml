@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_nav"
+    app:startDestination="@id/postIdCardFragment">
+
+    <fragment
+        android:id="@+id/postIdCardFragment"
+        android:name="com.info.yikao.ui.fragment.PostIdCardFragment"
+        android:label="PostIdCardFragment" >
+        <action
+            android:id="@+id/action_postIdCardFragment_to_postIdUserInfoFragment"
+            app:destination="@id/postIdUserInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postIdUserInfoFragment"
+        android:name="com.info.yikao.ui.fragment.PostIdUserInfoFragment"
+        android:label="PostIdUserInfoFragment" />
+</navigation>

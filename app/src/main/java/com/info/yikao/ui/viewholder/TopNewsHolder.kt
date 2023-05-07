@@ -18,12 +18,15 @@ class TopNewsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val readTv = itemView.findViewById<TextView>(R.id.read_tv)
 
     fun bindData(data: NewsBean, context: Context) {
-        Glide.with(context).load(data.img)
-            .apply(getGlideRequestOptions(Constant.GLIDE_TYPE_DEFAULT))
-            .into(iconImg)
         titleTv.text = data.title
         sourceTv.text = data.ori
         readTv.text = "阅读数：${data.read_count}"
+
+        if (data.type == 1){
+            iconImg.setBackgroundResource(R.mipmap.icon_fast_news)
+        }else{
+            iconImg.setBackgroundResource(R.mipmap.icon_notice)
+        }
 
         itemView.setOnClickListener {
             //todo jump to detail

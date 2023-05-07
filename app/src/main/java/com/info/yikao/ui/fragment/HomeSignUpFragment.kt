@@ -9,6 +9,8 @@ import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentMainSignUpBinding
 import com.info.yikao.databinding.FragmentMainUserBinding
+import com.info.yikao.ui.activity.CertifyActivity
+import com.info.yikao.ui.activity.SignUpListActivity
 import com.info.yikao.ui.activity.UserOrderActivity
 import com.info.yikao.viewmodel.HomeSignUpViewModel
 import com.info.yikao.viewmodel.HomeUserViewModel
@@ -19,6 +21,15 @@ class HomeSignUpFragment : BaseFragment<HomeSignUpViewModel, FragmentMainSignUpB
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        mDatabind.step1Handle.setOnClickListener {
+            //去认证
+            startActivity(Intent(requireContext(),CertifyActivity::class.java))
+        }
+
+        mDatabind.step2Handle.setOnClickListener {
+            //去认证
+            startActivity(Intent(requireContext(), SignUpListActivity::class.java))
+        }
 
     }
 

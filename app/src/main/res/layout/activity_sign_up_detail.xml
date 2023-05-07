@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_F5F5F5"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_84"
+            android:background="@color/color_FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:background="@mipmap/icon_page_back"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <View
+            android:id="@+id/title_back_btn"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_84"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="报名详情"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintEnd_toEndOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="@+id/title_layout"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/globe_dimen_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/user_study_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:text="考试信息:"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/globe_dimen_26"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/provice_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:layout_marginTop="@dimen/globe_dimen_18"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/user_study_tv" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="学校"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/provice_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/provice_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/provice_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/school_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    tools:text="请选择所在省份"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/provice_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/provice_layout" />
+
+
+                <View
+                    android:id="@+id/id_card_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/provice_layout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="考试名称"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/id_card_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/id_card_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/id_card_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/exam_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    tools:text="请选择所在省份"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/id_card_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/id_card_layout" />
+
+
+
+                <View
+                    android:id="@+id/head_photo_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/id_card_layout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="考试时间"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/head_photo_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/head_photo_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/head_photo_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    tools:text="请上传免冠照"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/head_photo_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/head_photo_layout" />
+
+                <View
+                    android:id="@+id/height_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/head_photo_layout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="考试状态"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/height_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/height_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/height_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:text="考试中"
+                    android:textColor="@color/color_7CA861"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/height_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/height_layout" />
+
+
+                <View
+                    android:id="@+id/weight_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/height_layout" />
+
+                <TextView
+                    android:id="@+id/exam_release_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    tools:text="体重"
+                    android:textColor="@color/color_52618B"
+                    android:textSize="@dimen/font_text_size_26"
+                    app:layout_constraintBottom_toBottomOf="@+id/weight_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/weight_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/weight_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/enter_exam_btn"
+                    android:layout_width="@dimen/globe_dimen_130"
+                    android:layout_height="@dimen/globe_dimen_46"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@drawable/sign_up_bg"
+                    android:gravity="center"
+                    android:text="进入考试"
+                    android:textColor="@color/color_52618B"
+                    android:textSize="@dimen/font_text_size_24"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/weight_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/weight_layout" />
+
+
+
+
+                <TextView
+                    android:id="@+id/location_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:text="考生信息:"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/globe_dimen_26"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/weight_layout" />
+
+                <View
+                    android:id="@+id/location_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:layout_marginTop="@dimen/globe_dimen_18"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/location_tv" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="报考人"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/location_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/location_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/location_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/student_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    tools:text="请选择通讯地址"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/location_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/location_layout" />
+
+
+                <View
+                    android:id="@+id/street_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/location_layout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="身份证号"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/street_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/street_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/street_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/id_card_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    tools:text="请选择通讯地址"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/street_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/street_layout" />
+
+
+                <View
+                    android:id="@+id/ems_name_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/street_layout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="考试结果"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/ems_name_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ems_name_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/ems_name_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+
+                <TextView
+                    android:id="@+id/exam_result_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    tools:text="请选择通讯地址"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/ems_name_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ems_name_layout" />
+
+
+                <View
+                    android:id="@+id/ems_phone_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/ems_name_layout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="报考费用"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/ems_phone_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ems_phone_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/ems_phone_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/exam_pay_cast_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    tools:text="请选择通讯地址"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/ems_phone_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ems_phone_layout" />
+
+
+                <View
+                    android:id="@+id/relative_name_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_84"
+                    android:background="@color/color_FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@+id/ems_phone_layout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="报考订单号"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/relative_name_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/relative_name_layout" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/relative_name_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/order_info_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    tools:text="请选择通讯地址"
+                    android:textColor="@color/color_666666"
+                    android:textSize="@dimen/font_text_size_28"
+                    app:layout_constraintBottom_toBottomOf="@+id/relative_name_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/relative_name_layout" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

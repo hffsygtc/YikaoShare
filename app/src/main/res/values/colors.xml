@@ -15,8 +15,10 @@
     <color name="color_333333">#333333</color>
     <color name="color_F5F5F5">#F5F5F5</color>
     <color name="color_52618B">#52618B</color>
+    <color name="color_FF3434">#FF3434</color>
     <color name="color_FF0000">#FF0000</color>
     <color name="color_CCCCCC">#CCCCCC</color>
+    <color name="color_7CA861">#7CA861</color>
 
     <color name="main_bottom_icon_normal">#999999</color>
     <color name="main_bottom_icon_checked">#52618B</color>

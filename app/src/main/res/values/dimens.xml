@@ -63,6 +63,7 @@
     <dimen name="globe_dimen_154">77dp</dimen>
     <dimen name="globe_dimen_158">79dp</dimen>
     <dimen name="globe_dimen_160">80dp</dimen>
+    <dimen name="globe_dimen_166">83dp</dimen>
     <dimen name="globe_dimen_170">85dp</dimen>
     <dimen name="globe_dimen_174">87dp</dimen>
     <dimen name="globe_dimen_180">90dp</dimen>
@@ -79,6 +80,7 @@
     <dimen name="globe_dimen_290">145dp</dimen>
     <dimen name="globe_dimen_300">150dp</dimen>
     <dimen name="globe_dimen_320">160dp</dimen>
+    <dimen name="globe_dimen_352">176dp</dimen>
     <dimen name="globe_dimen_360">180dp</dimen>
     <dimen name="globe_dimen_400">200dp</dimen>
     <dimen name="globe_dimen_440">220dp</dimen>
