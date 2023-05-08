@@ -12,6 +12,8 @@ import com.info.yikao.model.OrderBean
 class MajorSubRightAdapter(data: MutableList<MajorBean>?) :
     BaseDelegateMultiAdapter<MajorBean, BaseViewHolder>(data) {
 
+    var clickMajor : ((MajorBean)->Unit)? = null
+
     init {
         //todo 增加设置动画模式的标志
         setAdapterAnimation(0)
@@ -29,8 +31,10 @@ class MajorSubRightAdapter(data: MutableList<MajorBean>?) :
 
     override fun convert(helper: BaseViewHolder, item: MajorBean) {
         val name = helper.getView<TextView>(R.id.major_parent_name)
-
         name.text = item.name
+        helper.itemView.setOnClickListener {
+            clickMajor?.invoke(item)
+        }
 
     }
 

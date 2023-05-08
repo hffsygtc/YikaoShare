@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_F5F5F5"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/head_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/globe_dimen_30"
+        android:layout_marginTop="@dimen/globe_dimen_30"
+        android:paddingBottom="@dimen/globe_dimen_18"
+        android:text="考试内容:"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/globe_dimen_26"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/exam_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/color_FFFFFF"
+        android:paddingStart="@dimen/globe_dimen_30"
+        android:paddingTop="@dimen/globe_dimen_30"
+        android:paddingEnd="@dimen/globe_dimen_30"
+        android:paddingBottom="@dimen/globe_dimen_30"
+        android:textColor="@color/color_666666"
+        android:textSize="@dimen/globe_dimen_28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/head_tv"
+        tools:text="1、报名费为200元，考试费300元(考试费由学校收取)" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

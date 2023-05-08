@@ -88,6 +88,9 @@
         <activity
             android:name=".ui.activity.ShowDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.MajorIntroActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".ui.activity.CustomCaptureActivity"

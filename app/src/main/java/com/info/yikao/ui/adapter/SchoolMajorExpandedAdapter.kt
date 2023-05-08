@@ -12,14 +12,16 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.info.yikao.R
 import com.info.yikao.ext.init
 import com.info.yikao.ext.setAdapterAnimation
+import com.info.yikao.model.MajorBean
 import com.info.yikao.model.MajorTypeBean
 import com.info.yikao.model.OrderBean
-import com.skydoves.expandablelayout.ExpandableLayout
 import me.hgj.jetpackmvvm.ext.util.loge
 import me.hgj.jetpackmvvm.ext.util.logw
 
 class SchoolMajorExpandedAdapter(data: MutableList<MajorTypeBean>?) :
     BaseDelegateMultiAdapter<MajorTypeBean, BaseViewHolder>(data) {
+
+    var clickMajor: ((MajorBean) -> Unit)? = null
 
     init {
         //todo 增加设置动画模式的标志
@@ -52,12 +54,15 @@ class SchoolMajorExpandedAdapter(data: MutableList<MajorTypeBean>?) :
 
         val rightAdapter = MajorSubRightAdapter(item.majors[0].majors)
         subRightRv.init(LinearLayoutManager(context), rightAdapter)
-        leftAdapter.selectPosChange = {pos->
+
+        rightAdapter.clickMajor = clickMajor
+
+        leftAdapter.selectPosChange = { pos ->
             //左侧的内容切换了
             val majors = item.majors.getOrNull(pos)
             val subMajors = majors?.majors
-            if (subMajors != null){
-                rightAdapter.data =subMajors!!
+            if (subMajors != null) {
+                rightAdapter.data = subMajors!!
                 rightAdapter.notifyDataSetChanged()
             }
         }
@@ -78,8 +83,6 @@ class SchoolMajorExpandedAdapter(data: MutableList<MajorTypeBean>?) :
             item.open = !item.open
 
         }
-
-
     }
 
 

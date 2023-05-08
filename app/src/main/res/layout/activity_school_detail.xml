@@ -185,6 +185,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/left_major_layout"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/globe_dimen_30"
             android:layout_marginTop="@dimen/globe_dimen_30"
@@ -228,25 +229,43 @@
                 android:id="@+id/major_content_rv"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="@dimen/globe_dimen_30"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/left_major_name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/right_major_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/school_detail_bg"
             app:layout_constraintEnd_toEndOf="@+id/school_detail_bg"
             app:layout_constraintStart_toStartOf="@+id/school_detail_bg"
             app:layout_constraintTop_toTopOf="@+id/school_detail_bg">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:text="联系方式："
+                    android:textSize="@dimen/font_text_size_30"
+                    android:textColor="@color/color_333333"
+                    android:textStyle="bold"
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
