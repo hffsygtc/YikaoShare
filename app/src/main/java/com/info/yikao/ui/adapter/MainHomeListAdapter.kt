@@ -23,6 +23,8 @@ class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<Mai
 
     var enterMoreClick: ((String) -> Unit)? = null
 
+    var itemClickListener: ((MainListWarpper) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view: View? = null
         when (viewType) {
@@ -77,7 +79,11 @@ class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<Mai
      */
     private fun showOutsideView(holder: ShowNewsHolder, bean: MainListWarpper) {
         bean.streetBean?.let {
-            holder.bindData(it,mContext)
+            holder.bindData(it, mContext)
+
+            holder.itemView.setOnClickListener {
+                itemClickListener?.invoke(bean)
+            }
         }
     }
 
@@ -86,7 +92,11 @@ class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<Mai
      */
     private fun showSignUp(holder: SignUpHolder, bean: MainListWarpper) {
         bean.schoolBean?.let {
-            holder.bindData(it,mContext)
+            holder.bindData(it, mContext)
+
+            holder.itemView.setOnClickListener {
+                itemClickListener?.invoke(bean)
+            }
         }
     }
 
@@ -95,7 +105,11 @@ class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<Mai
      */
     private fun showTopNews(holder: TopNewsHolder, bean: MainListWarpper) {
         bean.newsBean?.let {
-            holder.bindData(it,mContext)
+            holder.bindData(it, mContext)
+
+            holder.itemView.setOnClickListener {
+                itemClickListener?.invoke(bean)
+            }
         }
     }
 
@@ -116,7 +130,7 @@ class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<Mai
         holder.titleTv.text = bean.titleName
 
         holder.moreBtn.setOnClickListener {
-            enterMoreClick?.invoke(bean.titleName?:"")
+            enterMoreClick?.invoke(bean.titleName ?: "")
         }
     }
 

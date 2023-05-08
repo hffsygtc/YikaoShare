@@ -26,7 +26,7 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.util.logw
 
 /**
- * 报名列表
+ * 报名的订单列表
  */
 class SignUpListActivity : BaseActivity<SignUpListViewModel, ActivityExamListBinding>() {
 

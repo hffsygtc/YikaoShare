@@ -9,7 +9,6 @@
         android:id="@+id/head_icon"
         android:layout_width="@dimen/globe_dimen_148"
         android:layout_height="@dimen/globe_dimen_148"
-        android:background="@color/color_999999"
         android:layout_marginStart="@dimen/globe_dimen_20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/school_name"

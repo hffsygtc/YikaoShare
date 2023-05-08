@@ -1,6 +1,7 @@
 package com.info.yikao.ui.viewholder
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,6 +11,7 @@ import com.info.yikao.R
 import com.info.yikao.ext.Constant
 import com.info.yikao.ext.getGlideRequestOptions
 import com.info.yikao.model.NewsBean
+import com.info.yikao.ui.activity.FastNewsDetailActivity
 
 class TopNewsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val iconImg = itemView.findViewById<ImageView>(R.id.head_icon)
@@ -27,11 +29,5 @@ class TopNewsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }else{
             iconImg.setBackgroundResource(R.mipmap.icon_notice)
         }
-
-        itemView.setOnClickListener {
-            //todo jump to detail
-
-        }
-
     }
 }

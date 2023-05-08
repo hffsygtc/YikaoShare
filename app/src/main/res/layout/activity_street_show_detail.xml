@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_FFFFFF"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_84"
+            android:background="@color/color_FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:background="@mipmap/icon_page_back"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <View
+            android:id="@+id/title_back_btn"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_84"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="展演详情"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintEnd_toEndOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="@+id/title_layout"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/globe_dimen_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/show_top_img"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    app:layout_constraintDimensionRatio="1.3:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/news_detail_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_26"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_28"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/show_top_img" />
+
+                <TextView
+                    android:id="@+id/location_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintStart_toStartOf="@+id/news_detail_title"
+                    app:layout_constraintTop_toBottomOf="@+id/news_detail_title" />
+
+                <TextView
+                    android:id="@+id/method_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintStart_toStartOf="@+id/news_detail_title"
+                    app:layout_constraintTop_toBottomOf="@+id/location_tv" />
+
+                <TextView
+                    android:id="@+id/sign_up_btn"
+                    android:layout_width="@dimen/globe_dimen_88"
+                    android:layout_height="@dimen/globe_dimen_46"
+                    app:layout_constraintTop_toTopOf="@+id/location_tv"
+                    app:layout_constraintBottom_toBottomOf="@+id/method_tv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:text="@string/sign_up"
+                    android:gravity="center"
+                    android:textColor="@color/color_52618B"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/font_text_size_24"
+                    android:background="@drawable/sign_up_bg"
+                    />
+
+                <View
+                    android:id="@+id/detail_gap_line"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/method_tv" />
+
+                <TextView
+                    android:id="@+id/detail_content_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:lineSpacingMultiplier="1.2"
+                    android:textColor="@color/color_333333"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detail_gap_line"
+                    android:textSize="@dimen/font_text_size_26" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

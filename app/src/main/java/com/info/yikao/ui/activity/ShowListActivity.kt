@@ -16,10 +16,13 @@ import com.info.yikao.databinding.ActivityVertifyInfoBinding
 import com.info.yikao.ext.*
 import com.info.yikao.model.NewsBean
 import com.info.yikao.model.OrderBean
+import com.info.yikao.model.StreetShowBean
 import com.info.yikao.ui.adapter.NewsFastAdapter
+import com.info.yikao.ui.adapter.ShowListAdapter
 import com.info.yikao.ui.adapter.SignUpListAdapter
 import com.info.yikao.ui.adapter.UserOrderListAdapter
 import com.info.yikao.viewmodel.FastNewsListViewModel
+import com.info.yikao.viewmodel.ShowListViewModel
 import com.info.yikao.viewmodel.SignUpListViewModel
 import com.info.yikao.viewmodel.UserOrderViewModel
 import com.info.yikao.weight.DefineLoadMoreView
@@ -30,9 +33,9 @@ import me.hgj.jetpackmvvm.ext.util.loge
 import me.hgj.jetpackmvvm.ext.util.logw
 
 /**
- * 艺考头条
+ * 展演资讯
  */
-class FastNewsListActivity : BaseActivity<FastNewsListViewModel, ActivitySingleListBinding>() {
+class ShowListActivity : BaseActivity<ShowListViewModel, ActivitySingleListBinding>() {
 
     //界面状态管理者
     private lateinit var loadsir: LoadService<Any>
@@ -43,14 +46,14 @@ class FastNewsListActivity : BaseActivity<FastNewsListViewModel, ActivitySingleL
     private val mRecycler by lazy { mDatabind.recyclerView }
     private val mRefresh by lazy { mDatabind.swipeRefresh }
 
-    private val mAdapter by lazy { NewsFastAdapter(arrayListOf()) }
+    private val mAdapter by lazy { ShowListAdapter(arrayListOf()) }
 
     private var underType = 0
 
     override fun layoutId(): Int = R.layout.activity_single_list
 
     override fun initView(savedInstanceState: Bundle?) {
-        mDatabind.titleTv.text = "艺考头条"
+        mDatabind.titleTv.text = "展演资讯"
 
         //状态页配置
         loadsir = loadServiceInit(mRefresh) {
@@ -61,7 +64,7 @@ class FastNewsListActivity : BaseActivity<FastNewsListViewModel, ActivitySingleL
 
 
         //初始化recycleview
-        mRecycler.init(LinearLayoutManager(this@FastNewsListActivity), mAdapter).let {
+        mRecycler.init(LinearLayoutManager(this@ShowListActivity), mAdapter).let {
             //添加加载更多的底部布局
             footView = it.initFooter(SwipeRecyclerView.LoadMoreListener {
                 //触发加载更多时请求数据
@@ -80,11 +83,11 @@ class FastNewsListActivity : BaseActivity<FastNewsListViewModel, ActivitySingleL
 
                 "click news data jump $position".loge()
                 //点击了对象
-                var posData = adapter.data[position] as NewsBean
+                var posData = adapter.data[position] as StreetShowBean
 
                 //todo
                 //跳转到公告详情
-                startActivity(Intent(this@FastNewsListActivity, FastNewsDetailActivity::class.java))
+                startActivity(Intent(this@ShowListActivity, ShowDetailActivity::class.java))
 
 
             }

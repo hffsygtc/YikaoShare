@@ -65,5 +65,6 @@ dependencies {
     implementation 'com.github.skydoves:expandablelayout:1.0.7'
     implementation 'androidx.navigation:navigation-fragment:2.2.0-rc04'
     implementation 'androidx.navigation:navigation-ui:2.2.0-rc04'
+    implementation 'com.github.jenly1314:zxing-lite:2.2.1'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 }

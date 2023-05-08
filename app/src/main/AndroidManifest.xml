@@ -3,6 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.info.yikao">
 
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="cn.com.nbd.nbdmobile.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -15,6 +37,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:node="merge"
+        android:usesCleartextTraffic="true"
         tools:replace="android:icon,android:theme">
         <activity
             android:name=".MainActivity"
@@ -53,6 +76,24 @@
         <activity
             android:name=".ui.activity.FastNewsListActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.FastNewsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.SchoolListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ShowListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ShowDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.CustomCaptureActivity"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/CaptureTheme" />
+
     </application>
 
 </manifest>

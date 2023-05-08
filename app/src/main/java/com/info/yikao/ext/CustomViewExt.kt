@@ -135,6 +135,22 @@ fun getGlideRequestOptions(type: Int, corner: Float = 0f): RequestOptions {
                         CircleCrop()
                     )
                 )
+        Constant.GLIDE_OPTIONS_SCHOOL_ICON ->
+            RequestOptions()
+                .placeholder(R.mipmap.default_school_icon)
+                .transform(
+                    MultiTransformation(
+                        CircleCrop()
+                    )
+                )
+        Constant.GLIDE_OPTIONS_SHOW ->
+            RequestOptions()
+                .placeholder(R.mipmap.default_show_img)
+                .transform(
+                    MultiTransformation(
+                        CircleCrop()
+                    )
+                )
         else -> RequestOptions()
             .placeholder(R.color.color_666666)
             .transform(

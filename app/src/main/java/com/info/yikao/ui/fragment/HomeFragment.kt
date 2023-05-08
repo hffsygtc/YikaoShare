@@ -10,8 +10,7 @@ import com.info.yikao.databinding.FragmentMainHomeBinding
 import com.info.yikao.ext.init
 import com.info.yikao.ext.px
 import com.info.yikao.model.BannerArticle
-import com.info.yikao.ui.activity.FastNewsListActivity
-import com.info.yikao.ui.activity.SignUpDetailActivity
+import com.info.yikao.ui.activity.*
 import com.info.yikao.ui.adapter.MainBannerAdapter
 import com.info.yikao.ui.adapter.MainHomeListAdapter
 import com.info.yikao.view.BannerItemViewHolder
@@ -47,6 +46,47 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
                                 FastNewsListActivity::class.java
                             )
                         )
+                    }
+                    "艺考报名"->{
+                        //艺考报名列表
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                SchoolListActivity::class.java
+                            )
+                        )
+                    }
+                    "展演资讯"->{
+                        //艺考报名列表
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                ShowListActivity::class.java
+                            )
+                        )
+                    }
+                }
+            }
+
+            itemClickListener = {wrapper->
+                when(wrapper.type){
+                    1->{
+                        //新闻快讯类
+                        startActivity(Intent(requireActivity(), FastNewsDetailActivity::class.java))
+                    }
+                    2->{
+                        //艺考报名
+                        //跳转到学校的详情
+                        val intent = Intent(requireActivity(), SchoolDetailActivity::class.java)
+                        intent.putExtra("id","")
+                        startActivity(intent)
+                    }
+                    3->{
+                        //艺考报名
+                        //跳转到学校的详情
+                        val intent = Intent(requireActivity(), ShowDetailActivity::class.java)
+                        intent.putExtra("id","")
+                        startActivity(intent)
                     }
                 }
 
