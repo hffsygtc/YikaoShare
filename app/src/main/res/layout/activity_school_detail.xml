@@ -185,12 +185,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/left_major_layout"
             android:layout_width="0dp"
-            android:visibility="gone"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/globe_dimen_30"
             android:layout_marginTop="@dimen/globe_dimen_30"
             android:layout_marginEnd="@dimen/globe_dimen_30"
             android:layout_marginBottom="@dimen/globe_dimen_30"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -235,38 +235,176 @@
                 app:layout_constraintTop_toBottomOf="@+id/left_major_name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:id="@+id/right_major_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="visible"
+            android:visibility="gone"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/school_detail_bg"
             app:layout_constraintEnd_toEndOf="@+id/school_detail_bg"
             app:layout_constraintStart_toStartOf="@+id/school_detail_bg"
             app:layout_constraintTop_toTopOf="@+id/school_detail_bg">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="@dimen/globe_dimen_30"
-                    android:layout_marginTop="@dimen/globe_dimen_30"
-                    android:text="联系方式："
-                    android:textSize="@dimen/font_text_size_30"
-                    android:textColor="@color/color_333333"
-                    android:textStyle="bold"
-                    />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/contact_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/globe_dimen_30"
+                        android:layout_marginTop="@dimen/globe_dimen_30"
+                        android:text="联系方式："
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/font_text_size_30"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/phone_icon"
+                        android:layout_width="@dimen/globe_dimen_42"
+                        android:layout_height="@dimen/globe_dimen_42"
+                        android:layout_marginStart="@dimen/globe_dimen_20"
+                        android:layout_marginTop="@dimen/globe_dimen_20"
+                        android:background="@mipmap/icon_phone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/contact_title" />
+
+                    <TextView
+                        android:id="@+id/phone_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/globe_dimen_4"
+                        android:text="电话："
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_text_size_26"
+                        app:layout_constraintBottom_toBottomOf="@+id/phone_icon"
+                        app:layout_constraintStart_toEndOf="@+id/phone_icon"
+                        app:layout_constraintTop_toTopOf="@+id/phone_icon" />
+
+                    <TextView
+                        android:id="@+id/phone_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/globe_dimen_4"
+                        android:textColor="@color/color_52618B"
+                        android:textSize="@dimen/font_text_size_26"
+                        app:layout_constraintBottom_toBottomOf="@+id/phone_icon"
+                        app:layout_constraintStart_toEndOf="@+id/phone_title"
+                        app:layout_constraintTop_toTopOf="@+id/phone_icon"
+                        tools:text="111111111111" />
+
+                    <ImageView
+                        android:id="@+id/web_icon"
+                        android:layout_width="@dimen/globe_dimen_42"
+                        android:layout_height="@dimen/globe_dimen_42"
+                        android:layout_marginStart="@dimen/globe_dimen_20"
+                        android:layout_marginTop="@dimen/globe_dimen_20"
+                        android:background="@mipmap/icon_link"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/phone_icon" />
+
+                    <TextView
+                        android:id="@+id/web_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/globe_dimen_4"
+                        android:text="网址："
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_text_size_26"
+                        app:layout_constraintBottom_toBottomOf="@+id/web_icon"
+                        app:layout_constraintStart_toEndOf="@+id/web_icon"
+                        app:layout_constraintTop_toTopOf="@+id/web_icon" />
+
+                    <TextView
+                        android:id="@+id/web_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/globe_dimen_4"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/font_text_size_26"
+                        app:layout_constraintBottom_toBottomOf="@+id/web_icon"
+                        app:layout_constraintStart_toEndOf="@+id/web_title"
+                        app:layout_constraintTop_toTopOf="@+id/web_icon"
+                        tools:text="111111111111" />
+
+                    <ImageView
+                        android:id="@+id/location_icon"
+                        android:layout_width="@dimen/globe_dimen_42"
+                        android:layout_height="@dimen/globe_dimen_42"
+                        android:layout_marginStart="@dimen/globe_dimen_20"
+                        android:layout_marginTop="@dimen/globe_dimen_20"
+                        android:background="@mipmap/icon_location"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/web_icon" />
+
+                    <TextView
+                        android:id="@+id/location_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/globe_dimen_4"
+                        android:text="地址："
+                        android:textColor="@color/color_999999"
+                        android:textSize="@dimen/font_text_size_26"
+                        app:layout_constraintBottom_toBottomOf="@+id/location_icon"
+                        app:layout_constraintStart_toEndOf="@+id/location_icon"
+                        app:layout_constraintTop_toTopOf="@+id/location_icon" />
+
+                    <TextView
+                        android:id="@+id/location_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/globe_dimen_4"
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/font_text_size_26"
+                        app:layout_constraintBottom_toBottomOf="@+id/location_icon"
+                        app:layout_constraintStart_toEndOf="@+id/location_title"
+                        app:layout_constraintTop_toTopOf="@+id/location_icon"
+                        tools:text="111111111111" />
+
+                    <TextView
+                        android:id="@+id/info_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/globe_dimen_30"
+                        android:layout_marginTop="@dimen/globe_dimen_30"
+                        android:text="基本信息："
+                        android:textColor="@color/color_333333"
+                        android:textSize="@dimen/font_text_size_30"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/location_icon" />
+
+                    <TextView
+                        android:id="@+id/content_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/globe_dimen_30"
+                        android:layout_marginEnd="@dimen/globe_dimen_30"
+                        android:layout_marginTop="@dimen/globe_dimen_30"
+                        android:paddingBottom="@dimen/globe_dimen_30"
+                        android:lineSpacingMultiplier="1.2"
+                        android:textColor="@color/color_666666"
+                        android:textSize="@dimen/font_text_size_26"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/info_title"
+                        tools:text="四川音乐学院（Sichuan Conservatory of Music）简称“川音”，位于四川省成都市，是一所以“艺术”为主要办学特色的省属全日制普通本科高等院校，是全国11所独立设置的专业音乐学院之一.四川音乐学院（Sichuan Conservatory of Music）简称“川音”，位于四川省成都市，是一所以“艺术”为主要办学特色的省属全日制普通本科高等院校，是全国11所独立设置的专业音乐学院之一...四川音乐学院（Sichuan Conservatory of Music）简称“川音”，位于四川省成都市，是一所以“艺术”为主要办学特色的省属全日制普通本科高等院校，是全国11所独立设置的专业音乐学院之一..." />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.core.widget.NestedScrollView>
-
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

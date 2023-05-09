@@ -22,18 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--    <CheckBox-->
-        <!--        android:id="@+id/audio_selection"-->
-        <!--        android:text="@string/audio"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginStart="32dp"-->
-        <!--        android:buttonTint="@color/ic_white"-->
-        <!--        android:textColor="@color/txWhite"-->
-        <!--        android:textSize="20sp"-->
-        <!--        app:layout_constraintTop_toBottomOf="@id/horizontal_guideline"-->
-        <!--        app:layout_constraintStart_toStartOf="@id/previewView" />-->
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/vertical_guideline"
             android:layout_width="wrap_content"
@@ -41,36 +29,61 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.50" />
 
-        <!--    <androidx.recyclerview.widget.RecyclerView-->
-        <!--        android:id="@+id/quality_selection"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="0dp"-->
-        <!--        android:background="?android:attr/activatedBackgroundIndicator"-->
-        <!--        android:choiceMode="singleChoice"-->
-        <!--        android:layout_centerVertical="false"-->
-        <!--        app:layout_constraintStart_toEndOf="@+id/vertical_guideline"-->
-        <!--        app:layout_constraintTop_toTopOf="@id/audio_selection"-->
-        <!--        app:layout_constraintBottom_toTopOf="@id/stop_button"/>-->
-
-        <ImageButton
-            android:id="@+id/camera_button"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="13dp"
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginTop="@dimen/globe_dimen_60"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
             android:background="@mipmap/icon_change_camre"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ImageContrastCheck" />
 
+        <View
+            android:id="@+id/camera_button"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_100"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_18"
+            android:layout_marginTop="@dimen/globe_dimen_60"
+            android:background="@mipmap/icon_back_white"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/back_button"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_100"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.info.yikao.view.MyCircleProgress
+            android:id="@+id/process_circle"
+            android:layout_width="@dimen/globe_dimen_110"
+            android:layout_height="@dimen/globe_dimen_110"
+            android:layout_marginBottom="@dimen/globe_dimen_48"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
         <ImageButton
             android:id="@+id/capture_button"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="@dimen/globe_dimen_84"
+            android:layout_height="@dimen/globe_dimen_84"
             android:background="@mipmap/icon_start_record_video"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/process_circle"
+            app:layout_constraintBottom_toBottomOf="@+id/process_circle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="ImageContrastCheck" />

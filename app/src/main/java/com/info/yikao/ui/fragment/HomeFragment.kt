@@ -122,7 +122,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
         mViewModel.getBannerNews()
 
         mDatabind.searchSectionView.setOnClickListener {
-            val intent = Intent(requireActivity(), RecordVideoActivity::class.java)
+            val intent = Intent(requireActivity(), CaptureRecordActivity::class.java)
             intent.putExtra("id", "")
             startActivity(intent)
         }

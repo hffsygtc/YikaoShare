@@ -18,6 +18,7 @@ import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityCaptureRecordBinding
 import com.info.yikao.databinding.ActivityVideoRecordBinding
 import com.info.yikao.databinding.ActivityWebviewBinding
+import com.info.yikao.ext.getNameString
 import com.info.yikao.ui.fragment.video.CaptureFragment
 import com.info.yikao.view.YkWebviewClient
 import com.info.yikao.viewmodel.VideoRecordViewModel
@@ -27,6 +28,7 @@ import com.tencent.smtt.sdk.WebView
 import com.ycbjie.webviewlib.client.JsX5WebViewClient
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hgj.jetpackmvvm.ext.util.loge
 import me.hgj.jetpackmvvm.ext.util.logw
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,7 +41,10 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
     private var imageCapture: ImageCapture? = null
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
+    private lateinit var recordingState:VideoRecordEvent
     private val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+
+    private var underRecord = false
 
     override fun showMajorStatusBar() {
         showTransStatusBar()
@@ -58,7 +63,25 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
         }
 
         mDatabind.captureButton.setOnClickListener {
-            captureVideo()
+            if (!underRecord){
+                //开始录像
+                captureVideo()
+                underRecord = true
+
+                mDatabind.captureButton.setBackgroundResource(R.mipmap.icon_under_record_vide)
+            }else{
+                //如果是在录像情况下，停止录像
+                if (recording == null || recordingState is VideoRecordEvent.Finalize) {
+                    return@setOnClickListener
+                }
+
+                if (recording != null) {
+                    recording?.stop()
+                    recording = null
+                }
+
+                underRecord = false
+            }
         }
 
 
@@ -155,23 +178,38 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
                 }
             }
             .start(ContextCompat.getMainExecutor(this)) { recordEvent ->
+                //录像的回调
+                recordingState = recordEvent
+                val state = if (recordEvent is VideoRecordEvent.Status) recordEvent.getNameString()
+                else recordEvent.getNameString()
+
+                val stats = recordEvent.recordingStats
+                val size = stats.numBytesRecorded / 1000
+                val time = java.util.concurrent.TimeUnit.NANOSECONDS.toSeconds(stats.recordedDurationNanos)
+                var text = "${state}: recorded ${size}KB, in ${time}second"
+
+                if(recordEvent is VideoRecordEvent.Finalize)
+                    text = "${text}\nFile saved to: ${recordEvent.outputResults.outputUri}"
+
+                text.loge()
+                //算进度
+                val percent = time.toFloat()/6f
+                mDatabind.processCircle.SetCurrent(percent)
+
+//                if(event is VideoRecordEvent.Finalize)
+//                    text = "${text}\nFile saved to: ${event.outputResults.outputUri}"
+
                 when (recordEvent) {
                     is VideoRecordEvent.Start -> {
-//                        viewBinding.videoCaptureButton.apply {
-//                            text = getString(R.string.stop_capture)
-//                            isEnabled = true
-//                        }
+                        //开始录像
                     }
                     is VideoRecordEvent.Finalize -> {
-//                        if (!recordEvent.hasError()) {
-//                            val msg = "Video capture succeeded: ${recordEvent.outputResults.outputUri}"
-//                            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-//                            Log.d(TAG, msg)
-//                        } else {
-//                            recording?.close()
-//                            recording = null
-//                            Log.e(TAG, "Video capture ends with error: ${recordEvent.error}")
-//                        }
+                        if (!recordEvent.hasError()) {
+                            val msg = "Video capture succeeded: ${recordEvent.outputResults.outputUri}"
+                        } else {
+                            recording?.close()
+                            recording = null
+                        }
 //                        viewBinding.videoCaptureButton.apply {
 //                            text = getString(R.string.start_capture)
 //                            isEnabled = true
