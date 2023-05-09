@@ -2,15 +2,14 @@ package com.info.yikao.model
 
 import me.hgj.jetpackmvvm.network.BaseResponse
 
-data class ApiResponse<T>(val errorCode: Int, val errorMsg: String, val data: T) : BaseResponse<T>() {
+data class ApiResponse<T>(val Code: Int, val Success:Boolean,val Message: String, val Data: T) : BaseResponse<T>() {
 
-    // 这里是示例，wanandroid 网站返回的 错误码为 0 就代表请求成功，请你根据自己的业务需求来改变
-    override fun isSucces() = errorCode == 0
+    override fun isSucces() = Success
 
-    override fun getResponseCode() = errorCode
+    override fun getResponseCode() = Code
 
-    override fun getResponseData() = data
+    override fun getResponseData() = Data
 
-    override fun getResponseMsg() = errorMsg
+    override fun getResponseMsg() = Message
 
 }

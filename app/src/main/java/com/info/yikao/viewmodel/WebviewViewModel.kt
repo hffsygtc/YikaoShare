@@ -7,12 +7,6 @@ import me.hgj.jetpackmvvm.callback.livedata.UnPeekLiveData
 import me.hgj.jetpackmvvm.ext.request
 import me.hgj.jetpackmvvm.state.ResultState
 
-class MainViewModel : BaseViewModel() {
-
-    var initConfig = UnPeekLiveData<ResultState<InitConfig>>()
-
-    fun init() {
-        request({ apiService.getBaseInfo() }, initConfig)
-    }
+class WebviewViewModel : BaseViewModel() {
 
 }

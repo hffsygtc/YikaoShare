@@ -17,6 +17,7 @@ import me.hgj.jetpackmvvm.ext.util.loge
 
 /**
  * by BiTiDaddy on 2023/5/8 14:15
+ * 扫描二维码
  *
  */
 class CustomCaptureActivity : CaptureActivity() {

@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityMainBinding
+import com.info.yikao.ext.Constant
 import com.info.yikao.ext.interceptLongClick
 import com.info.yikao.model.BannerArticle
 import com.info.yikao.ui.EmptyFragment
@@ -16,14 +17,18 @@ import com.info.yikao.ui.fragment.HomeSignUpFragment
 import com.info.yikao.ui.fragment.HomeUserFragment
 import com.info.yikao.viewmodel.MainViewModel
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+import me.hgj.jetpackmvvm.ext.parseState
+import me.hgj.jetpackmvvm.ext.util.logw
 
-class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     private var underIndex = R.id.menu_home
 
     override fun layoutId(): Int = R.layout.activity_main
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        mViewModel.init()
 
         mDatabind.mainViewPager.initMain(this)
 
@@ -54,7 +59,7 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
                         mDatabind.mainViewPager.setCurrentItem(3, false)
                     }
                 }
-            }else{
+            } else {
                 //todo refresh
             }
         }
@@ -129,6 +134,18 @@ class MainActivity : BaseActivity<MainViewModel,ActivityMainBinding>() {
             true
         }
         return this
+    }
+
+    override fun createObserver() {
+        mViewModel.initConfig.observe(this) { result ->
+            //获取到了基本的配置信息
+            "get init config is $result".logw()
+            parseState(result, {
+                Constant.imgUrlHead = it.ImgPrefix
+            }, {
+
+            })
+        }
     }
 }
 

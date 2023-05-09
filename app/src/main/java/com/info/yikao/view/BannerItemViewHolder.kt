@@ -15,7 +15,7 @@ class BannerItemViewHolder(view: View) : BaseViewHolder<BannerArticle>(view) {
     override fun bindData(data: BannerArticle?, position: Int, pageSize: Int) {
         val imageView = findView<ImageView>(R.id.banner_img)
 
-        var imageSrc = data?.img
+        var imageSrc = Constant.imgUrlHead + data?.ImgUrl
 
         Glide.with(imageView.context).load(imageSrc)
             .apply(getGlideRequestOptions(Constant.GLIDE_OPTIONS_BANNER))
