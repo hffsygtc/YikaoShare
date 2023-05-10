@@ -31,4 +31,15 @@ object CacheUtil {
             kv.encode("user", Gson().toJson(userResponse))
         }
     }
+
+
+    fun getLoginDoubleSafeState(): Boolean? {
+        val kv = MMKV.mmkvWithID("app")
+        return kv.decodeBool("login_double_sage")
+    }
+
+    fun setLoginDoubleSafeState(isOpen: Boolean?) {
+        val kv = MMKV.mmkvWithID("app")
+        kv.encode("login_double_sage", isOpen ?: false)
+    }
 }

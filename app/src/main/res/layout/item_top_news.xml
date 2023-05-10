@@ -10,15 +10,14 @@
         android:layout_width="@dimen/globe_dimen_70"
         android:layout_height="@dimen/globe_dimen_70"
         android:layout_marginStart="@dimen/globe_dimen_30"
-        android:background="@drawable/blue_corner_15"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/head_icon"
-        android:layout_width="@dimen/globe_dimen_60"
-        android:layout_height="@dimen/globe_dimen_60"
+        android:layout_width="@dimen/globe_dimen_70"
+        android:layout_height="@dimen/globe_dimen_70"
         android:background="@mipmap/icon_fast_news"
         app:layout_constraintBottom_toBottomOf="@+id/head_icon_bg"
         app:layout_constraintEnd_toEndOf="@+id/head_icon_bg"

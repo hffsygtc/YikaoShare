@@ -113,6 +113,8 @@
             android:paddingEnd="@dimen/globe_dimen_30"
             android:paddingBottom="@dimen/globe_dimen_30"
             android:textColor="@color/color_999999"
+            android:maxLines="4"
+            android:ellipsize="end"
             android:textSize="@dimen/font_text_size_24"
             app:layout_constraintEnd_toEndOf="@+id/school_top_bg"
             app:layout_constraintStart_toStartOf="@+id/school_top_bg"
@@ -213,7 +215,7 @@
                 android:id="@+id/left_major_status"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/globe_dimen_36"
-                android:layout_marginStart="@dimen/globe_dimen_30"
+                android:layout_marginStart="@dimen/globe_dimen_20"
                 android:background="@drawable/major_under_sign_red_bg"
                 android:gravity="center"
                 android:paddingLeft="@dimen/globe_dimen_6"
@@ -241,10 +243,14 @@
             android:layout_height="0dp"
             android:visibility="gone"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/school_detail_bg"
-            app:layout_constraintEnd_toEndOf="@+id/school_detail_bg"
-            app:layout_constraintStart_toStartOf="@+id/school_detail_bg"
-            app:layout_constraintTop_toTopOf="@+id/school_detail_bg">
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:layout_marginBottom="@dimen/globe_dimen_30"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guide_tag_name">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"

@@ -2,9 +2,11 @@ package com.info.yikao.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivitySchoolListBinding
@@ -26,13 +28,6 @@ import me.hgj.jetpackmvvm.util.get
  */
 class SchoolListActivity : BaseActivity<SchoolListQrViewModel, ActivitySchoolListBinding>() {
 
-    private val launcher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { res: ActivityResult? ->
-            "result is $res".logw()
-            val resultIntent = res?.data
-            val resultStr = resultIntent?.get("result", "")
-            "result str is $resultStr".logw()
-        }
 
     //界面状态管理者
     private lateinit var loadsir: LoadService<Any>
@@ -75,31 +70,34 @@ class SchoolListActivity : BaseActivity<SchoolListQrViewModel, ActivitySchoolLis
 
         mAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-
-                "click news data jump $position".loge()
                 //点击了对象
                 var posData = adapter.data[position] as SchoolBean
-
-                //todo
-                //跳转到学校详情
                 val intent = Intent(this@SchoolListActivity, SchoolDetailActivity::class.java)
-                intent.putExtra("id", "")
+                intent.putExtra("id", posData.SchoolId)
                 startActivity(intent)
             }
-
-//            addChildClickViewIds(
-//            )
-//            setOnItemChildClickListener { adapter, view, position ->}
         }
 
         loadsir.showLoading()
         mViewModel.getListData(true)
 
-        mDatabind.iconTopNotice.setOnClickListener {
-            //点击了扫描按钮
-            val intent = Intent(this, CustomCaptureActivity::class.java)
-            launcher.launch(intent)
+        mDatabind.searchInput.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val searStr = mDatabind.searchInput.text.toString()
+                hideSoftKeyboard(this)
+                if (searStr.canShow()) {
+                    //如果输入的有内容
+                    loadsir.showLoading()
+                    mViewModel.getListData(true, searStr)
+                }else{
+                    loadsir.showLoading()
+                    mViewModel.getListData(true)
+                }
+            }
+            false
         }
+
+
     }
 
     override fun createObserver() {

@@ -129,7 +129,7 @@ fun getGlideRequestOptions(type: Int, corner: Float = 0f): RequestOptions {
     return when (type) {
         Constant.GLIDE_TYPE_USER_HEAD ->
             RequestOptions()
-                .placeholder(R.color.color_666666)
+                .placeholder(R.mipmap.icon_default_user_head)
                 .transform(
                     MultiTransformation(
                         CircleCrop()
@@ -146,6 +146,14 @@ fun getGlideRequestOptions(type: Int, corner: Float = 0f): RequestOptions {
         Constant.GLIDE_OPTIONS_SHOW ->
             RequestOptions()
                 .placeholder(R.mipmap.default_show_img)
+                .transform(
+                    MultiTransformation(
+                        CircleCrop()
+                    )
+                )
+        Constant.GLIDE_OPTIONS_NEWS ->
+            RequestOptions()
+                .placeholder(R.mipmap.default_news_img)
                 .transform(
                     MultiTransformation(
                         CircleCrop()

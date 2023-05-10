@@ -1,20 +1,12 @@
 package com.info.yikao.ui.adapter
 
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.constraintlayout.widget.Group
 import com.chad.library.adapter.base.BaseDelegateMultiAdapter
 import com.chad.library.adapter.base.delegate.BaseMultiTypeDelegate
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.info.yikao.R
 import com.info.yikao.ext.setAdapterAnimation
-import com.info.yikao.model.NewsBean
-import com.info.yikao.model.OrderBean
 import com.info.yikao.model.SchoolBean
-import com.info.yikao.ui.viewholder.SignUpHolder
-import com.info.yikao.ui.viewholder.TopNewsHolder
-import me.hgj.jetpackmvvm.ext.view.visible
+import com.info.yikao.ui.viewholder.SchoolListHolder
 
 class SchoolListAdapter(data: MutableList<SchoolBean>?) :
     BaseDelegateMultiAdapter<SchoolBean, BaseViewHolder>(data) {
@@ -35,7 +27,7 @@ class SchoolListAdapter(data: MutableList<SchoolBean>?) :
     }
 
     override fun convert(helper: BaseViewHolder, item: SchoolBean) {
-        val holder = SignUpHolder(helper.itemView)
+        val holder = SchoolListHolder(helper.itemView)
         item?.let {
             holder.bindData(it,context)
         }

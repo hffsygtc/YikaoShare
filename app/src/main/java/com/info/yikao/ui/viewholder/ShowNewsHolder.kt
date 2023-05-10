@@ -19,14 +19,14 @@ class ShowNewsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val methodContent = itemView.findViewById<TextView>(R.id.method_content_tv)
 
     fun bindData(data: StreetShowBean,context:Context){
-        val schoolIcon = ""
+        val schoolIcon = Constant.imgUrlHead+data.ImgUrl
         Glide.with(context).load(schoolIcon)
             .apply(getGlideRequestOptions(Constant.GLIDE_OPTIONS_SHOW))
             .into(iconImg)
 
-        titleTv.text = "2023届春季“春季畅演”大型展演火 热报名中"
-        locationTv.text = "成都市"
-        methodContent.text = "线上，线下"
+        titleTv.text = data.ShowName
+        locationTv.text = data.Stadium
+        methodContent.text = data.ApplyType
 
 
     }

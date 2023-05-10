@@ -4,18 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.Group
-import androidx.lifecycle.Lifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bumptech.glide.Glide
 import com.info.yikao.R
 import com.info.yikao.model.MainListWarpper
 import com.info.yikao.ui.viewholder.ShowNewsHolder
-import com.info.yikao.ui.viewholder.SignUpHolder
+import com.info.yikao.ui.viewholder.SchoolListHolder
 import com.info.yikao.ui.viewholder.TopNewsHolder
 
 class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<MainListWarpper>) :
@@ -36,7 +31,7 @@ class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<Mai
             2 -> {
                 view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.item_school_sign, parent, false)
-                return SignUpHolder(view)
+                return SchoolListHolder(view)
             }
             3 -> {
                 view = LayoutInflater.from(parent.context)
@@ -58,7 +53,7 @@ class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<Mai
             when (holder) {
                 is TitleHolder -> showTitle(holder, bean, position == 0)
                 is TopNewsHolder -> showTopNews(holder, bean)
-                is SignUpHolder -> showSignUp(holder, bean)
+                is SchoolListHolder -> showSignUp(holder, bean)
                 is ShowNewsHolder -> showOutsideView(holder, bean)
             }
         }
@@ -90,7 +85,7 @@ class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<Mai
     /**
      * 显示艺考报名
      */
-    private fun showSignUp(holder: SignUpHolder, bean: MainListWarpper) {
+    private fun showSignUp(holder: SchoolListHolder, bean: MainListWarpper) {
         bean.schoolBean?.let {
             holder.bindData(it, mContext)
 

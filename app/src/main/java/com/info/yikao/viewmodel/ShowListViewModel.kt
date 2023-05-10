@@ -14,9 +14,7 @@ class ShowListViewModel : BaseViewModel() {
 
     fun getListData(isRefresh: Boolean) {
 
-        val datas = arrayListOf(StreetShowBean("","头条1","来源1","20W")
-            , StreetShowBean("","头条2","来源2","20W")
-            , StreetShowBean("","头条3","来源3","20W"))
+        val datas = arrayListOf<StreetShowBean>()
 
         val listDataUiState =
             ListDataUiState(

@@ -1,13 +1,7 @@
 package com.info.yikao.network
 
-import com.info.yikao.model.ApiResponse
-import com.info.yikao.model.BannerArticle
-import com.info.yikao.model.InitConfig
-import com.info.yikao.model.UserInfo
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import com.info.yikao.model.*
+import retrofit2.http.*
 
 
 interface ApiService {
@@ -27,4 +21,80 @@ interface ApiService {
      */
     @GET("/api/Home/GetBaseInfo")
     suspend fun getBaseInfo(): ApiResponse<InitConfig>
+
+    /**
+     * 获取首页文章
+     */
+    @GET("/api/Home/GetHomeArticle")
+    suspend fun getHomeArticles(): ApiResponse<ArrayList<NewsBean>>
+
+    /**
+     * 获取首页学校
+     */
+    @GET("/api/Home/GetHomeSchool")
+    suspend fun getHomeSchools(): ApiResponse<ArrayList<SchoolBean>>
+
+    /**
+     * 获取首页路演
+     */
+    @GET("/api/Home/GetHomeShowInfo")
+    suspend fun getHomeShows(): ApiResponse<ArrayList<StreetShowBean>>
+
+    /**
+     * 获取登录的验证码图片
+     */
+    @GET("/api/Login/GetCodeImg")
+    suspend fun getLoginCodeImg(): ApiResponse<LoginCodeImg>
+
+    /**
+     * 获取短信验证码
+     */
+    @POST("/api/Login/SendPhoneCode")
+    suspend fun getSmsCode(
+        @Query("tel") phoneNum: String,
+        @Query("ImgId") imgId: String,
+        @Query("ImgCode") imgCode: String
+    ): ApiResponse<String>
+
+    /**
+     * 获取短信验证码
+     */
+    @POST("/api/Login/LoginPhone")
+    suspend fun phoneLogin(
+        @Query("Tel") phoneNum: String,
+        @Query("VerifyCode") VerifyCode: String
+    ): ApiResponse<UserInfo>
+
+    /**
+     * 获取头条文章的列表
+     */
+    @GET("/api/Article/GetArticleList")
+    suspend fun getArticleList(): ApiResponse<ArrayList<NewsBean>>
+
+    /**
+     * 获取文章详情
+     */
+    @POST("/api/Article/GetArticleDetail")
+    suspend fun getArticleDetail(
+        @Query("ArticleId") id: Int,
+    ): ApiResponse<NewsBean>
+
+
+    /**
+     * 获取学校的列表
+     */
+    @POST("/api/Apply/GetSchoolList")
+    suspend fun getSchoolList(
+        @Query("key") key: String?,
+    ): ApiResponse<ArrayList<SchoolBean>>
+
+    /**
+     * 获取学校详情
+     */
+    @POST("/api/Apply/GetSchoolDetail")
+    suspend fun getSchoolDetail(
+        @Query("SchoolId") id: Int,
+    ): ApiResponse<SchoolBean>
+
+
 }

@@ -26,6 +26,7 @@ import com.info.yikao.viewmodel.UserOrderViewModel
 import com.info.yikao.weight.DefineLoadMoreView
 import com.kingja.loadsir.core.LoadService
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
+import me.hgj.jetpackmvvm.ext.parseState
 import me.hgj.jetpackmvvm.ext.util.logw
 
 class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolDetailBinding>() {
@@ -37,16 +38,20 @@ class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolD
 
     private var underSection = 0
 
+    private var schoolId = -1
+
     override fun layoutId(): Int = R.layout.activity_school_detail
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.titleTv.text = "院校详情"
 
+        schoolId = intent.getIntExtra("id", -1)
+
         //状态页配置
         loadsir = loadServiceInit(mDatabind.schoolDetailBg) {
             //点击重试时触发操作
             loadsir.showLoading()
-            mViewModel.getListData(true)
+            mViewModel.getSchoolDetail(schoolId)
         }
 
 
@@ -105,7 +110,7 @@ class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolD
                 mDatabind.schoolLeftFunc.apply {
                     setTextColor(Color.parseColor("#999999"))
                     typeface = Typeface.defaultFromStyle(Typeface.NORMAL)
-                    setTextSize(TypedValue.COMPLEX_UNIT_PX,15f.fpx())
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, 15f.fpx())
                 }
 
                 mDatabind.leftMajorLayout.visibility = View.GONE
@@ -114,33 +119,59 @@ class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolD
             }
         }
 
-//        loadsir.showLoading()
-//        mViewModel.getListData(true)
-        loadsir.showSuccess()
-
-        mDatabind.leftMajorName.text = "专业名字"
-
-        mAdapter.setList(mViewModel.testMajorList)
-
-        val schoolIcon = ""
-        Glide.with(this).load(schoolIcon)
-            .apply(getGlideRequestOptions(Constant.GLIDE_OPTIONS_SCHOOL_ICON))
-            .into(mDatabind.schoolIcon)
-
-        mDatabind.schoolName.text = "四川音乐学院"
-
-        mDatabind.schoolTagFlow.removeAllViews()
-        mDatabind.schoolTagFlow.addView(getTagTv(this, "公办"))
-        mDatabind.schoolTagFlow.addView(getTagTv(this, "本科"))
-        mDatabind.schoolTagFlow.addView(getTagTv(this, "艺术类"))
-
-        mDatabind.schoolDesc.text =
-            "四川音乐学院（Sichuan Conservatory of Music）简称“川音”，位于四川省成都市，是一所以“艺术”为主要办学特色的省属全日制普通本科高等院校，是全国11所独立设置的专业音乐学院之一..."
+        loadsir.showLoading()
+        mViewModel.getSchoolDetail(schoolId)
 
 
     }
 
     override fun createObserver() {
+        mViewModel.schoolDetail.observe(this) { result ->
+            parseState(result, {
+                loadsir.showSuccess()
+
+                mDatabind.leftMajorName.text = it.ApplyNoName
+
+                mAdapter.setList(mViewModel.testMajorList)
+
+                val schoolIcon = Constant.imgUrlHead + it.Logo
+                Glide.with(this).load(schoolIcon)
+                    .apply(getGlideRequestOptions(Constant.GLIDE_OPTIONS_SCHOOL_ICON))
+                    .into(mDatabind.schoolIcon)
+
+                mDatabind.schoolName.text = it.SchoolName
+
+                mDatabind.schoolTagFlow.removeAllViews()
+                if (it.Tags.canShow()) {
+                    val tags = it.Tags.split("|")
+                    for (tag in tags) {
+                        mDatabind.schoolTagFlow.addView(getTagTv(this, tag))
+                    }
+                }
+                mDatabind.schoolDesc.text = it.Intro
+
+                when (it.ApplyStatus) {
+                    0 -> {
+                        mDatabind.leftMajorStatus.text = "未开始"
+                    }
+                    0 -> {
+                        mDatabind.leftMajorStatus.text = "报名中"
+                    }
+                    0 -> {
+                        mDatabind.leftMajorStatus.text = "已结束"
+                    }
+                }
+
+                mDatabind.phoneTv.text = it.Tel
+                mDatabind.webTv.text = it.Site
+                mDatabind.locationTv.text = it.Address
+                mDatabind.contentTv.text = it.Intro
+
+            }, {
+                loadsir.showError()
+            })
+
+        }
 
     }
 

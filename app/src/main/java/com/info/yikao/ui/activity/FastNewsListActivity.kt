@@ -77,16 +77,11 @@ class FastNewsListActivity : BaseActivity<FastNewsListViewModel, ActivitySingleL
 
         mAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-
-                "click news data jump $position".loge()
                 //点击了对象
                 var posData = adapter.data[position] as NewsBean
-
-                //todo
-                //跳转到公告详情
-                startActivity(Intent(this@FastNewsListActivity, FastNewsDetailActivity::class.java))
-
-
+                val intent = Intent(this@FastNewsListActivity, FastNewsDetailActivity::class.java)
+                intent.putExtra("article_id",posData.ArticleId)
+                startActivity(intent)
             }
 
 //            addChildClickViewIds(

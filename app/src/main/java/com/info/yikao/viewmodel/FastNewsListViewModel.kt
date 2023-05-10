@@ -2,7 +2,9 @@ package com.info.yikao.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.info.yikao.model.*
+import com.info.yikao.network.apiService
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hgj.jetpackmvvm.ext.request
 
 /**
  */
@@ -12,25 +14,29 @@ class FastNewsListViewModel : BaseViewModel() {
     var listData: MutableLiveData<ListDataUiState<NewsBean>> = MutableLiveData()
 
     fun getListData(isRefresh: Boolean) {
+        request({ apiService.getArticleList() }, {
+            val listDataUiState =
+                ListDataUiState(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
+                    listData = it,
+                    hasMore = it.isNotEmpty()
+                )
+            listData.value = listDataUiState
 
-        val datas = arrayListOf(NewsBean("","头条1","来源1","20W",1)
-            , NewsBean("","头条2","来源2","20W",0)
-            , NewsBean("","头条3","来源3","20W",1))
+        }, {
+            val listDataUiState =
+                ListDataUiState(
+                    isSuccess = false,
+                    isRefresh = isRefresh,
+                    isEmpty = true,
+                    listData = arrayListOf<NewsBean>(),
+                    hasMore = false
+                )
+            listData.value = listDataUiState
 
-        val listDataUiState =
-            ListDataUiState(
-                isSuccess = true,
-                isRefresh = isRefresh,
-                isEmpty = datas.isEmpty(),
-                listData = datas,
-                hasMore = datas.isNotEmpty()
-            )
 
-        listData.value = listDataUiState
-
+        })
     }
-
-
-
-
 }

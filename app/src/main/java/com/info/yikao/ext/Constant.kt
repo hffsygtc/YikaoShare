@@ -6,6 +6,7 @@ object Constant {
     const val GLIDE_OPTIONS_BANNER = 2
     const val GLIDE_OPTIONS_SCHOOL_ICON = 3
     const val GLIDE_OPTIONS_SHOW = 4
+    const val GLIDE_OPTIONS_NEWS = 5
 
     var imgUrlHead: String = ""
 }

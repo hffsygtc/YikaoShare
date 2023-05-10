@@ -133,7 +133,7 @@
             app:layout_constraintStart_toStartOf="@+id/random_code_bg"
             app:layout_constraintTop_toTopOf="@+id/random_code_bg" />
 
-        <com.info.yikao.view.CaptchaImageView
+        <ImageView
             android:id="@+id/captcha_img"
             android:layout_width="@dimen/globe_dimen_174"
             android:layout_height="@dimen/globe_dimen_58"

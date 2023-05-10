@@ -1,12 +1,16 @@
 package com.info.yikao.model
 
 /**
- * 头条
+ * 头条新闻
  */
 data class NewsBean(
-    val img: String,
-    val title: String,
-    val ori: String,
-    val read_count: String,
-    val type:Int
+    val ArticleTypeName: String,
+    val ArticleId: Int,
+    val Title: String,
+    val ContentStr: String,
+    val ArticleTypeId:Int,
+    val Writer:String,
+    val LookNum:Int,
+    val AddTime:String,
+    val IconUrl:String,
 )
