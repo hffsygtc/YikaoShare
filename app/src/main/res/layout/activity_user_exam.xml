@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_F5F5F5"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_84"
+            android:background="@color/color_FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:background="@mipmap/icon_page_back"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <View
+            android:id="@+id/title_back_btn"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_84"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的考试"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintEnd_toEndOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="@+id/title_layout"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <View
+            android:id="@+id/top_type_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_84"
+            android:background="@color/color_FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_layout" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <TextView
+            android:id="@+id/type_online"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/globe_dimen_60"
+            android:text="线上考试"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/globe_dimen_26"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/top_type_layout"
+            app:layout_constraintEnd_toStartOf="@+id/type_offline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/top_type_layout" />
+
+        <View
+            android:id="@+id/online_line"
+            android:layout_width="@dimen/globe_dimen_48"
+            android:layout_height="@dimen/globe_dimen_8"
+            app:layout_constraintStart_toStartOf="@+id/type_online"
+            app:layout_constraintEnd_toEndOf="@+id/type_online"
+            android:background="@drawable/blue_corner_4"
+            app:layout_constraintBottom_toBottomOf="@+id/top_type_layout"
+            />
+
+        <TextView
+            android:id="@+id/type_offline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="线下考试"
+            android:layout_marginEnd="@dimen/globe_dimen_60"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/globe_dimen_26"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/top_type_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/type_online"
+            app:layout_constraintTop_toTopOf="@+id/top_type_layout" />
+
+        <View
+            android:id="@+id/offline_line"
+            android:layout_width="@dimen/globe_dimen_48"
+            android:layout_height="@dimen/globe_dimen_8"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/type_offline"
+            app:layout_constraintEnd_toEndOf="@+id/type_offline"
+            android:background="@drawable/blue_corner_4"
+            app:layout_constraintBottom_toBottomOf="@+id/top_type_layout"
+            />
+
+        <FrameLayout
+            android:id="@+id/fragment_container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_type_layout"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

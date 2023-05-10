@@ -9,9 +9,7 @@ import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentMainUserBinding
 import com.info.yikao.ext.Constant
 import com.info.yikao.ext.getGlideRequestOptions
-import com.info.yikao.ui.activity.LoginActivity
-import com.info.yikao.ui.activity.SettingActivity
-import com.info.yikao.ui.activity.UserOrderActivity
+import com.info.yikao.ui.activity.*
 import com.info.yikao.viewmodel.HomeUserViewModel
 import me.hgj.jetpackmvvm.ext.util.loge
 
@@ -42,10 +40,15 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
 
         mDatabind.userFuncInfo.setOnClickListener {
             //考生信息
+            val intent = Intent(requireActivity(),FragmentContainerActivity::class.java)
+            intent.putExtra("type",1)
+            startActivity(intent)
         }
 
         mDatabind.userFuncExam.setOnClickListener {
             //我的考试
+            val intent = Intent(requireActivity(),UserExamActivity::class.java)
+            startActivity(intent)
         }
 
         mDatabind.userFuncOrder.setOnClickListener {
@@ -115,6 +118,9 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
             mDatabind.userName.text = "未登录"
             mDatabind.userDesc.text = "请点击头像登录"
             mDatabind.userEditBtn.setBackgroundResource(R.drawable.user_un_edit)
+
+            //todo 老师端的打开
+            mDatabind.teacherFuncLayout.visibility = View.VISIBLE
         }
     }
 

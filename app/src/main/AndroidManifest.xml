@@ -128,6 +128,14 @@
             android:name=".ui.activity.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.FragmentContainerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.UserExamActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.ycbjie.webviewlib.view.X5WebViewActivity"

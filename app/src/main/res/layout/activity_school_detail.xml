@@ -365,14 +365,15 @@
 
                     <TextView
                         android:id="@+id/location_tv"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/globe_dimen_4"
                         android:textColor="@color/color_333333"
                         android:textSize="@dimen/font_text_size_26"
-                        app:layout_constraintBottom_toBottomOf="@+id/location_icon"
+                        android:layout_marginEnd="@dimen/globe_dimen_30"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/location_title"
-                        app:layout_constraintTop_toTopOf="@+id/location_icon"
+                        app:layout_constraintTop_toTopOf="@+id/location_title"
                         tools:text="111111111111" />
 
                     <TextView
@@ -386,7 +387,7 @@
                         android:textSize="@dimen/font_text_size_30"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/location_icon" />
+                        app:layout_constraintTop_toBottomOf="@+id/location_tv" />
 
                     <TextView
                         android:id="@+id/content_tv"

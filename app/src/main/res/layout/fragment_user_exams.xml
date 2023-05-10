@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_F5F5F5"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/top_type_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/type_all"
+            android:layout_width="@dimen/globe_dimen_126"
+            android:layout_height="@dimen/globe_dimen_38"
+            android:gravity="center"
+            android:text="全部"
+            android:background="@drawable/white_corner_10"
+            android:textColor="#457AFF"
+            android:textSize="@dimen/font_text_size_26"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintBottom_toBottomOf="@+id/top_type_layout"
+            app:layout_constraintEnd_toStartOf="@+id/type_under"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/type_under"
+            android:layout_width="@dimen/globe_dimen_126"
+            android:layout_height="@dimen/globe_dimen_38"
+            android:gravity="center"
+            android:text="已通过"
+            android:textColor="#7CA861"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toBottomOf="@+id/top_type_layout"
+            app:layout_constraintEnd_toStartOf="@+id/type_wait"
+            app:layout_constraintStart_toEndOf="@+id/type_all" />
+
+        <TextView
+            android:id="@+id/type_wait"
+            android:layout_width="@dimen/globe_dimen_126"
+            android:layout_height="@dimen/globe_dimen_38"
+            android:gravity="center"
+            android:text="等待结果"
+            android:textColor="#FF8D31"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toBottomOf="@+id/top_type_layout"
+            app:layout_constraintEnd_toStartOf="@+id/type_finish"
+            app:layout_constraintStart_toEndOf="@+id/type_under" />
+
+        <TextView
+            android:id="@+id/type_finish"
+            android:layout_width="@dimen/globe_dimen_126"
+            android:layout_height="@dimen/globe_dimen_38"
+            android:gravity="center"
+            android:text="未通过"
+            android:textColor="#FF3434"
+            android:textSize="@dimen/font_text_size_26"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            app:layout_constraintBottom_toBottomOf="@+id/top_type_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/type_wait" />
+
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_type_layout">
+
+            <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
