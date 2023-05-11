@@ -133,6 +133,14 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".ui.activity.ExamResultActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.UploadVideoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".ui.activity.UserExamActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>

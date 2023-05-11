@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/globe_dimen_360">
+
+    <ImageView
+        android:id="@+id/empty_img"
+        android:layout_width="@dimen/globe_dimen_240"
+        android:layout_height="@dimen/globe_dimen_160"
+        android:layout_marginTop="@dimen/globe_dimen_80"
+        android:background="@mipmap/icon_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/globe_dimen_46"
+        android:text="暂未评级，请耐心等待..."
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/font_text_size_26"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empty_img" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
