@@ -160,7 +160,7 @@ fun getGlideRequestOptions(type: Int, corner: Float = 0f): RequestOptions {
                     )
                 )
         else -> RequestOptions()
-            .placeholder(R.color.color_666666)
+            .placeholder(R.color.color_999999)
             .transform(
                 MultiTransformation(
                     CenterCrop(),

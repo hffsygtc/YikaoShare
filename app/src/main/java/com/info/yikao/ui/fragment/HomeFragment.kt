@@ -118,7 +118,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
                         //艺考报名
                         //跳转到学校的详情
                         val intent = Intent(requireActivity(), ShowDetailActivity::class.java)
-                        intent.putExtra("id", "")
+                        intent.putExtra("id", wrapper.streetBean?.ShowInfoId)
                         startActivity(intent)
                     }
                 }

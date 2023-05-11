@@ -52,6 +52,7 @@ class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolD
             //点击重试时触发操作
             loadsir.showLoading()
             mViewModel.getSchoolDetail(schoolId)
+            mViewModel.getMajorList(schoolId)
         }
 
 
@@ -71,7 +72,7 @@ class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolD
             clickMajor = { major ->
                 "click major $major".logw()
                 val intent = Intent(this@SchoolDetailActivity, MajorIntroActivity::class.java)
-                intent.putExtra("id", "")
+                intent.putExtra("id", major.SubjectsId)
                 startActivity(intent)
 
             }
@@ -121,6 +122,7 @@ class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolD
 
         loadsir.showLoading()
         mViewModel.getSchoolDetail(schoolId)
+        mViewModel.getMajorList(schoolId)
 
 
     }
@@ -131,8 +133,6 @@ class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolD
                 loadsir.showSuccess()
 
                 mDatabind.leftMajorName.text = it.ApplyNoName
-
-                mAdapter.setList(mViewModel.testMajorList)
 
                 val schoolIcon = Constant.imgUrlHead + it.Logo
                 Glide.with(this).load(schoolIcon)
@@ -171,6 +171,16 @@ class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolD
                 loadsir.showError()
             })
 
+        }
+
+        mViewModel.schoolMajors.observe(this) { result ->
+            if(result!= null){
+                parseState(result, {
+                    mAdapter.setList(it)
+                }, {
+
+                })
+            }
         }
 
     }

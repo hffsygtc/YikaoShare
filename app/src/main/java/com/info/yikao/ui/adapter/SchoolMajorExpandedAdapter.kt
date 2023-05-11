@@ -13,13 +13,10 @@ import com.info.yikao.R
 import com.info.yikao.ext.init
 import com.info.yikao.ext.setAdapterAnimation
 import com.info.yikao.model.MajorBean
-import com.info.yikao.model.MajorTypeBean
-import com.info.yikao.model.OrderBean
-import me.hgj.jetpackmvvm.ext.util.loge
-import me.hgj.jetpackmvvm.ext.util.logw
+import com.info.yikao.model.MajorGroupBean
 
-class SchoolMajorExpandedAdapter(data: MutableList<MajorTypeBean>?) :
-    BaseDelegateMultiAdapter<MajorTypeBean, BaseViewHolder>(data) {
+class SchoolMajorExpandedAdapter(data: MutableList<MajorGroupBean>?) :
+    BaseDelegateMultiAdapter<MajorGroupBean, BaseViewHolder>(data) {
 
     var clickMajor: ((MajorBean) -> Unit)? = null
 
@@ -27,8 +24,8 @@ class SchoolMajorExpandedAdapter(data: MutableList<MajorTypeBean>?) :
         //todo 增加设置动画模式的标志
         setAdapterAnimation(0)
         //第一步，设置代理
-        setMultiTypeDelegate(object : BaseMultiTypeDelegate<MajorTypeBean>() {
-            override fun getItemType(data: List<MajorTypeBean>, position: Int): Int {
+        setMultiTypeDelegate(object : BaseMultiTypeDelegate<MajorGroupBean>() {
+            override fun getItemType(data: List<MajorGroupBean>, position: Int): Int {
                 return 1
             }
         })
@@ -38,29 +35,29 @@ class SchoolMajorExpandedAdapter(data: MutableList<MajorTypeBean>?) :
         }
     }
 
-    override fun convert(helper: BaseViewHolder, item: MajorTypeBean) {
+    override fun convert(helper: BaseViewHolder, item: MajorGroupBean) {
         val subLayout = helper.getView<ConstraintLayout>(R.id.sub_content_layout)
 
         val parentName = helper.getView<TextView>(R.id.major_parent_name)
         val parentOpenIcon = helper.getView<ImageView>(R.id.major_parent_icon)
 
-        parentName.text = item.name
+        parentName.text = item.Item.SubjectsName
 
         val subLeftRv = helper.getView<RecyclerView>(R.id.major_child_left_rv)
         val subRightRv = helper.getView<RecyclerView>(R.id.major_child_right_rv)
 
-        val leftAdapter = MajorSubLeftAdapter(item.majors)
+        val leftAdapter = MajorSubLeftAdapter(item.Children)
         subLeftRv.init(LinearLayoutManager(context), leftAdapter)
 
-        val rightAdapter = MajorSubRightAdapter(item.majors[0].majors)
+        val rightAdapter = MajorSubRightAdapter(item.Children?.get(0)?.Children)
         subRightRv.init(LinearLayoutManager(context), rightAdapter)
 
         rightAdapter.clickMajor = clickMajor
 
         leftAdapter.selectPosChange = { pos ->
             //左侧的内容切换了
-            val majors = item.majors.getOrNull(pos)
-            val subMajors = majors?.majors
+            val majors = item.Children?.getOrNull(pos)
+            val subMajors = majors?.Children
             if (subMajors != null) {
                 rightAdapter.data = subMajors!!
                 rightAdapter.notifyDataSetChanged()

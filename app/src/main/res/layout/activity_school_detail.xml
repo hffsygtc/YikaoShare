@@ -227,7 +227,7 @@
                 app:layout_constraintStart_toEndOf="@+id/left_major_name"
                 app:layout_constraintTop_toTopOf="@+id/left_major_name" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.info.yikao.view.ParentNoInterceptRv
                 android:id="@+id/major_content_rv"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

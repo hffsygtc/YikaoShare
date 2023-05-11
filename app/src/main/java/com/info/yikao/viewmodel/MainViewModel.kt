@@ -13,6 +13,8 @@ class MainViewModel : BaseViewModel() {
 
     fun init() {
         request({ apiService.getBaseInfo() }, initConfig)
+
+
     }
 
 }

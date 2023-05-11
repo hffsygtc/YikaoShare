@@ -1,5 +1,7 @@
 package  com.info.yikao.base
 
+import com.info.yikao.ext.Constant
+import com.info.yikao.model.UserDetailInfo
 import com.info.yikao.model.UserInfo
 import com.info.yikao.util.CacheUtil
 import com.kunminx.architecture.ui.callback.UnPeekLiveData
@@ -16,9 +18,17 @@ class AppViewModel : BaseViewModel() {
     var userInfo: UnPeekLiveData<UserInfo> =
         UnPeekLiveData.Builder<UserInfo>().setAllowNullValue(true).create()
 
+    var memberInfo: UnPeekLiveData<UserDetailInfo> =
+        UnPeekLiveData.Builder<UserDetailInfo>().setAllowNullValue(true).create()
+
+    var memberData = UserDetailInfo()
+
     init {
         //默认值保存的用户信息，没有登录则为null
-        userInfo.postValue(CacheUtil.getUser())
+        val user = CacheUtil.getUser()
+        userInfo.postValue(user)
+        Constant.userToken = user?.Token ?: ""
+
     }
 
 }

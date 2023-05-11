@@ -33,21 +33,21 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
         }
 
         mDatabind.userEditLayout.setOnClickListener {
-            if (isLogin){
+            if (isLogin) {
                 //编辑资料
             }
         }
 
         mDatabind.userFuncInfo.setOnClickListener {
             //考生信息
-            val intent = Intent(requireActivity(),FragmentContainerActivity::class.java)
-            intent.putExtra("type",1)
+            val intent = Intent(requireActivity(), FragmentContainerActivity::class.java)
+            intent.putExtra("type", 1)
             startActivity(intent)
         }
 
         mDatabind.userFuncExam.setOnClickListener {
             //我的考试
-            val intent = Intent(requireActivity(),UserExamActivity::class.java)
+            val intent = Intent(requireActivity(), UserExamActivity::class.java)
             startActivity(intent)
         }
 
@@ -75,8 +75,6 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
         }
 
 
-
-
     }
 
 
@@ -86,6 +84,7 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
     private fun showUserState() {
         val user = mViewModel.userInfo
         if (user != null && user.Token != "") {
+            Constant.userToken = user.Token
             //有登录信息
             isLogin = true
             val userHead = Constant.imgUrlHead + user.HeadImg
@@ -111,6 +110,7 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
             }
         } else {
             isLogin = false
+            Constant.userToken = ""
             //没有登录信息
             Glide.with(requireContext()).load("")
                 .apply(getGlideRequestOptions(Constant.GLIDE_TYPE_USER_HEAD))

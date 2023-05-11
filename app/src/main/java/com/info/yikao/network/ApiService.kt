@@ -96,5 +96,44 @@ interface ApiService {
         @Query("SchoolId") id: Int,
     ): ApiResponse<SchoolBean>
 
+    /**
+     * 获取学校专业列表
+     */
+    @POST("/api/Apply/GetSubjects")
+    suspend fun getSchoolMajors(
+        @Query("SchoolId") id: Int,
+    ): ApiResponse<ArrayList<MajorGroupBean>>
+
+    /**
+     * 获取专业详情
+     */
+    @POST("/api/Apply/GetSubjectsDetail")
+    suspend fun getMajorDetail(
+        @Query("SubjectsId") id: Int,
+    ): ApiResponse<MajorBean>
+
+    /**
+     * 获取展演的列表
+     */
+    @GET("/api/ShowInfo/GetShowInfoList")
+    suspend fun getShowList(): ApiResponse<ArrayList<StreetShowBean>>
+
+    /**
+     * 获取展演详情
+     */
+    @POST("/api/ShowInfo/GetShowInfoDetail")
+    suspend fun getShowDetail(
+        @Query("ShowInfoId") id: Int,
+    ): ApiResponse<StreetShowBean>
+
+
+    /**
+     * 同步身份信息
+     */
+    @POST("api/Member/EditMember")
+    suspend fun postMemberInfo(
+        @Body postGroups: PostMemberInfo
+    ): ApiResponse<Any?>
+
 
 }

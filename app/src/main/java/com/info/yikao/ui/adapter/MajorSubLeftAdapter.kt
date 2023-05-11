@@ -10,11 +10,10 @@ import com.chad.library.adapter.base.delegate.BaseMultiTypeDelegate
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.info.yikao.R
 import com.info.yikao.ext.setAdapterAnimation
-import com.info.yikao.model.MajorSubTypeBean
-import com.info.yikao.model.OrderBean
+import com.info.yikao.model.MajorGroupBean
 
-class MajorSubLeftAdapter(data: MutableList<MajorSubTypeBean>?) :
-    BaseDelegateMultiAdapter<MajorSubTypeBean, BaseViewHolder>(data) {
+class MajorSubLeftAdapter(data: MutableList<MajorGroupBean>?) :
+    BaseDelegateMultiAdapter<MajorGroupBean, BaseViewHolder>(data) {
 
     private val holderArray = SparseArray<BaseViewHolder>()
     private var selectPos = 0
@@ -28,8 +27,8 @@ class MajorSubLeftAdapter(data: MutableList<MajorSubTypeBean>?) :
         //todo 增加设置动画模式的标志
         setAdapterAnimation(0)
         //第一步，设置代理
-        setMultiTypeDelegate(object : BaseMultiTypeDelegate<MajorSubTypeBean>() {
-            override fun getItemType(data: List<MajorSubTypeBean>, position: Int): Int {
+        setMultiTypeDelegate(object : BaseMultiTypeDelegate<MajorGroupBean>() {
+            override fun getItemType(data: List<MajorGroupBean>, position: Int): Int {
                 return 1
             }
         })
@@ -39,7 +38,7 @@ class MajorSubLeftAdapter(data: MutableList<MajorSubTypeBean>?) :
         }
     }
 
-    override fun convert(helper: BaseViewHolder, item: MajorSubTypeBean) {
+    override fun convert(helper: BaseViewHolder, item: MajorGroupBean) {
         holderArray[helper.adapterPosition] = helper
 
         val nameTv = helper.getView<TextView>(R.id.major_parent_name)
@@ -82,7 +81,7 @@ class MajorSubLeftAdapter(data: MutableList<MajorSubTypeBean>?) :
             nameTv.setTextColor(blackColor)
         }
 
-        nameTv.text = item.name
+        nameTv.text = item.Item.SubjectsName
 
     }
 

@@ -7,10 +7,11 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.info.yikao.R
 import com.info.yikao.ext.setAdapterAnimation
 import com.info.yikao.model.MajorBean
+import com.info.yikao.model.MajorGroupBean
 import com.info.yikao.model.OrderBean
 
-class MajorSubRightAdapter(data: MutableList<MajorBean>?) :
-    BaseDelegateMultiAdapter<MajorBean, BaseViewHolder>(data) {
+class MajorSubRightAdapter(data: MutableList<MajorGroupBean>?) :
+    BaseDelegateMultiAdapter<MajorGroupBean, BaseViewHolder>(data) {
 
     var clickMajor : ((MajorBean)->Unit)? = null
 
@@ -18,8 +19,8 @@ class MajorSubRightAdapter(data: MutableList<MajorBean>?) :
         //todo 增加设置动画模式的标志
         setAdapterAnimation(0)
         //第一步，设置代理
-        setMultiTypeDelegate(object : BaseMultiTypeDelegate<MajorBean>() {
-            override fun getItemType(data: List<MajorBean>, position: Int): Int {
+        setMultiTypeDelegate(object : BaseMultiTypeDelegate<MajorGroupBean>() {
+            override fun getItemType(data: List<MajorGroupBean>, position: Int): Int {
                 return 1
             }
         })
@@ -29,11 +30,11 @@ class MajorSubRightAdapter(data: MutableList<MajorBean>?) :
         }
     }
 
-    override fun convert(helper: BaseViewHolder, item: MajorBean) {
+    override fun convert(helper: BaseViewHolder, item: MajorGroupBean) {
         val name = helper.getView<TextView>(R.id.major_parent_name)
-        name.text = item.name
+        name.text = item.Item.SubjectsName
         helper.itemView.setOnClickListener {
-            clickMajor?.invoke(item)
+            clickMajor?.invoke(item.Item)
         }
 
     }

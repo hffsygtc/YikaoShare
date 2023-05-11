@@ -80,21 +80,14 @@ class ShowListActivity : BaseActivity<ShowListViewModel, ActivitySingleListBindi
 
         mAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-
-                "click news data jump $position".loge()
                 //点击了对象
                 var posData = adapter.data[position] as StreetShowBean
-
-                //todo
-                //跳转到公告详情
-                startActivity(Intent(this@ShowListActivity, ShowDetailActivity::class.java))
+                val intent = Intent(this@ShowListActivity, ShowDetailActivity::class.java)
+                intent.putExtra("id", posData.ShowInfoId)
+                startActivity(intent)
 
 
             }
-
-//            addChildClickViewIds(
-//            )
-//            setOnItemChildClickListener { adapter, view, position ->}
         }
 
         loadsir.showLoading()

@@ -23,6 +23,7 @@ import com.info.yikao.viewmodel.MajorIntroViewModel
 import com.info.yikao.viewmodel.SignUpListViewModel
 import com.info.yikao.viewmodel.UserOrderViewModel
 import com.info.yikao.weight.DefineLoadMoreView
+import com.info.yikao.weight.EmptyLoadMore
 import com.kingja.loadsir.core.LoadService
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
@@ -38,7 +39,7 @@ class MajorIntroActivity : BaseActivity<MajorIntroViewModel, ActivityExamIntorBi
     private lateinit var loadsir: LoadService<Any>
 
     //recyclerview的底部加载view
-    private lateinit var footView: DefineLoadMoreView
+    private lateinit var footView: EmptyLoadMore
 
     private val mRecycler by lazy { mDatabind.recyclerView }
     private val mRefresh by lazy { mDatabind.swipeRefresh }
@@ -46,40 +47,38 @@ class MajorIntroActivity : BaseActivity<MajorIntroViewModel, ActivityExamIntorBi
     private val mAdapter by lazy { MajorIntroAdapter(arrayListOf()) }
 
     private var underType = 0
+    private var majorId = -1
 
     override fun layoutId(): Int = R.layout.activity_exam_intor
 
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.titleTv.text = "报考介绍"
+        majorId = intent.getIntExtra("id", -1)
+
 
         mDatabind.titleBackBtn.setOnClickListener {
             finish()
         }
 
-        mDatabind.nextBtn.text = "200元报名"
-
-
         //状态页配置
         loadsir = loadServiceInit(mRefresh) {
             //点击重试时触发操作
             loadsir.showLoading()
-            mViewModel.getListData(true)
+            mViewModel.getListData(true, majorId)
         }
 
 
         //初始化recycleview
         mRecycler.init(LinearLayoutManager(this@MajorIntroActivity), mAdapter).let {
             //添加加载更多的底部布局
-            footView = it.initFooter(SwipeRecyclerView.LoadMoreListener {
-                //触发加载更多时请求数据
-                "触发列表加载更多  .........".logw()
-                mViewModel.getListData(false)
-            })
+            footView = EmptyLoadMore(this)
+            it.setLoadMoreView(footView)
+
         }
 
         //初始化swiperefreshlayout
         mRefresh.init {
-            mViewModel.getListData(true)
+            mViewModel.getListData(true, majorId)
         }
 
         mAdapter.run {
@@ -96,13 +95,18 @@ class MajorIntroActivity : BaseActivity<MajorIntroViewModel, ActivityExamIntorBi
 //            setOnItemChildClickListener { adapter, view, position ->}
         }
 
+        mDatabind.nextBtn.setOnClickListener {
+            //点击了报名，需要判断考生的身份实名认证情况
+        }
+
         loadsir.showLoading()
-        mViewModel.getListData(true)
+        mViewModel.getListData(true, majorId)
     }
 
     override fun createObserver() {
         mViewModel.listData.observe(this) {
             loadListData(it, mAdapter, loadsir, mRecycler, mRefresh)
+            mDatabind.nextBtn.text = mViewModel.price
         }
     }
 }
