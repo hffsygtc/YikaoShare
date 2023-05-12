@@ -10,7 +10,6 @@ import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityMainBinding
 import com.info.yikao.ext.Constant
 import com.info.yikao.ext.interceptLongClick
-import com.info.yikao.model.BannerArticle
 import com.info.yikao.ui.EmptyFragment
 import com.info.yikao.ui.fragment.HomeFragment
 import com.info.yikao.ui.fragment.HomeSignUpFragment

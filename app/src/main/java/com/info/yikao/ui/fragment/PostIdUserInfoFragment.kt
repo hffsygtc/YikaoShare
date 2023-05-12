@@ -1,37 +1,21 @@
 package com.info.yikao.ui.fragment
 
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
-import com.info.yikao.databinding.FragmentIdCardPhotoBinding
 import com.info.yikao.databinding.FragmentInputUserInfoBinding
-import com.info.yikao.databinding.FragmentMainLoginBinding
 import com.info.yikao.model.CityData
-import com.info.yikao.ui.activity.UserOrderActivity
-import com.info.yikao.viewmodel.*
-import com.lljjcoder.Interface.OnCityItemClickListener
+import com.info.yikao.viewmodel.PostIdInfoViewModel
 import com.lljjcoder.Interface.OnCustomCityPickerItemClickListener
-import com.lljjcoder.bean.CityBean
 import com.lljjcoder.bean.CustomCityData
-import com.lljjcoder.bean.DistrictBean
-import com.lljjcoder.bean.ProvinceBean
-import com.lljjcoder.citywheel.CityConfig
 import com.lljjcoder.citywheel.CustomConfig
 import com.lljjcoder.style.citycustome.CustomCityPicker
-import com.lljjcoder.style.citypickerview.CityPickerView
 import com.lljjcoder.utils.utils
 import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.parseState
-import me.hgj.jetpackmvvm.ext.util.logw
-import java.lang.Exception
-import java.util.ArrayList
 
 class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUserInfoBinding>() {
 

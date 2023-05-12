@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/globe_dimen_30"
+    android:paddingEnd="@dimen/globe_dimen_30">
+
+
+    <View
+        android:id="@+id/top_date_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/globe_dimen_90"
+        android:layout_marginTop="@dimen/globe_dimen_30"
+        android:background="@drawable/white_15_top"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="@dimen/globe_dimen_42"
+        android:layout_height="@dimen/globe_dimen_42"
+        android:layout_marginStart="@dimen/globe_dimen_22"
+        android:background="@mipmap/icon_time"
+        app:layout_constraintBottom_toBottomOf="@+id/top_date_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_date_view" />
+
+    <TextView
+        android:id="@+id/date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/globe_dimen_70"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_text_size_30"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/top_date_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/top_date_view"
+        tools:text="2025年4月26日" />
+
+
+    <TextView
+        android:id="@+id/time_tv"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_66"
+        android:background="@color/color_E6E6E6"
+        android:gravity="center"
+        android:text="时间"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/font_text_size_22"
+        app:layout_constraintEnd_toStartOf="@+id/major_tv"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_date_view" />
+
+    <TextView
+        android:id="@+id/major_tv"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_66"
+        android:background="@color/color_E6E6E6"
+        android:gravity="center"
+        android:text="科目"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/font_text_size_22"
+        app:layout_constraintEnd_toStartOf="@+id/classromm_tv"
+        app:layout_constraintHorizontal_weight="1.5"
+        app:layout_constraintStart_toEndOf="@+id/time_tv"
+        app:layout_constraintTop_toTopOf="@+id/time_tv" />
+
+    <TextView
+        android:id="@+id/classromm_tv"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_66"
+        android:background="@color/color_E6E6E6"
+        android:gravity="center"
+        android:text="地点"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/font_text_size_22"
+        app:layout_constraintEnd_toStartOf="@+id/handle_tv"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintStart_toEndOf="@+id/major_tv"
+        app:layout_constraintTop_toTopOf="@+id/time_tv" />
+
+    <TextView
+        android:id="@+id/handle_tv"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_66"
+        android:background="@color/color_E6E6E6"
+        android:gravity="center"
+        android:text="操作"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/font_text_size_22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1.5"
+        app:layout_constraintStart_toEndOf="@+id/classromm_tv"
+        app:layout_constraintTop_toTopOf="@+id/time_tv" />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_2"
+        android:layout_marginStart="@dimen/globe_dimen_30"
+        android:layout_marginEnd="@dimen/globe_dimen_30"
+        android:background="@color/color_F5F5F5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

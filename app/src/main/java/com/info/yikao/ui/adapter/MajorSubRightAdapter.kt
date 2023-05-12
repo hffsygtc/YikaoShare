@@ -8,7 +8,6 @@ import com.info.yikao.R
 import com.info.yikao.ext.setAdapterAnimation
 import com.info.yikao.model.MajorBean
 import com.info.yikao.model.MajorGroupBean
-import com.info.yikao.model.OrderBean
 
 class MajorSubRightAdapter(data: MutableList<MajorGroupBean>?) :
     BaseDelegateMultiAdapter<MajorGroupBean, BaseViewHolder>(data) {

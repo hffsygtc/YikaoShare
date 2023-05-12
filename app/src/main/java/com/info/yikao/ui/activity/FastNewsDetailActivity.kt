@@ -1,19 +1,13 @@
 package com.info.yikao.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
-import com.info.yikao.databinding.ActivitySchoolDetailBinding
-import com.info.yikao.databinding.ActivitySignPayBinding
-import com.info.yikao.databinding.ActivitySignUpDetailBinding
 import com.info.yikao.databinding.ActivityTopNewsDetailBinding
 import com.info.yikao.ext.loadServiceInit
 import com.info.yikao.ext.showError
 import com.info.yikao.ext.showLoading
 import com.info.yikao.viewmodel.FastNewsDetailViewModel
-import com.info.yikao.viewmodel.SignUpDetailViewModel
-import com.info.yikao.viewmodel.SignUpPayViewModel
 import com.kingja.loadsir.core.LoadService
 import me.hgj.jetpackmvvm.ext.parseState
 

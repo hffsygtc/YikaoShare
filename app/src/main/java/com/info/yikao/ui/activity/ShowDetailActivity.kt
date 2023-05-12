@@ -1,6 +1,5 @@
 package com.info.yikao.ui.activity
 
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -10,15 +9,11 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
-import com.info.yikao.databinding.*
+import com.info.yikao.databinding.ActivityStreetShowDetailBinding
 import com.info.yikao.ext.*
-import com.info.yikao.viewmodel.FastNewsDetailViewModel
 import com.info.yikao.viewmodel.ShowDetailViewModel
-import com.info.yikao.viewmodel.SignUpDetailViewModel
-import com.info.yikao.viewmodel.SignUpPayViewModel
 import com.kingja.loadsir.core.LoadService
 import me.hgj.jetpackmvvm.ext.parseState
-import me.hgj.jetpackmvvm.ext.util.logw
 
 /**
  * 展演详情的页面

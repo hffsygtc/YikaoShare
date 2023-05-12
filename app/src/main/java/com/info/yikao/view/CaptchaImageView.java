@@ -7,14 +7,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
 import java.util.ArrayList;
 import java.util.Random;
-
-import me.jessyan.autosize.utils.AutoSizeUtils;
 
 /**
  * by BiTiDaddy on 2023/5/6 14:40

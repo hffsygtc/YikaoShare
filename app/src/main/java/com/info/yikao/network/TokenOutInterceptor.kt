@@ -1,9 +1,8 @@
 package com.info.yikao.network
 
-import android.content.Intent
 import com.google.gson.Gson
+import com.info.yikao.App
 import com.info.yikao.model.ApiResponse
-import me.hgj.jetpackmvvm.base.appContext
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody
@@ -22,12 +21,10 @@ class TokenOutInterceptor : Interceptor {
             val responseBody = ResponseBody.create(mediaType, string)
             val apiResponse = gson.fromJson(string, ApiResponse::class.java)
             //判断逻辑 模拟一下
-//            if (apiResponse.errorCode == 99999) {
-//                //如果是普通的activity话 可以直接跳转，如果是navigation中的fragment，可以发送通知跳转
-//                appContext.startActivity(Intent(appContext, TestActivity::class.java).apply {
-//                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//                })
-//            }
+            if (apiResponse.Code == 401) {
+                //如果是普通的activity话 可以直接跳转，如果是navigation中的fragment，可以发送通知跳转
+                App.instance.loginOut()
+            }
             response.newBuilder().body(responseBody).build()
         } else {
             response

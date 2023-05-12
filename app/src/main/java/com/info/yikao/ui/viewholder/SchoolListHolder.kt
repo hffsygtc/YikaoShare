@@ -1,7 +1,6 @@
 package com.info.yikao.ui.viewholder
 
 import android.content.Context
-import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,7 +10,6 @@ import com.info.yikao.R
 import com.info.yikao.ext.Constant
 import com.info.yikao.ext.getGlideRequestOptions
 import com.info.yikao.model.SchoolBean
-import com.info.yikao.ui.activity.SchoolDetailActivity
 
 class SchoolListHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val iconImg = itemView.findViewById<ImageView>(R.id.head_icon)

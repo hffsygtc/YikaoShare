@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentMainHomeBinding
-import com.info.yikao.ext.*
+import com.info.yikao.ext.init
+import com.info.yikao.ext.loadServiceInit
+import com.info.yikao.ext.px
+import com.info.yikao.ext.showLoading
 import com.info.yikao.model.BannerArticle
 import com.info.yikao.ui.activity.*
 import com.info.yikao.ui.adapter.MainBannerAdapter

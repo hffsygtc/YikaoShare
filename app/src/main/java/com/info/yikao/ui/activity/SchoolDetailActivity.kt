@@ -11,21 +11,14 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivitySchoolDetailBinding
-import com.info.yikao.databinding.ActivitySingleListBinding
 import com.info.yikao.ext.*
-import com.info.yikao.model.OrderBean
 import com.info.yikao.ui.adapter.SchoolMajorExpandedAdapter
-import com.info.yikao.ui.adapter.UserOrderListAdapter
 import com.info.yikao.viewmodel.SchoolDetailViewModel
-import com.info.yikao.viewmodel.UserOrderViewModel
-import com.info.yikao.weight.DefineLoadMoreView
 import com.kingja.loadsir.core.LoadService
-import com.yanzhenjie.recyclerview.SwipeRecyclerView
 import me.hgj.jetpackmvvm.ext.parseState
 import me.hgj.jetpackmvvm.ext.util.logw
 

@@ -1,6 +1,6 @@
 package com.info.yikao.viewmodel
 
-import com.info.yikao.model.*
+import com.info.yikao.model.UserInfo
 import com.info.yikao.util.CacheUtil
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 

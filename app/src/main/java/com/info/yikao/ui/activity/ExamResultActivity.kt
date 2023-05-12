@@ -1,31 +1,16 @@
 package com.info.yikao.ui.activity
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.info.yikao.MainActivity
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
-import com.info.yikao.databinding.*
-import com.info.yikao.ext.*
-import com.info.yikao.model.OrderBean
+import com.info.yikao.databinding.ActivityExamResultBinding
+import com.info.yikao.ext.init
+import com.info.yikao.ext.loadServiceInit
+import com.info.yikao.ext.showLoading
 import com.info.yikao.ui.adapter.ExamTeacherResultAdapter
-import com.info.yikao.ui.adapter.SchoolMajorExpandedAdapter
-import com.info.yikao.ui.adapter.UserOrderListAdapter
 import com.info.yikao.viewmodel.ExamResultViewModel
-import com.info.yikao.viewmodel.SplashViewModel
-import com.info.yikao.viewmodel.UploadVideoViewModel
-import com.info.yikao.viewmodel.UserOrderViewModel
-import com.info.yikao.weight.DefineLoadMoreView
 import com.kingja.loadsir.core.LoadService
-import com.yanzhenjie.recyclerview.SwipeRecyclerView
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hgj.jetpackmvvm.ext.util.logw
 
 class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultBinding>() {
     //界面状态管理者

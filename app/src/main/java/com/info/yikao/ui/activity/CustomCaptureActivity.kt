@@ -2,12 +2,8 @@ package com.info.yikao.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import com.google.zxing.Result
-import com.info.yikao.MainActivity
 import com.info.yikao.R
 import com.king.zxing.CaptureActivity
 import com.king.zxing.DecodeConfig

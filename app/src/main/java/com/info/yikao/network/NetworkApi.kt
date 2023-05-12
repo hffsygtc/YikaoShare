@@ -5,7 +5,6 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.GsonBuilder
 import com.info.yikao.network.ApiService
-import com.info.yikao.network.MyHeadInterceptor
 import me.hgj.jetpackmvvm.base.appContext
 import me.hgj.jetpackmvvm.network.BaseNetworkApi
 import me.hgj.jetpackmvvm.network.interceptor.CacheInterceptor

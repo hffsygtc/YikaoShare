@@ -1,7 +1,7 @@
 package com.info.yikao.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import com.info.yikao.model.*
+import com.info.yikao.model.MajorGroupBean
+import com.info.yikao.model.SchoolBean
 import com.info.yikao.network.apiService
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.UnPeekLiveData

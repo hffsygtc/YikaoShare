@@ -1,35 +1,18 @@
 package com.info.yikao.ui.activity
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
-import com.info.yikao.databinding.ActivityExamListBinding
-import com.info.yikao.databinding.ActivityLoginBinding
 import com.info.yikao.databinding.ActivitySingleListBinding
-import com.info.yikao.databinding.ActivityVertifyInfoBinding
 import com.info.yikao.ext.*
-import com.info.yikao.model.NewsBean
-import com.info.yikao.model.OrderBean
 import com.info.yikao.model.StreetShowBean
-import com.info.yikao.ui.adapter.NewsFastAdapter
 import com.info.yikao.ui.adapter.ShowListAdapter
-import com.info.yikao.ui.adapter.SignUpListAdapter
-import com.info.yikao.ui.adapter.UserOrderListAdapter
-import com.info.yikao.viewmodel.FastNewsListViewModel
 import com.info.yikao.viewmodel.ShowListViewModel
-import com.info.yikao.viewmodel.SignUpListViewModel
-import com.info.yikao.viewmodel.UserOrderViewModel
 import com.info.yikao.weight.DefineLoadMoreView
 import com.kingja.loadsir.core.LoadService
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hgj.jetpackmvvm.ext.util.loge
 import me.hgj.jetpackmvvm.ext.util.logw
 
 /**

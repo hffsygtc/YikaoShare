@@ -1,7 +1,8 @@
 package com.info.yikao.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.info.yikao.model.*
+import com.info.yikao.model.ListDataUiState
+import com.info.yikao.model.OrderBean
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 /**

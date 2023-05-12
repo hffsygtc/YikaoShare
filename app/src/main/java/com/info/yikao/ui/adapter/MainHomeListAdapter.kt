@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.info.yikao.R
 import com.info.yikao.model.MainListWarpper
-import com.info.yikao.ui.viewholder.ShowNewsHolder
 import com.info.yikao.ui.viewholder.SchoolListHolder
+import com.info.yikao.ui.viewholder.ShowNewsHolder
 import com.info.yikao.ui.viewholder.TopNewsHolder
 
 class MainHomeListAdapter(private val mContext: Context, var list: ArrayList<MainListWarpper>) :

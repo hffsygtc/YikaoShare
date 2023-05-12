@@ -11,7 +11,6 @@ import com.info.yikao.ext.Constant
 import com.info.yikao.ext.getGlideRequestOptions
 import com.info.yikao.ui.activity.*
 import com.info.yikao.viewmodel.HomeUserViewModel
-import me.hgj.jetpackmvvm.ext.util.loge
 
 class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding>() {
 
@@ -63,10 +62,12 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
 
         mDatabind.teacherOnlineFunc.setOnClickListener {
             //线上监考
+            startActivity(Intent(requireActivity(), OnlineExamListActivity::class.java))
         }
 
         mDatabind.teacherOfflineFunc.setOnClickListener {
             //线下监考
+            startActivity(Intent(requireActivity(), OfflineExamListActivity::class.java))
         }
 
         mDatabind.teacherSettingFunc.setOnClickListener {

@@ -1,7 +1,10 @@
 package com.info.yikao.network
 
 import com.info.yikao.model.*
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 
 
 interface ApiService {

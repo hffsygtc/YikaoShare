@@ -3,24 +3,18 @@ package com.info.yikao.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivitySchoolListBinding
 import com.info.yikao.ext.*
-import com.info.yikao.model.NewsBean
 import com.info.yikao.model.SchoolBean
 import com.info.yikao.ui.adapter.SchoolListAdapter
 import com.info.yikao.viewmodel.SchoolListQrViewModel
 import com.info.yikao.weight.DefineLoadMoreView
 import com.kingja.loadsir.core.LoadService
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
-import me.hgj.jetpackmvvm.ext.util.loge
 import me.hgj.jetpackmvvm.ext.util.logw
-import me.hgj.jetpackmvvm.util.get
 
 
 /**

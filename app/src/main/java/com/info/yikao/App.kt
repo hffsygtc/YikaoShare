@@ -7,6 +7,10 @@ import android.os.Process
 import android.text.TextUtils
 import androidx.annotation.RequiresApi
 import androidx.multidex.MultiDex
+import com.info.yikao.base.AppViewModel
+import com.info.yikao.ext.getProcessName
+import com.info.yikao.model.UserInfo
+import com.info.yikao.util.CacheUtil
 import com.info.yikao.weight.EmptyCallback
 import com.info.yikao.weight.ErrorCallback
 import com.info.yikao.weight.LoadingCallback
@@ -14,7 +18,6 @@ import com.kingja.loadsir.callback.SuccessCallback
 import com.kingja.loadsir.core.LoadSir
 import com.tencent.mmkv.MMKV
 import me.hgj.jetpackmvvm.base.BaseApp
-import com.info.yikao.ext.getProcessName
 
 class App : BaseApp() {
 
@@ -93,6 +96,13 @@ class App : BaseApp() {
             e.printStackTrace()
         }
         return sCurProcessName
+    }
+
+    fun loginOut() {
+        val appViewModel = getAppViewModelProvider().get(AppViewModel::class.java)
+        val userInfo = UserInfo(-1, "", "", "", "", -1)
+        CacheUtil.setUser(userInfo)
+        appViewModel.userInfo.postValue(userInfo)
     }
 
 }

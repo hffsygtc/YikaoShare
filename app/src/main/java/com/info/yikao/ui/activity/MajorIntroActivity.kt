@@ -1,34 +1,20 @@
 package com.info.yikao.ui.activity
 
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
-import com.info.yikao.databinding.*
-import com.info.yikao.ext.*
+import com.info.yikao.databinding.ActivityExamIntorBinding
+import com.info.yikao.ext.init
+import com.info.yikao.ext.loadListData
+import com.info.yikao.ext.loadServiceInit
+import com.info.yikao.ext.showLoading
 import com.info.yikao.model.MajorIntroWrapper
-import com.info.yikao.model.NewsBean
-import com.info.yikao.model.OrderBean
 import com.info.yikao.ui.adapter.MajorIntroAdapter
-import com.info.yikao.ui.adapter.NewsFastAdapter
-import com.info.yikao.ui.adapter.SignUpListAdapter
-import com.info.yikao.ui.adapter.UserOrderListAdapter
-import com.info.yikao.viewmodel.FastNewsListViewModel
 import com.info.yikao.viewmodel.MajorIntroViewModel
-import com.info.yikao.viewmodel.SignUpListViewModel
-import com.info.yikao.viewmodel.UserOrderViewModel
-import com.info.yikao.weight.DefineLoadMoreView
 import com.info.yikao.weight.EmptyLoadMore
 import com.kingja.loadsir.core.LoadService
-import com.yanzhenjie.recyclerview.SwipeRecyclerView
-import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.util.loge
-import me.hgj.jetpackmvvm.ext.util.logw
 
 /**
  * 艺考头条

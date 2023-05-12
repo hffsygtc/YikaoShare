@@ -6,7 +6,6 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.info.yikao.R
 import com.info.yikao.ext.setAdapterAnimation
 import com.info.yikao.model.ExamBean
-import com.info.yikao.model.OrderBean
 
 class UserExamListAdapter(data: MutableList<ExamBean>?) :
     BaseDelegateMultiAdapter<ExamBean, BaseViewHolder>(data) {

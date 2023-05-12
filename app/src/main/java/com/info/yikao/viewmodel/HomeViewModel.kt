@@ -2,13 +2,13 @@ package com.info.yikao.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.info.yikao.model.*
+import com.info.yikao.model.BannerArticle
+import com.info.yikao.model.MainListWarpper
 import com.info.yikao.network.apiService
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.request
-import me.hgj.jetpackmvvm.network.ExceptionHandle
 import me.hgj.jetpackmvvm.state.ResultState
 
 class HomeViewModel : BaseViewModel() {

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/globe_dimen_30"
+    android:paddingEnd="@dimen/globe_dimen_30">
+
+
+    <View
+        android:id="@+id/item_bg"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_84"
+        android:background="@drawable/white_15_body"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/student_num"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_84"
+        android:gravity="center"
+        tools:text="序号"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_text_size_22"
+        app:layout_constraintEnd_toStartOf="@+id/student_name"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/student_name"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_84"
+        android:gravity="center"
+        tools:text="姓名"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_text_size_22"
+        app:layout_constraintEnd_toStartOf="@+id/student_card_id"
+        app:layout_constraintHorizontal_weight="1.5"
+        app:layout_constraintStart_toEndOf="@+id/student_num"
+        app:layout_constraintTop_toTopOf="@+id/student_num" />
+
+    <TextView
+        android:id="@+id/student_card_id"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_84"
+        android:gravity="center"
+        tools:text="准考证"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_text_size_22"
+        app:layout_constraintEnd_toStartOf="@+id/student_type"
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintStart_toEndOf="@+id/student_name"
+        app:layout_constraintTop_toTopOf="@+id/student_num" />
+
+    <TextView
+        android:id="@+id/student_type"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_84"
+        android:gravity="center"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/font_text_size_22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1.5"
+        app:layout_constraintStart_toEndOf="@+id/student_card_id"
+        app:layout_constraintTop_toTopOf="@+id/student_num" />
+
+    <TextView
+        android:layout_width="@dimen/globe_dimen_116"
+        android:layout_height="@dimen/globe_dimen_36"
+        android:background="@drawable/blue_line_white_10"
+        app:layout_constraintStart_toStartOf="@+id/student_type"
+        app:layout_constraintEnd_toEndOf="@+id/student_type"
+        app:layout_constraintTop_toTopOf="@+id/student_type"
+        app:layout_constraintBottom_toBottomOf="@+id/student_type"
+        android:text="进入考场"
+        android:textColor="@color/color_52618B"
+        android:gravity="center"
+        android:textSize="@dimen/font_text_size_22"
+
+        />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/globe_dimen_2"
+        android:layout_marginStart="@dimen/globe_dimen_30"
+        android:layout_marginEnd="@dimen/globe_dimen_30"
+        android:background="@color/color_F5F5F5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

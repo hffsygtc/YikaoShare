@@ -9,7 +9,6 @@ import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentMainLoginBinding
 import com.info.yikao.viewmodel.LoginViewModel
 import me.hgj.jetpackmvvm.ext.nav
-import java.util.*
 import java.util.regex.Pattern
 
 
