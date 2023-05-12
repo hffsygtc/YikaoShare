@@ -5,12 +5,13 @@
 
     <!-- 设置按钮的四个角为弧形 -->
 <!--    <corners-->
-<!--        android:topLeftRadius="@dimen/globe_dimen_16"-->
-<!--        android:topRightRadius="@dimen/globe_dimen_16"-->
+<!--        android:topLeftRadius="@dimen/globe_dimen_10"-->
+<!--        android:topRightRadius="@dimen/globe_dimen_10"-->
+<!--        android:bottomLeftRadius="@dimen/globe_dimen_10"-->
+<!--        android:bottomRightRadius="@dimen/globe_dimen_10"-->
 <!--        />-->
 
 <!--    <stroke-->
 <!--        android:width="@dimen/custom_line_width"-->
 <!--        android:color="#B9B9B9" />-->
-
 </shape>
