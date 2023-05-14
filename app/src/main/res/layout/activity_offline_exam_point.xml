@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_F5F5F5"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_84"
+            android:background="@color/color_FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:background="@mipmap/icon_page_back"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <View
+            android:id="@+id/title_back_btn"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_84"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="线下考场管理"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintEnd_toEndOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="@+id/title_layout"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <TextView
+            android:id="@+id/user_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="考生信息:"
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/globe_dimen_26"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_layout" />
+
+        <View
+            android:id="@+id/info_layout"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_290"
+            android:layout_marginTop="@dimen/globe_dimen_20"
+            android:background="@color/color_FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_info_title" />
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:text="操作员："
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toTopOf="@+id/id_card_tv"
+            app:layout_constraintStart_toStartOf="@+id/info_layout"
+            app:layout_constraintTop_toTopOf="@+id/info_layout" />
+
+        <TextView
+            android:id="@+id/name_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_8"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBaseline_toBaselineOf="@+id/name_tv"
+            app:layout_constraintStart_toEndOf="@+id/name_tv" />
+
+
+        <TextView
+            android:id="@+id/id_card_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:text="职责："
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toTopOf="@+id/major_tv"
+            app:layout_constraintStart_toStartOf="@+id/info_layout"
+            app:layout_constraintTop_toBottomOf="@+id/name_tv" />
+
+        <TextView
+            android:id="@+id/duty_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_8"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBaseline_toBaselineOf="@+id/id_card_tv"
+            app:layout_constraintStart_toEndOf="@+id/id_card_tv" />
+
+        <TextView
+            android:id="@+id/major_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:text="考场："
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toTopOf="@+id/time_tv"
+            app:layout_constraintStart_toStartOf="@+id/info_layout"
+            app:layout_constraintTop_toBottomOf="@+id/id_card_tv" />
+
+        <TextView
+            android:id="@+id/class_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_8"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBaseline_toBaselineOf="@+id/major_tv"
+            app:layout_constraintStart_toEndOf="@+id/major_tv" />
+
+        <TextView
+            android:id="@+id/class_picker_btn"
+            android:layout_width="@dimen/globe_dimen_76"
+            android:layout_height="@dimen/globe_dimen_36"
+            android:layout_marginStart="@dimen/globe_dimen_20"
+            android:background="@drawable/blue_line_white_10"
+            android:gravity="center"
+            android:text="重选"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/font_text_size_22"
+            app:layout_constraintBottom_toBottomOf="@+id/class_tv_content"
+            app:layout_constraintStart_toEndOf="@+id/class_tv_content"
+            app:layout_constraintTop_toTopOf="@+id/class_tv_content" />
+
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:text="场次："
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toTopOf="@+id/type_tv"
+            app:layout_constraintStart_toStartOf="@+id/info_layout"
+            app:layout_constraintTop_toBottomOf="@+id/major_tv" />
+
+        <TextView
+            android:id="@+id/sort_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_8"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBaseline_toBaselineOf="@+id/time_tv"
+            app:layout_constraintStart_toEndOf="@+id/time_tv" />
+
+        <TextView
+            android:id="@+id/sort_picker_btn"
+            android:layout_width="@dimen/globe_dimen_76"
+            android:layout_height="@dimen/globe_dimen_36"
+            android:layout_marginStart="@dimen/globe_dimen_20"
+            android:background="@drawable/blue_line_white_10"
+            android:gravity="center"
+            android:text="重选"
+            android:textColor="@color/color_52618B"
+            android:textSize="@dimen/font_text_size_22"
+            app:layout_constraintBottom_toBottomOf="@+id/sort_tv_content"
+            app:layout_constraintStart_toEndOf="@+id/sort_tv_content"
+            app:layout_constraintTop_toTopOf="@+id/sort_tv_content" />
+
+
+        <TextView
+            android:id="@+id/type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:text="考试类目："
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBottom_toBottomOf="@+id/info_layout"
+            app:layout_constraintStart_toStartOf="@+id/info_layout"
+            app:layout_constraintTop_toBottomOf="@+id/time_tv" />
+
+        <TextView
+            android:id="@+id/type_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_8"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_26"
+            app:layout_constraintBaseline_toBaselineOf="@+id/type_tv"
+            app:layout_constraintStart_toEndOf="@+id/type_tv" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <TextView
+            android:id="@+id/depend_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:textSize="@dimen/font_text_size_30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info_layout" />
+
+        <TextView
+            android:id="@+id/left_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_50"
+            android:text="当前考生"
+            android:textSize="@dimen/font_text_size_30"
+            app:layout_constraintBaseline_toBaselineOf="@+id/depend_tv"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_guideline" />
+
+        <View
+            android:id="@+id/left_line"
+            android:layout_width="@dimen/globe_dimen_24"
+            android:layout_height="@dimen/globe_dimen_8"
+            android:layout_marginTop="@dimen/globe_dimen_12"
+            android:background="@drawable/blue_corner_4"
+            app:layout_constraintEnd_toEndOf="@+id/left_tab"
+            app:layout_constraintStart_toStartOf="@+id/left_tab"
+            app:layout_constraintTop_toBottomOf="@+id/left_tab" />
+
+        <TextView
+            android:id="@+id/right_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/globe_dimen_50"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="考生列表"
+            android:textSize="@dimen/font_text_size_30"
+            app:layout_constraintBaseline_toBaselineOf="@+id/depend_tv"
+            app:layout_constraintStart_toEndOf="@+id/vertical_guideline" />
+
+        <View
+            android:id="@+id/right_line"
+            android:layout_width="@dimen/globe_dimen_24"
+            android:layout_height="@dimen/globe_dimen_8"
+            android:layout_marginTop="@dimen/globe_dimen_12"
+            android:background="@drawable/blue_corner_4"
+            app:layout_constraintEnd_toEndOf="@+id/right_tab"
+            app:layout_constraintStart_toStartOf="@+id/right_tab"
+            app:layout_constraintTop_toBottomOf="@+id/right_tab" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/left_content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/globe_dimen_22"
+            android:background="@color/color_FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/depend_tv">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/stu_info_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_250"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/stu_head_img"
+                    android:layout_width="@dimen/globe_dimen_140"
+                    android:layout_height="@dimen/globe_dimen_200"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    app:layout_constraintStart_toStartOf="@+id/stu_info_layout"
+                    app:layout_constraintTop_toTopOf="@+id/stu_info_layout" />
+
+
+                <TextView
+                    android:id="@+id/stu_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:text="姓名："
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintBottom_toTopOf="@+id/stu_sex_tv"
+                    app:layout_constraintStart_toEndOf="@+id/stu_head_img"
+                    app:layout_constraintTop_toTopOf="@+id/stu_info_layout" />
+
+                <TextView
+                    android:id="@+id/stu_name_tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_8"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_name_tv"
+                    app:layout_constraintStart_toEndOf="@+id/stu_name_tv" />
+
+
+                <TextView
+                    android:id="@+id/stu_sex_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别："
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintBottom_toTopOf="@+id/stu_age_tv"
+                    app:layout_constraintStart_toStartOf="@+id/stu_name_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_name_tv" />
+
+                <TextView
+                    android:id="@+id/stu_sex_tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_8"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_sex_tv"
+                    app:layout_constraintStart_toEndOf="@+id/stu_sex_tv" />
+
+                <TextView
+                    android:id="@+id/stu_age_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="年龄："
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintBottom_toTopOf="@+id/stu_exam_type_tv"
+                    app:layout_constraintStart_toStartOf="@+id/stu_name_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_sex_tv" />
+
+                <TextView
+                    android:id="@+id/stu_age_tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_8"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_age_tv"
+                    app:layout_constraintStart_toEndOf="@+id/stu_age_tv" />
+
+                <TextView
+                    android:id="@+id/stu_exam_type_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="考试类目："
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_info_layout"
+                    app:layout_constraintStart_toStartOf="@+id/stu_name_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_age_tv" />
+
+                <TextView
+                    android:id="@+id/stu_exam_type_tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_8"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_exam_type_tv"
+                    app:layout_constraintStart_toEndOf="@+id/stu_exam_type_tv" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F5F5F5"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_info_layout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/stu_score_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:text="评分："
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/font_text_size_26"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_info_layout" />
+
+                <TextView
+                    android:id="@+id/stu_score_tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/globe_dimen_42"
+                    android:layout_marginStart="@dimen/globe_dimen_18"
+                    android:background="@color/color_F4F4F4"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/globe_dimen_20"
+                    android:paddingEnd="@dimen/globe_dimen_110"
+                    android:text="优秀"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_26"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_score_tv"
+                    app:layout_constraintStart_toEndOf="@+id/stu_score_tv"
+                    app:layout_constraintTop_toTopOf="@+id/stu_score_tv" />
+
+                <ImageView
+                    android:layout_width="@dimen/globe_dimen_38"
+                    android:layout_height="@dimen/globe_dimen_38"
+                    android:layout_marginEnd="@dimen/globe_dimen_8"
+                    android:background="@mipmap/icon_dowm_angle"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_score_tv_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_score_tv_content"
+                    app:layout_constraintTop_toTopOf="@+id/stu_score_tv_content" />
+
+                <TextView
+                    android:id="@+id/stu_fast_score_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:text="快捷评语："
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/font_text_size_26"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_score_tv" />
+
+                <TextView
+                    android:id="@+id/stu_fast_score_tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/globe_dimen_42"
+                    android:layout_marginStart="@dimen/globe_dimen_18"
+                    android:background="@color/color_F4F4F4"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/globe_dimen_20"
+                    android:paddingEnd="@dimen/globe_dimen_110"
+                    android:text="考生表现优秀，几乎完美"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_26"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_fast_score_tv"
+                    app:layout_constraintStart_toEndOf="@+id/stu_fast_score_tv"
+                    app:layout_constraintTop_toTopOf="@+id/stu_fast_score_tv" />
+
+                <ImageView
+                    android:layout_width="@dimen/globe_dimen_38"
+                    android:layout_height="@dimen/globe_dimen_38"
+                    android:layout_marginEnd="@dimen/globe_dimen_8"
+                    android:background="@mipmap/icon_dowm_angle"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_fast_score_tv_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_fast_score_tv_content"
+                    app:layout_constraintTop_toTopOf="@+id/stu_fast_score_tv_content" />
+
+
+                <TextView
+                    android:id="@+id/stu_score_ponit_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:text="快捷评语："
+                    android:textColor="@color/color_999999"
+                    android:textSize="@dimen/font_text_size_26"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_fast_score_tv" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/stu_score_ponit_tv_content"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_138"
+                    android:layout_marginStart="@dimen/globe_dimen_18"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@color/color_F4F4F4"
+                    android:gravity="top|start"
+                    android:paddingStart="@dimen/globe_dimen_20"
+                    android:paddingTop="@dimen/globe_dimen_10"
+                    android:paddingEnd="@dimen/globe_dimen_20"
+                    android:paddingBottom="@dimen/globe_dimen_10"
+                    android:text="考生表现优秀，几乎完美"
+                    android:textColor="@color/color_333333"
+                    android:textCursorDrawable="@drawable/login_cursor"
+                    android:textSize="@dimen/font_text_size_26"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/stu_score_ponit_tv"
+                    app:layout_constraintTop_toTopOf="@+id/stu_score_ponit_tv" />
+
+                <TextView
+                    android:id="@+id/submit_score_btn"
+                    android:layout_width="@dimen/globe_dimen_230"
+                    android:layout_height="@dimen/globe_dimen_56"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:background="@drawable/blue_corner_15"
+                    android:gravity="center"
+                    android:text="提交评分"
+                    android:textColor="@color/color_FFFFFF"
+                    android:textSize="@dimen/font_text_size_30"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_score_ponit_tv_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_30"
+                    app:layout_constraintTop_toBottomOf="@+id/submit_score_btn" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/right_content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/globe_dimen_22"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/depend_tv">
+
+            <TextView
+                android:id="@+id/teacher_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/globe_dimen_30"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/globe_dimen_26"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/should_come"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应到"
+                android:textColor="#457AFF"
+                android:textSize="@dimen/font_text_size_22"
+                app:layout_constraintBottom_toBottomOf="@+id/teacher_tv"
+                app:layout_constraintEnd_toStartOf="@+id/wait_come"
+                app:layout_constraintStart_toEndOf="@+id/teacher_tv"
+                app:layout_constraintTop_toTopOf="@+id/teacher_tv" />
+
+            <TextView
+                android:id="@+id/wait_come"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="候场"
+                android:textColor="#7CA861"
+                android:textSize="@dimen/font_text_size_22"
+                app:layout_constraintBottom_toBottomOf="@+id/teacher_tv"
+                app:layout_constraintEnd_toStartOf="@+id/under_exam"
+                app:layout_constraintStart_toEndOf="@+id/should_come"
+                app:layout_constraintTop_toTopOf="@+id/teacher_tv" />
+
+
+            <TextView
+                android:id="@+id/under_exam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="考试中"
+                android:textColor="#FF8D31"
+                android:textSize="@dimen/font_text_size_22"
+                app:layout_constraintBottom_toBottomOf="@+id/teacher_tv"
+                app:layout_constraintEnd_toStartOf="@+id/finish_tv"
+                app:layout_constraintStart_toEndOf="@+id/wait_come"
+                app:layout_constraintTop_toTopOf="@+id/teacher_tv" />
+
+
+            <TextView
+                android:id="@+id/finish_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已结束"
+                android:textColor="#FF3434"
+                android:textSize="@dimen/font_text_size_22"
+                app:layout_constraintBottom_toBottomOf="@+id/teacher_tv"
+                app:layout_constraintEnd_toStartOf="@+id/not_come"
+                app:layout_constraintStart_toEndOf="@+id/under_exam"
+                app:layout_constraintTop_toTopOf="@+id/teacher_tv" />
+
+
+            <TextView
+                android:id="@+id/not_come"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未到"
+                android:textColor="#FF3434"
+                android:textSize="@dimen/font_text_size_22"
+                app:layout_constraintBottom_toBottomOf="@+id/teacher_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/finish_tv"
+                app:layout_constraintTop_toTopOf="@+id/teacher_tv" />
+
+            <View
+                android:id="@+id/list_head_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/globe_dimen_84"
+                android:layout_marginTop="@dimen/globe_dimen_20"
+                android:background="@color/color_E6E6E6"
+                app:layout_constraintTop_toBottomOf="@+id/teacher_tv" />
+
+            <TextView
+                android:id="@+id/student_num"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="序号"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/font_text_size_24"
+                app:layout_constraintBottom_toBottomOf="@+id/list_head_layout"
+                app:layout_constraintEnd_toStartOf="@+id/student_name"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="@+id/list_head_layout"
+                app:layout_constraintTop_toTopOf="@+id/list_head_layout" />
+
+            <TextView
+                android:id="@+id/student_name"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="姓名"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/font_text_size_24"
+                app:layout_constraintBottom_toBottomOf="@+id/list_head_layout"
+                app:layout_constraintEnd_toStartOf="@+id/student_full_point"
+                app:layout_constraintHorizontal_weight="1.5"
+                app:layout_constraintStart_toEndOf="@+id/student_num"
+                app:layout_constraintTop_toTopOf="@+id/list_head_layout" />
+
+            <TextView
+                android:id="@+id/student_full_point"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="准考证"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/font_text_size_24"
+                app:layout_constraintBottom_toBottomOf="@+id/list_head_layout"
+                app:layout_constraintEnd_toStartOf="@+id/student_my_point"
+                app:layout_constraintHorizontal_weight="2"
+                app:layout_constraintStart_toEndOf="@+id/student_name"
+                app:layout_constraintTop_toTopOf="@+id/list_head_layout" />
+
+            <TextView
+                android:id="@+id/student_my_point"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="综合打分"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/font_text_size_24"
+                app:layout_constraintBottom_toBottomOf="@+id/list_head_layout"
+                app:layout_constraintEnd_toStartOf="@+id/student_type"
+                app:layout_constraintHorizontal_weight="1.5"
+                app:layout_constraintStart_toEndOf="@+id/student_full_point"
+                app:layout_constraintTop_toTopOf="@+id/list_head_layout" />
+
+
+            <TextView
+                android:id="@+id/student_type"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="我的打分"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/font_text_size_24"
+                app:layout_constraintBottom_toBottomOf="@+id/list_head_layout"
+                app:layout_constraintEnd_toStartOf="@+id/student_state"
+                app:layout_constraintHorizontal_weight="1.5"
+                app:layout_constraintStart_toEndOf="@+id/student_my_point"
+                app:layout_constraintTop_toTopOf="@+id/list_head_layout" />
+
+            <TextView
+                android:id="@+id/student_state"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="考试状态"
+                android:textColor="@color/color_999999"
+                android:textSize="@dimen/font_text_size_24"
+                app:layout_constraintBottom_toBottomOf="@+id/list_head_layout"
+                app:layout_constraintEnd_toEndOf="@+id/list_head_layout"
+                app:layout_constraintHorizontal_weight="1.5"
+                app:layout_constraintStart_toEndOf="@+id/student_type"
+                app:layout_constraintTop_toTopOf="@+id/list_head_layout" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/teacher_result_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/globe_dimen_20"
+                android:background="@color/color_FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/list_head_layout" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/class_picker_rv"
+                android:layout_width="@dimen/globe_dimen_250"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/globe_dimen_8"
+                android:background="@drawable/grey_line_white"
+                android:padding="@dimen/globe_dimen_2"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/class_picker_btn"
+                app:layout_constraintTop_toTopOf="@+id/class_picker_btn" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sort_picker_rv"
+                android:layout_width="@dimen/globe_dimen_250"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/globe_dimen_8"
+                android:background="@drawable/grey_line_white"
+                android:padding="@dimen/globe_dimen_2"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@+id/sort_picker_btn"
+                app:layout_constraintTop_toTopOf="@+id/sort_picker_btn" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

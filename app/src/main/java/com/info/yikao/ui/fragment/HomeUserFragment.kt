@@ -67,7 +67,10 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
 
         mDatabind.teacherOfflineFunc.setOnClickListener {
             //线下监考
-            startActivity(Intent(requireActivity(), OfflineExamListActivity::class.java))
+            //扫码 候场
+//            startActivity(Intent(requireActivity(), OfflineExamListActivity::class.java))
+            //评委打分
+            startActivity(Intent(requireActivity(), OfflineJudgePointActivity::class.java))
         }
 
         mDatabind.teacherSettingFunc.setOnClickListener {
