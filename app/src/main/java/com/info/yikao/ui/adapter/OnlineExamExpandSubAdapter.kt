@@ -16,6 +16,8 @@ import com.info.yikao.model.OnlineExamBean
 class OnlineExamExpandSubAdapter(data: MutableList<OnlineExamBean>?) :
     BaseDelegateMultiAdapter<OnlineExamBean, BaseViewHolder>(data) {
 
+    var onlineExamClick: ((OnlineExamBean) -> Unit)? = null
+
     init {
         //todo 增加设置动画模式的标志
         setAdapterAnimation(0)
@@ -32,6 +34,9 @@ class OnlineExamExpandSubAdapter(data: MutableList<OnlineExamBean>?) :
     }
 
     override fun convert(helper: BaseViewHolder, item: OnlineExamBean) {
+        helper.itemView.setOnClickListener {
+            onlineExamClick?.invoke(item)
+        }
 
     }
 

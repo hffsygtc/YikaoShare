@@ -53,9 +53,11 @@ class OnlineExamExpandAdapter(data: MutableList<OnlinePointBean>?) :
         val subBottomTv = helper.getView<TextView>(R.id.no_pointed_name)
 
         val leftAdapter = OnlineExamExpandSubAdapter(item.pointedList)
+        leftAdapter.onlineExamClick = clickExam
         subTopRv.init(LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false), leftAdapter)
 
         val rightAdapter = OnlineExamExpandSubAdapter(item.notPointedList)
+        rightAdapter.onlineExamClick = clickExam
         subBottomRv.init(LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false), rightAdapter)
 
         parentView.setOnClickListener {

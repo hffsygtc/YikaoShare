@@ -75,7 +75,13 @@ class OnlineExamListActivity : BaseActivity<OnlineListViewModel, ActivitySingleL
 ////                val intent = Intent(this@OnlineExamListActivity, OfflineMangerQrActivity::class.java)
 //////                intent.putExtra("id", posData.ShowInfoId)
 ////                startActivity(intent)
+//
 //            }
+
+            clickExam = {examItem->
+
+                startActivity(Intent(this@OnlineExamListActivity, OnlineJudgePointActivity::class.java))
+            }
         }
 
         loadsir.showLoading()

@@ -141,6 +141,11 @@
             android:name=".ui.activity.OfflineJudgePointActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.OnlineJudgePointActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.UploadVideoActivity"
             android:exported="false"
