@@ -32,6 +32,10 @@ class UserOrderActivity : BaseActivity<UserOrderViewModel, ActivitySingleListBin
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.titleTv.text = "报考订单"
 
+        mDatabind.titleBackBtn.setOnClickListener {
+            finish()
+        }
+
         //状态页配置
         loadsir = loadServiceInit(mRefresh) {
             //点击重试时触发操作
@@ -43,11 +47,11 @@ class UserOrderActivity : BaseActivity<UserOrderViewModel, ActivitySingleListBin
         //初始化recycleview
         mRecycler.init(LinearLayoutManager(this@UserOrderActivity), mAdapter).let {
             //添加加载更多的底部布局
-            footView = it.initFooter(SwipeRecyclerView.LoadMoreListener {
-                //触发加载更多时请求数据
-                "触发列表加载更多  .........".logw()
-                mViewModel.getListData(false)
-            })
+//            footView = it.initFooter(SwipeRecyclerView.LoadMoreListener {
+//                //触发加载更多时请求数据
+//                "触发列表加载更多  .........".logw()
+//                mViewModel.getListData(false)
+//            })
         }
 
         //初始化swiperefreshlayout
@@ -62,9 +66,26 @@ class UserOrderActivity : BaseActivity<UserOrderViewModel, ActivitySingleListBin
 
             }
 
-//            addChildClickViewIds(
-//            )
-//            setOnItemChildClickListener { adapter, view, position ->}
+            addChildClickViewIds(
+                R.id.bottom_pay_btn,
+                R.id.bottom_cancel_btn,
+            )
+            setOnItemChildClickListener { adapter, view, position ->
+                when(view.id){
+                    R.id.bottom_pay_btn->{
+                        //跳转支付
+                    }
+                    R.id.bottom_cancel_btn->{
+                        //取消
+                        var posData =  adapter.data[position] as OrderBean
+                        mViewModel.cancelOrder(posData.OrderNum)
+                        posData.PayStatus = "2"
+                        mAdapter.notifyItemChanged(position)
+                    }
+                }
+
+
+            }
         }
 
         loadsir.showLoading()
@@ -75,5 +96,10 @@ class UserOrderActivity : BaseActivity<UserOrderViewModel, ActivitySingleListBin
         mViewModel.listData.observe(this) {
             loadListData(it, mAdapter, loadsir, mRecycler, mRefresh)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mAdapter.clearTimer()
     }
 }

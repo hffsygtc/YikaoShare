@@ -3,6 +3,7 @@ package com.info.yikao.ext
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.model.ListDataUiState
 import com.info.yikao.weight.DefineLoadMoreView
 import com.kingja.loadsir.core.LoadService
@@ -108,6 +109,7 @@ fun <T> loadListData(
         if (data.isRefresh) {
             //如果是第一页，则显示错误界面，并提示错误信息
             loadService.showError(data.errMessage)
+            Snackbar.make(recyclerView, data.errMessage, Snackbar.LENGTH_SHORT).show()
         } else {
             recyclerView.loadMoreError(0, data.errMessage)
         }

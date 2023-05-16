@@ -14,7 +14,7 @@ class SignUpListViewModel : BaseViewModel() {
 
     fun getListData(isRefresh: Boolean) {
 
-        val datas = arrayListOf(OrderBean(1), OrderBean(2), OrderBean(3))
+        val datas = arrayListOf<OrderBean>()
 
         val listDataUiState =
             ListDataUiState(

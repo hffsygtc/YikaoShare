@@ -138,5 +138,25 @@ interface ApiService {
         @Body postGroups: PostMemberInfo
     ): ApiResponse<Any?>
 
+    /**
+     * 获取会员信息
+     */
+    @GET("/api/Member/GetMemberInfo")
+    suspend fun getMemberInfo(): ApiResponse<UserDetailInfo>
+
+    /**
+     * 获取报考订单
+     */
+    @GET("/api/Member/GetApplyOrderList")
+    suspend fun getApplyOrderList(): ApiResponse<ArrayList<OrderBean>>
+
+    /**
+     * 取消订单
+     */
+    @POST("api/Member/CancelApplyOrder")
+    suspend fun cancelApplyOrder(
+        @Query("OrderNum") id: String
+    ): ApiResponse<Any?>
+
 
 }

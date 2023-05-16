@@ -1,9 +1,13 @@
 package com.info.yikao.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import com.info.yikao.model.ExamClassBean
 import com.info.yikao.model.ListDataUiState
 import com.info.yikao.model.OrderBean
+import com.info.yikao.network.apiService
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hgj.jetpackmvvm.ext.request
+import me.hgj.jetpackmvvm.ext.util.loge
 
 class UserOrderViewModel : BaseViewModel() {
 
@@ -13,18 +17,36 @@ class UserOrderViewModel : BaseViewModel() {
 
     fun getListData(isRefresh: Boolean) {
 
-        val datas = arrayListOf(OrderBean(1), OrderBean(2), OrderBean(3))
+        request({ apiService.getApplyOrderList() }, {
+            val listDataUiState =
+                ListDataUiState(
+                    isSuccess = true,
+                    isRefresh = isRefresh,
+                    isEmpty = it.isEmpty(),
+                    listData = it,
+                    hasMore = it.isNotEmpty()
+                )
+            listData.value = listDataUiState
 
-        val listDataUiState =
-            ListDataUiState(
-                isSuccess = true,
-                isRefresh = isRefresh,
-                isEmpty = datas.isEmpty(),
-                listData = datas,
-                hasMore = datas.isNotEmpty()
-            )
+        }, {
+            val listDataUiState =
+                ListDataUiState(
+                    isSuccess = false,
+                    errMessage = it.errorMsg,
+                    isRefresh = isRefresh,
+                    isEmpty = true,
+                    listData = arrayListOf<OrderBean>(),
+                    hasMore = false
+                )
+            listData.value = listDataUiState
 
-        listData.value = listDataUiState
+
+        })
+
+    }
+
+    fun cancelOrder(id: String) {
+        request({ apiService.cancelApplyOrder(id) }, {}, {})
 
     }
 }

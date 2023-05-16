@@ -243,6 +243,7 @@
                     app:layout_constraintTop_toTopOf="@+id/head_photo_layout" />
 
                 <TextView
+                    android:id="@+id/user_small_head_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/globe_dimen_60"

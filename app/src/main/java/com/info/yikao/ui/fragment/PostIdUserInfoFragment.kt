@@ -1,6 +1,8 @@
 package com.info.yikao.ui.fragment
 
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -16,6 +18,7 @@ import com.lljjcoder.style.citycustome.CustomCityPicker
 import com.lljjcoder.utils.utils
 import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.parseState
+import me.hgj.jetpackmvvm.ext.util.logw
 
 class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUserInfoBinding>() {
 
@@ -146,6 +149,8 @@ class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUs
             mViewModel.postMemberInfo()
         }
 
+        mViewModel.getUserMemberInfo()
+
     }
 
     private fun initCityData() {
@@ -166,6 +171,46 @@ class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUs
             }, {
                 Snackbar.make(mDatabind.nextBtn, it.errorMsg, Snackbar.LENGTH_SHORT).show()
             })
+        }
+
+        mViewModel.memberInfo.observe(this) { result ->
+            parseState(result, {
+                "member info is $it".logw()
+                //获取到了用户信息
+                mViewModel.inputUserInfo = it
+                //显示界面
+                mDatabind.proviceTv.showContent(it.Province)
+                mDatabind.inputIdCard.showContent(it.IDNumber)
+                //一寸照片
+                mDatabind.userSmallHeadTv.showContent(it.StuImg1)
+                mDatabind.inputHeight.showContent(it.StuHeight.toString())
+                mDatabind.inputWeight.showContent(it.StuWeight.toString())
+                mDatabind.detailLocationTv.showContent(it.PostProvince+it.PostCity+it.PostArea)
+                mDatabind.inputStreet.showContent(it.PostDetail)
+                mDatabind.inputEmsName.showContent(it.PostName)
+                mDatabind.inputEmsPhone.showContent(it.PostTel)
+                mDatabind.inputRelativeName.showContent(it.EmergencyContact)
+                mDatabind.inputRelativePhone.showContent(it.EmergencyContactTel)
+
+
+
+            }, {
+                Snackbar.make(mDatabind.nextBtn, it.errorMsg, Snackbar.LENGTH_SHORT).show()
+            })
+
+        }
+    }
+
+
+    private fun TextView.showContent(content: String?) {
+        if (content != null && content != "") {
+            text = content
+        }
+    }
+
+    private fun EditText.showContent(content: String?) {
+        if (content != null && content != "") {
+            setText(content)
         }
     }
 
