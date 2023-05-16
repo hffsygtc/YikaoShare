@@ -18,12 +18,22 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
 
     private val mAdapter by lazy { ExamTeacherResultAdapter(arrayListOf()) }
 
+    private var examNum = ""
+    private var online = false
+    private var examName = ""
 
     override fun layoutId(): Int = R.layout.activity_exam_result
 
     override fun initView(savedInstanceState: Bundle?) {
 
-        mDatabind.titleTv.text = "考试"
+        intent?.let {
+            online = it.getBooleanExtra("online", false)
+            examNum = it.getStringExtra("id") ?: ""
+            examName = it.getStringExtra("name") ?: ""
+        }
+
+
+        mDatabind.titleTv.text = examName
         //状态页配置
         loadsir = loadServiceInit(mDatabind.mainLayout) {
             //点击重试时触发操作

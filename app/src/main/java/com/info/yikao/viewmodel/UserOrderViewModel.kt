@@ -10,8 +10,6 @@ import me.hgj.jetpackmvvm.ext.request
 import me.hgj.jetpackmvvm.ext.util.loge
 
 class UserOrderViewModel : BaseViewModel() {
-
-
     //列表的数据
     var listData: MutableLiveData<ListDataUiState<OrderBean>> = MutableLiveData()
 

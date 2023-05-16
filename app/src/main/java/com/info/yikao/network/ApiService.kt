@@ -158,5 +158,14 @@ interface ApiService {
         @Query("OrderNum") id: String
     ): ApiResponse<Any?>
 
+    /**
+     * 获取我的考试订单
+     */
+    @GET("/api/Member/GetMyTestList")
+    suspend fun getUserExams(
+        @Query("TestTypeId") onlineType: Int,
+        @Query("TestResult") tabType: Int
+    ): ApiResponse<ArrayList<ExamBean>>
+
 
 }

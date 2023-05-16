@@ -24,6 +24,10 @@ class UserExamActivity : BaseActivity<BaseViewModel, ActivityUserExamBinding>() 
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        mDatabind.titleBackBtn.setOnClickListener {
+            finish()
+        }
+
         supportFragmentManager.beginTransaction().apply {
             add(R.id.fragment_container_layout, onlineFragment)
             commitAllowingStateLoss()
