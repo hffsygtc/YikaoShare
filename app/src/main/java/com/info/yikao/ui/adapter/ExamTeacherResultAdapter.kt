@@ -29,7 +29,7 @@ class ExamTeacherResultAdapter(data: MutableList<TeacherResultBean>?) :
         //第二步 绑定对应的item类型
         getMultiTypeDelegate()?.let {
             it.addItemType(1, R.layout.item_exam_result_head)
-            it.addItemType(2, R.layout.item_exam_result_teacher)
+            it.addItemType(0, R.layout.item_exam_result_teacher)
             it.addItemType(3, R.layout.item_exam_result_empty)
         }
     }
@@ -61,7 +61,7 @@ class ExamTeacherResultAdapter(data: MutableList<TeacherResultBean>?) :
                     }
                 }
             }
-            2 -> {
+            0 -> {
                 //普通老师结果
                 val headIcon = helper.getView<ImageView>(R.id.head_icon)
                 val name = helper.getView<TextView>(R.id.name)

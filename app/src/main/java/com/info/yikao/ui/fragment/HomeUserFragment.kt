@@ -37,7 +37,9 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
             }
         }
 
-//        mDatabind.
+        mDatabind.msgBtn.setOnClickListener {
+            startActivity(Intent(requireActivity(), MessageListActivity::class.java))
+        }
 
         mDatabind.userFuncInfo.setOnClickListener {
             //考生信息

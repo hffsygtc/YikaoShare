@@ -13,7 +13,7 @@ AddTime (string, optional):
 }
  */
 data class TeacherResultBean(
-    var type:Int,
+    var type: Int = 0,
     val GradeInfoId: Int,
     val TestCardNo: String,
     val JuryResult: Int,
