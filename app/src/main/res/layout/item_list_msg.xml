@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/globe_dimen_132">
+
+    <ImageView
+        android:id="@+id/head_icon"
+        android:layout_width="@dimen/globe_dimen_76"
+        android:layout_height="@dimen/globe_dimen_76"
+        android:layout_marginStart="@dimen/globe_dimen_30"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/globe_dimen_22"
+        android:layout_marginEnd="@dimen/globe_dimen_180"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/globe_dimen_30"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/head_icon"
+        app:layout_constraintTop_toTopOf="@+id/head_icon"
+        tools:text="2023届春季“春季畅演”大型展演火 热报名中" />
+
+    <TextView
+        android:id="@+id/time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/globe_dimen_30"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/color_999999"
+        android:textSize="@dimen/globe_dimen_26"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/title"
+        tools:text="2023-04-25" />
+
+
+    <TextView
+        android:id="@+id/class_content_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/globe_dimen_30"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/text_class_type"
+        android:textColor="@color/color_666666"
+        android:textSize="@dimen/globe_dimen_26"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:text="中国舞，爵士舞，钢琴，吉他，声乐，二胡等..." />
+
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/custom_line_width"
+        android:background="@color/color_F5F5F5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

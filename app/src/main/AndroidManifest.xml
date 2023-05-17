@@ -166,6 +166,14 @@
             android:name=".ui.activity.OfflineMangerQrActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CertiDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.MessageListActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.ycbjie.webviewlib.view.X5WebViewActivity"

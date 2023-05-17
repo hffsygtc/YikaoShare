@@ -31,6 +31,13 @@
             app:layout_constraintTop_toTopOf="@+id/title_view" />
 
         <View
+            android:id="@+id/msg_btn"
+            android:layout_width="@dimen/globe_dimen_200"
+            android:layout_height="@dimen/globe_dimen_84"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
             android:id="@+id/user_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/globe_dimen_158"

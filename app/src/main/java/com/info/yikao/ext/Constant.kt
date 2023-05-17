@@ -9,5 +9,6 @@ object Constant {
     const val GLIDE_OPTIONS_NEWS = 5
 
     var imgUrlHead: String = ""
+    var PostCerFee: Float = 0f
     var userToken: String = ""
 }

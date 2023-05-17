@@ -37,6 +37,8 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
             }
         }
 
+//        mDatabind.
+
         mDatabind.userFuncInfo.setOnClickListener {
             //考生信息
             val intent = Intent(requireActivity(), FragmentContainerActivity::class.java)

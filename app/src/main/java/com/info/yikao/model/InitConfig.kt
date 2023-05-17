@@ -7,6 +7,6 @@ data class InitConfig(
     val OnLineVideoLocalUpload: Int,
     val OnLineVideoRecordUpload: Int,
     val TestResultDiff: Int,
-    val PostCerFee: Int,
+    val PostCerFee: Float,
     val ImgPrefix: String,
 )

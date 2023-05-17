@@ -1,5 +1,6 @@
 package com.info.yikao
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import com.info.yikao.databinding.ActivityMainBinding
 import com.info.yikao.ext.Constant
 import com.info.yikao.ext.interceptLongClick
 import com.info.yikao.ui.EmptyFragment
+import com.info.yikao.ui.activity.MessageListActivity
 import com.info.yikao.ui.fragment.HomeFragment
 import com.info.yikao.ui.fragment.HomeSignUpFragment
 import com.info.yikao.ui.fragment.HomeUserFragment
@@ -50,8 +52,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                         mDatabind.mainViewPager.setCurrentItem(1, false)
                     }
                     R.id.menu_message -> {
-                        it.setIcon(R.mipmap.tab_msg_click)
-                        mDatabind.mainViewPager.setCurrentItem(2, false)
+                        startActivity(Intent(this@MainActivity,MessageListActivity::class.java))
+                        //点击了消息，直接跳转
+//                        it.setIcon(R.mipmap.tab_msg_click)
+//                        mDatabind.mainViewPager.setCurrentItem(2, false)
                     }
                     R.id.menu_user -> {
                         it.setIcon(R.mipmap.tab_user_click)
@@ -104,7 +108,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                         return HomeSignUpFragment()
                     }
                     2 -> {
-                        return EmptyFragment("2")
+                        return EmptyFragment()
                     }
                     3 -> {
                         return HomeUserFragment()
@@ -141,6 +145,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             "get init config is $result".logw()
             parseState(result, {
                 Constant.imgUrlHead = it.ImgPrefix
+                Constant.PostCerFee = it.PostCerFee
             }, {
 
             })

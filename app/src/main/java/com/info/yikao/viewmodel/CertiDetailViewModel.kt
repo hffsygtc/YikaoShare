@@ -1,5 +1,6 @@
 package com.info.yikao.viewmodel
 
+import com.info.yikao.model.CertificateBean
 import com.info.yikao.model.ExamDetailBean
 import com.info.yikao.model.NewsBean
 import com.info.yikao.model.TeacherResultBean
@@ -9,12 +10,12 @@ import me.hgj.jetpackmvvm.callback.livedata.UnPeekLiveData
 import me.hgj.jetpackmvvm.ext.request
 import me.hgj.jetpackmvvm.state.ResultState
 
-class ExamResultViewModel : BaseViewModel() {
+class CertiDetailViewModel : BaseViewModel() {
 
-    var examDetail = UnPeekLiveData<ResultState<ExamDetailBean>>()
+    var certiDetail = UnPeekLiveData<ResultState<CertificateBean>>()
 
-    fun getExamDetail(id:String){
-        request({ apiService.getExamDetail(id) }, examDetail)
+    fun getDetail(id:String){
+        request({ apiService.getCertificateDetail(id) }, certiDetail)
     }
 
 }

@@ -88,6 +88,7 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
                 when(view.id){
                     R.id.show_cert_btn->{
                         //跳转领取证书
+                        //todo 添加跳转证书页面
                     }
                 }
 

@@ -168,4 +168,29 @@ interface ApiService {
     ): ApiResponse<ArrayList<ExamBean>>
 
 
+
+    /**
+     * 获取文章详情
+     */
+    @GET("/api/Member/GetMyTestDetail")
+    suspend fun getExamDetail(
+        @Query("OrderNum") id: String,
+    ): ApiResponse<ExamDetailBean>
+
+    /**
+     * 获取文章详情
+     */
+    @GET("/api/Member/GetMyCertificateDetailDto")
+    suspend fun getCertificateDetail(
+        @Query("OrderNum") id: String,
+    ): ApiResponse<CertificateBean>
+
+    /**
+     * 获取展演的列表
+     */
+    @GET("/api/Member/GetMessageList")
+    suspend fun getMsgList(): ApiResponse<ArrayList<MessageBean>>
+
+
+
 }
