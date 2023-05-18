@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_F5F5F5"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_84"
+            android:background="@color/color_FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="@dimen/globe_dimen_42"
+            android:layout_height="@dimen/globe_dimen_42"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:background="@mipmap/icon_page_back"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <View
+            android:id="@+id/title_back_btn"
+            android:layout_width="@dimen/globe_dimen_100"
+            android:layout_height="@dimen/globe_dimen_84"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="准考证"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/title_layout"
+            app:layout_constraintEnd_toEndOf="@+id/title_layout"
+            app:layout_constraintStart_toStartOf="@+id/title_layout"
+            app:layout_constraintTop_toTopOf="@+id/title_layout" />
+
+        <TextView
+            android:id="@+id/save_stu_exam_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/globe_dimen_84"
+            android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:layout_marginBottom="@dimen/globe_dimen_30"
+            android:background="@drawable/blue_corner_15"
+            android:gravity="center"
+            android:text="保存至手机"
+            android:textColor="@color/color_FFFFFF"
+            android:textSize="@dimen/font_text_size_30"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/stu_exam_card_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/save_stu_exam_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/shot_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/stu_card_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@drawable/stu_exam_item_bg"
+                    android:paddingStart="@dimen/globe_dimen_96"
+                    android:paddingTop="@dimen/globe_dimen_28"
+                    android:paddingEnd="@dimen/globe_dimen_30"
+                    android:paddingBottom="@dimen/globe_dimen_28"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_30"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="四川音乐学院社会艺术培训与考级中心" />
+
+                <ImageView
+                    android:id="@+id/stu_card_school_icon"
+                    android:layout_width="@dimen/globe_dimen_46"
+                    android:layout_height="@dimen/globe_dimen_46"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:background="@mipmap/default_school_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_title"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_title"
+                    app:layout_constraintTop_toTopOf="@+id/stu_card_title" />
+
+                <TextView
+                    android:id="@+id/stu_card_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen__2"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@drawable/stu_exam_item_bg"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/globe_dimen_28"
+                    android:paddingBottom="@dimen/globe_dimen_28"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_30"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_title"
+                    tools:text="四川音乐学院社会艺术培训与考级中心" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/stu_exam_item_bg"
+                    app:layout_constraintBottom_toTopOf="@+id/stu_card_should_know"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_sub_title"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_sub_title"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_sub_title"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/stu_card_photo"
+                    android:layout_width="@dimen/globe_dimen_130"
+                    android:layout_height="@dimen/globe_dimen_180"
+                    android:layout_marginTop="@dimen/globe_dimen_20"
+                    android:layout_marginEnd="@dimen/globe_dimen_20"
+                    android:background="@color/color_999999"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_sub_title"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_sub_title" />
+
+                <ImageView
+                    android:id="@+id/stu_card_qr_img"
+                    android:layout_width="@dimen/globe_dimen_110"
+                    android:layout_height="@dimen/globe_dimen_110"
+                    android:layout_marginTop="@dimen/globe_dimen_30"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_photo"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_photo"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_photo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/globe_dimen_14"
+                    android:text="查看考级进度"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_qr_img"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_qr_img"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_qr_img" />
+
+                <View
+                    android:id="@+id/sub_mid_line"
+                    android:layout_width="@dimen/custom_line_width"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    app:layout_constraintEnd_toStartOf="@+id/stu_card_photo"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_sub_title"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_sub_title" />
+
+                <TextView
+                    android:id="@+id/stu_card_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_22"
+                    android:layout_marginTop="@dimen/globe_dimen_40"
+                    android:text="姓名："
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_sub_title"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_sub_title" />
+
+                <TextView
+                    android:id="@+id/stu_card_name_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_20"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_name"
+                    app:layout_constraintEnd_toStartOf="@+id/sub_mid_line"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_name"
+                    tools:text="名字" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:background="@color/color_333333"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_name_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_name_content"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_name_content" />
+
+
+                <TextView
+                    android:id="@+id/stu_card_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_22"
+                    android:layout_marginTop="@dimen/globe_dimen_40"
+                    android:text="性别："
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintStart_toStartOf="@+id/sub_mid_line"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_sub_title" />
+
+                <TextView
+                    android:id="@+id/stu_card_sex_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_20"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_sex"
+                    app:layout_constraintEnd_toStartOf="@+id/stu_card_photo"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_sex"
+                    tools:text="名字" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:background="@color/color_333333"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_sex_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_sex_content"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_sex_content" />
+
+
+                <TextView
+                    android:id="@+id/stu_card_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/globe_dimen_34"
+                    android:text="准考证号："
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_name"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_name" />
+
+                <TextView
+                    android:id="@+id/stu_card_num_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_110"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_num"
+                    app:layout_constraintEnd_toStartOf="@+id/stu_card_photo"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_num"
+                    tools:text="名字" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:background="@color/color_333333"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_num_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_num_content"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_num_content" />
+
+
+                <TextView
+                    android:id="@+id/stu_card_class_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_22"
+                    android:layout_marginTop="@dimen/globe_dimen_34"
+                    android:text="考场："
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_sub_title"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_num" />
+
+                <TextView
+                    android:id="@+id/stu_card_class_num_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_20"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_class_num"
+                    app:layout_constraintEnd_toStartOf="@+id/sub_mid_line"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_class_num"
+                    tools:text="名字" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:background="@color/color_333333"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_class_num_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_class_num_content"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_class_num_content" />
+
+
+                <TextView
+                    android:id="@+id/stu_card_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_22"
+                    android:layout_marginTop="@dimen/globe_dimen_40"
+                    android:text="地点："
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_class_num"
+                    app:layout_constraintStart_toStartOf="@+id/sub_mid_line" />
+
+                <TextView
+                    android:id="@+id/stu_card_location_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_20"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_location"
+                    app:layout_constraintEnd_toStartOf="@+id/stu_card_photo"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_location"
+                    tools:text="名字" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:background="@color/color_333333"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_location_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_location_content"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_location_content" />
+
+
+                <TextView
+                    android:id="@+id/stu_card_major"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_22"
+                    android:layout_marginTop="@dimen/globe_dimen_34"
+                    android:text="专业："
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_sub_title"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_class_num" />
+
+                <TextView
+                    android:id="@+id/stu_card_major_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_20"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_major"
+                    app:layout_constraintEnd_toStartOf="@+id/sub_mid_line"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_major"
+                    tools:text="名字" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:background="@color/color_333333"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_major_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_major_content"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_major_content" />
+
+
+                <TextView
+                    android:id="@+id/stu_card_grade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_22"
+                    android:layout_marginTop="@dimen/globe_dimen_40"
+                    android:text="等级："
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_major"
+                    app:layout_constraintStart_toStartOf="@+id/sub_mid_line" />
+
+                <TextView
+                    android:id="@+id/stu_card_grade_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_20"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_grade"
+                    app:layout_constraintEnd_toStartOf="@+id/stu_card_photo"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_grade"
+                    tools:text="名字" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:background="@color/color_333333"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_grade_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_grade_content"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_grade_content" />
+
+
+                <TextView
+                    android:id="@+id/stu_card_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/globe_dimen_34"
+                    android:text="考试时间："
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_name"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_major" />
+
+                <TextView
+                    android:id="@+id/stu_card_time_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/globe_dimen_20"
+                    android:gravity="center"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/stu_card_time"
+                    app:layout_constraintEnd_toStartOf="@+id/stu_card_photo"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_time"
+                    tools:text="名字" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_2"
+                    android:background="@color/color_333333"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_time_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_time_content"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_time_content" />
+
+
+                <TextView
+                    android:id="@+id/stu_card_show_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/globe_dimen_34"
+                    android:text="考试时间："
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_name"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_time" />
+
+                <TextView
+                    android:id="@+id/stu_card_show_content"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_120"
+                    android:layout_marginEnd="@dimen/globe_dimen_20"
+                    android:background="@drawable/stu_exam_item_bg"
+                    android:padding="@dimen/globe_dimen_20"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_24"
+                    app:layout_constraintEnd_toStartOf="@+id/stu_card_photo"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_show_info"
+                    app:layout_constraintTop_toTopOf="@+id/stu_card_show_info"
+                    tools:text="名字" />
+
+                <TextView
+                    android:id="@+id/stu_card_should_know"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/globe_dimen_66"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen_20"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@drawable/stu_exam_item_bg"
+                    android:gravity="center"
+                    android:text="考生须知"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_30"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_show_content" />
+
+                <TextView
+                    android:id="@+id/stu_card_tips"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    android:layout_marginTop="@dimen/globe_dimen__2"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
+                    android:background="@drawable/stu_exam_item_bg"
+                    android:paddingStart="@dimen/globe_dimen_12"
+                    android:paddingTop="@dimen/globe_dimen_20"
+                    android:paddingEnd="@dimen/globe_dimen_12"
+                    android:paddingBottom="@dimen/globe_dimen_20"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_22"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_should_know"
+                    tools:text="1．考生应按规定的时间入场，开始考试后15分钟禁止迟到考生进入考场。
+
+　　2．考生入场时须主动出示《准考证》以及有效身份证件(身份证、军人、武警人员证件、未成年人的户口本、公安户籍部门开具的《身份证》号码证明、护照或者港、澳、台同胞证件)，接受考试工作人员的核验，并按要求在“考生花名册”上签自己的姓名。
+
+　　3．考生只准携带必要的文具入场,如铅笔、签字笔、毛笔、水粉水彩颜料等，具体要求见招考简章。禁止携带任何已完成作品以及各种无线通信工具(如寻呼机、移动电话)等物品。如发现考生携带以上禁带物品，考生将作为违纪处理，取消该次考试成绩。考场内不得擅自相互借用文具。
+
+　　4．考生入场后按号入座，将本人《准考证》以及有效身份证件放在课桌上，以便核验。
+
+　　5．考生答题前应认真填写试卷及答题纸上的姓名、准考证号等栏目并粘贴带有考生个人信息的条形码。凡不按要求填写或字迹不清、无法辨认的，试卷及答题纸一律无效。责任由考生自付。
+
+　　6．开考后，考生不得中途退场。如因身体不适要求中途退场，须征得监考人员及考点主考批准，并在退场前将试卷、答题纸如数上交。
+
+　　7．考生遇试卷分发错误或试题字迹不清等情况应及时要求更换；涉及试题内容的疑问，不得向监考人员询问。" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/globe_dimen_20"
+                    app:layout_constraintTop_toBottomOf="@+id/stu_card_tips" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -3,6 +3,7 @@
 
 
     <dimen name="globe_dimen_2">1dp</dimen>
+    <dimen name="globe_dimen__2">-1dp</dimen>
     <dimen name="globe_dimen_3">1.5dp</dimen>
     <dimen name="globe_dimen_4">2dp</dimen>
     <dimen name="globe_dimen_6">3dp</dimen>

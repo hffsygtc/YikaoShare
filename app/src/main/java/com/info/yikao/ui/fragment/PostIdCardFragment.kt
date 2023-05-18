@@ -38,6 +38,10 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        mDatabind.titleBackBtn.setOnClickListener {
+            activity?.finish()
+        }
+
         mDatabind.frontLayout.setOnClickListener {
             isBack = false
             //点击上传正面

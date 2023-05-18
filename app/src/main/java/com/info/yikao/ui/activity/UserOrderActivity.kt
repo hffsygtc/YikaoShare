@@ -1,5 +1,6 @@
 package com.info.yikao.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.info.yikao.R
@@ -63,6 +64,9 @@ class UserOrderActivity : BaseActivity<UserOrderViewModel, ActivitySingleListBin
             setOnItemClickListener { adapter, view, position ->
                 //点击了对象
                 var posData = adapter.data[position] as OrderBean
+
+                //todo 跳转到准考证
+                startActivity(Intent(this@UserOrderActivity,StuExamCardActivity::class.java))
 
             }
 

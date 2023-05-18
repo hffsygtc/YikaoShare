@@ -175,6 +175,10 @@
             android:name=".ui.activity.MessageListActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.StuExamCardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.ycbjie.webviewlib.view.X5WebViewActivity"
