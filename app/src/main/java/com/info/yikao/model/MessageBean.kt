@@ -15,7 +15,7 @@ data class MessageBean(
     var MessageId:Int,
     val MemberId: Int,
     val Title: String,
-    val MessageStr: Int,
+    val MessageStr: String,
     val GoUrl: String,
-    val AddTime: Int
+    val AddTime: String
 )

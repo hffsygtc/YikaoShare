@@ -33,6 +33,7 @@ class MessageListViewModel : BaseViewModel() {
                 ListDataUiState(
                     isSuccess = false,
                     isRefresh = isRefresh,
+                    errMessage = it.errorMsg,
                     isEmpty = true,
                     listData = arrayListOf<MessageBean>(),
                     hasMore = false

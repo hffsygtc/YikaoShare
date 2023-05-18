@@ -7,6 +7,7 @@ import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivitySingleListBinding
 import com.info.yikao.ext.*
+import com.info.yikao.model.MessageBean
 import com.info.yikao.model.StreetShowBean
 import com.info.yikao.ui.adapter.MessageListAdapter
 import com.info.yikao.ui.adapter.ShowListAdapter
@@ -70,10 +71,11 @@ class MessageListActivity : BaseActivity<MessageListViewModel, ActivitySingleLis
         mAdapter.run {
             setOnItemClickListener { adapter, view, position ->
                 //点击了对象
-                var posData = adapter.data[position] as StreetShowBean
-                val intent = Intent(this@MessageListActivity, ShowDetailActivity::class.java)
-                intent.putExtra("id", posData.ShowInfoId)
-                startActivity(intent)
+                var posData = adapter.data[position] as MessageBean
+
+//                val intent = Intent(this@MessageListActivity, ShowDetailActivity::class.java)
+//                intent.putExtra("id", posData.ShowInfoId)
+//                startActivity(intent)
 
 
             }

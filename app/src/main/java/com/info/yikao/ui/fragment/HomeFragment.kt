@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentMainHomeBinding
-import com.info.yikao.ext.init
-import com.info.yikao.ext.loadServiceInit
-import com.info.yikao.ext.px
-import com.info.yikao.ext.showLoading
+import com.info.yikao.ext.*
 import com.info.yikao.model.BannerArticle
 import com.info.yikao.ui.activity.*
 import com.info.yikao.ui.adapter.MainBannerAdapter
@@ -107,7 +104,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
                     1 -> {
                         //新闻快讯类
                         val intent = Intent(requireActivity(), FastNewsDetailActivity::class.java)
-                        intent.putExtra("article_id",wrapper.newsBean?.ArticleId)
+                        intent.putExtra("article_id", wrapper.newsBean?.ArticleId)
                         startActivity(Intent(requireActivity(), FastNewsDetailActivity::class.java))
                     }
                     2 -> {
@@ -144,6 +141,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
             val intent = Intent(requireActivity(), CustomCaptureActivity::class.java)
             launcher.launch(intent)
         }
+
+        mDatabind.iconTopNotice.setOnClickListener {
+            //跳转消息中心
+            startActivity(Intent(requireActivity(), MessageListActivity::class.java))
+        }
     }
 
     override fun createObserver() {
@@ -173,13 +175,15 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
                     setIndicatorVisibility(View.GONE)
                     setIndicatorView(indicator)
                     setLifecycleRegistry(lifecycle)
-                    adapter =  MainBannerAdapter()
+                    adapter = MainBannerAdapter()
                     val bannerItems = it
                     setOnPageClickListener { index ->
                         val clickItem = bannerItems.getOrNull(index)
-                        val intent = Intent(requireActivity(),WebviewActivity::class.java)
-                        intent.putExtra("url","http://www.baidu.com")
-                        startActivity(intent)
+                        if (clickItem?.GoUrl.canShow()) {
+                            val intent = Intent(requireActivity(), WebviewActivity::class.java)
+                            intent.putExtra("url", clickItem?.GoUrl)
+                            startActivity(intent)
+                        }
                     }
                     create(bannerItems)
                     adapter.notifyDataSetChanged()
@@ -188,7 +192,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
         }
 
 
-        mViewModel.listData.observe(viewLifecycleOwner){
+        mViewModel.listData.observe(viewLifecycleOwner) {
             loadsir.showSuccess()
             mRefresh.isRefreshing = false
 

@@ -90,6 +90,7 @@ dependencies {
     implementation "androidx.concurrent:concurrent-futures-ktx:1.1.0"
 
     implementation 'com.github.crazyandcoder:citypicker:6.0.2'
+    implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc09'
 
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 }

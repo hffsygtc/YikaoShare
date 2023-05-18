@@ -10,6 +10,7 @@
         android:layout_width="@dimen/globe_dimen_76"
         android:layout_height="@dimen/globe_dimen_76"
         android:layout_marginStart="@dimen/globe_dimen_30"
+        android:background="@mipmap/icon_import_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

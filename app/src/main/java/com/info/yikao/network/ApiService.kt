@@ -168,7 +168,6 @@ interface ApiService {
     ): ApiResponse<ArrayList<ExamBean>>
 
 
-
     /**
      * 获取文章详情
      */
@@ -191,6 +190,14 @@ interface ApiService {
     @GET("/api/Member/GetMessageList")
     suspend fun getMsgList(): ApiResponse<ArrayList<MessageBean>>
 
+
+    /**
+     * 获取系统消息详情
+     */
+    @POST("/api/Member/GetMessageDetail")
+    suspend fun getSysMsgDetail(
+        @Query("MessageId") id: Int,
+    ): ApiResponse<MessageBean>
 
 
 }

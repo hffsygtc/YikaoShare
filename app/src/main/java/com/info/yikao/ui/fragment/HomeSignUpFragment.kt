@@ -28,6 +28,10 @@ class HomeSignUpFragment : BaseFragment<HomeSignUpViewModel, FragmentMainSignUpB
             startActivity(Intent(requireContext(), SignUpListActivity::class.java))
         }
 
+        mDatabind.step3Handle.setOnClickListener {
+            //报名记录
+        }
+
     }
 
     /**

@@ -32,9 +32,14 @@ class MessageListAdapter(data: MutableList<MessageBean>?) :
     override fun convert(helper: BaseViewHolder, item: MessageBean) {
 
         val headIcon = helper.getView<ImageView>(R.id.head_icon)
+
         val nameTv = helper.getView<TextView>(R.id.title)
         val timeTv = helper.getView<TextView>(R.id.time_tv)
         val content = helper.getView<TextView>(R.id.class_content_tv)
+
+        nameTv.text = item.Title
+        timeTv.text = item.AddTime
+        content.text = item.MessageStr
 
     }
 

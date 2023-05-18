@@ -123,6 +123,7 @@
             app:layout_constraintStart_toStartOf="@+id/back_layout" />
 
         <ImageView
+            android:id="@+id/front_img"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/globe_dimen_58"
@@ -135,6 +136,7 @@
             app:layout_constraintTop_toTopOf="@+id/front_layout" />
 
         <ImageView
+            android:id="@+id/back_img"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/globe_dimen_58"

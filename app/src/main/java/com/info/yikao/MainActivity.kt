@@ -38,26 +38,31 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         //初始化 bottomBar
         mDatabind.mainBottom.init {
             if (it.itemId != underIndex) {
-                underIndex = it.itemId
 
-                resetToDefaultIcon()
+                if (it.itemId != R.id.menu_message) {
+                    resetToDefaultIcon()
+                }
 
                 when (it.itemId) {
                     R.id.menu_home -> {
+                        underIndex = it.itemId
                         it.setIcon(R.mipmap.tab_home_click)
                         mDatabind.mainViewPager.setCurrentItem(0, false)
                     }
                     R.id.menu_sign_up -> {
+                        underIndex = it.itemId
                         it.setIcon(R.mipmap.tab_sign_click)
                         mDatabind.mainViewPager.setCurrentItem(1, false)
                     }
                     R.id.menu_message -> {
-                        startActivity(Intent(this@MainActivity,MessageListActivity::class.java))
+//                        underIndex = it.itemId
+                        startActivity(Intent(this@MainActivity, MessageListActivity::class.java))
                         //点击了消息，直接跳转
 //                        it.setIcon(R.mipmap.tab_msg_click)
 //                        mDatabind.mainViewPager.setCurrentItem(2, false)
                     }
                     R.id.menu_user -> {
+                        underIndex = it.itemId
                         it.setIcon(R.mipmap.tab_user_click)
                         mDatabind.mainViewPager.setCurrentItem(3, false)
                     }
