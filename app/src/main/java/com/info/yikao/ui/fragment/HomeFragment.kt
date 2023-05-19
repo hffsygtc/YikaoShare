@@ -138,8 +138,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
 
         mDatabind.iconTopQr.setOnClickListener {
             //点击了扫描按钮
-            val intent = Intent(requireActivity(), CustomCaptureActivity::class.java)
-            launcher.launch(intent)
+//            val intent = Intent(requireActivity(), CustomCaptureActivity::class.java)
+//            launcher.launch(intent)
+
+
+            startActivity(Intent(requireActivity(), QrStuCardResultActivity::class.java))
         }
 
         mDatabind.iconTopNotice.setOnClickListener {
