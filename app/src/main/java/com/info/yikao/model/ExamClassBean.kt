@@ -4,9 +4,11 @@ package com.info.yikao.model
  * 考场信息
  */
 data class ExamClassBean(
-    val id: Int,
+    val ExamRoomId: Int,
     var date: String?,
-    val time: String,
-    val major: String,
-    val classLocation: String,
+    val TestTimeStart: String,
+    val SubjectsStr: String,
+    val TestClass: String,
+    val Duty: String = "",
+    val JuryName: String = ""
 )

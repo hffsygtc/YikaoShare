@@ -12,13 +12,11 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.info.yikao.R
 import com.info.yikao.ext.init
 import com.info.yikao.ext.setAdapterAnimation
-import com.info.yikao.model.MajorBean
-import com.info.yikao.model.MajorGroupBean
 import com.info.yikao.model.OnlineExamBean
-import com.info.yikao.model.OnlinePointBean
+import com.info.yikao.model.OnlineListBean
 
-class OnlineExamExpandAdapter(data: MutableList<OnlinePointBean>?) :
-    BaseDelegateMultiAdapter<OnlinePointBean, BaseViewHolder>(data) {
+class OnlineExamExpandAdapter(data: MutableList<OnlineListBean>?) :
+    BaseDelegateMultiAdapter<OnlineListBean, BaseViewHolder>(data) {
 
     var clickExam: ((OnlineExamBean) -> Unit)? = null
 
@@ -26,8 +24,8 @@ class OnlineExamExpandAdapter(data: MutableList<OnlinePointBean>?) :
         //todo 增加设置动画模式的标志
         setAdapterAnimation(0)
         //第一步，设置代理
-        setMultiTypeDelegate(object : BaseMultiTypeDelegate<OnlinePointBean>() {
-            override fun getItemType(data: List<OnlinePointBean>, position: Int): Int {
+        setMultiTypeDelegate(object : BaseMultiTypeDelegate<OnlineListBean>() {
+            override fun getItemType(data: List<OnlineListBean>, position: Int): Int {
                 return 1
             }
         })
@@ -37,7 +35,7 @@ class OnlineExamExpandAdapter(data: MutableList<OnlinePointBean>?) :
         }
     }
 
-    override fun convert(helper: BaseViewHolder, item: OnlinePointBean) {
+    override fun convert(helper: BaseViewHolder, item: OnlineListBean) {
         val subLayout = helper.getView<ConstraintLayout>(R.id.sub_content_layout)
 
         val parentView = helper.getView<View>(R.id.head_view)
@@ -45,18 +43,19 @@ class OnlineExamExpandAdapter(data: MutableList<OnlinePointBean>?) :
         val parentTime = helper.getView<TextView>(R.id.head_time)
         val parentOpenIcon = helper.getView<ImageView>(R.id.major_parent_icon)
 
-        parentName.text = item.name
+        parentName.text = item.SubjectsStr
+        parentTime.text = item.TestStartStr
 
         val subTopRv = helper.getView<RecyclerView>(R.id.major_child_top_rv)
         val subTopTv = helper.getView<TextView>(R.id.pointed_name)
         val subBottomRv = helper.getView<RecyclerView>(R.id.major_child_bottom_rv)
         val subBottomTv = helper.getView<TextView>(R.id.no_pointed_name)
 
-        val leftAdapter = OnlineExamExpandSubAdapter(item.pointedList)
+        val leftAdapter = OnlineExamExpandSubAdapter(true,item.GradedList)
         leftAdapter.onlineExamClick = clickExam
         subTopRv.init(LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false), leftAdapter)
 
-        val rightAdapter = OnlineExamExpandSubAdapter(item.notPointedList)
+        val rightAdapter = OnlineExamExpandSubAdapter(false,item.UnGradedList)
         rightAdapter.onlineExamClick = clickExam
         subBottomRv.init(LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false), rightAdapter)
 

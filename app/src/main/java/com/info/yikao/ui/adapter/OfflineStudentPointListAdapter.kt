@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.delegate.BaseMultiTypeDelegate
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.info.yikao.R
 import com.info.yikao.ext.setAdapterAnimation
+import com.info.yikao.ext.showResultContent
 import com.info.yikao.model.StudentBean
 
 class OfflineStudentPointListAdapter(data: MutableList<StudentBean>?) :
@@ -35,29 +36,35 @@ class OfflineStudentPointListAdapter(data: MutableList<StudentBean>?) :
         val myPoint = helper.getView<TextView>(R.id.my_point)
         val state = helper.getView<TextView>(R.id.student_state)
 
-        sortId.text = item.sort.toString()
-        name.text = item.name
-        num.text = item.examId
+        sortId.text = item.ItemNum.toString()
+        name.text = item.RealName
+        num.text = item.TestCardNo
 
-        when (item.examState) {
-            1 -> {
-                state.text = "候场中"
-                state.setTextColor(Color.parseColor("#7CA861"))
-            }
-            2 -> {
-                state.text = "考试中"
-                state.setTextColor(Color.parseColor("#FF8D31"))
-            }
-            3 -> {
-                state.text = "已结束"
-                state.setTextColor(Color.parseColor("#FF3434"))
-            }
-            4 -> {
-                state.text = "未到"
-                state.setTextColor(Color.parseColor("#FF34EE"))
+        fullPoint.showResultContent(item.JuryTotalResultStr)
+        myPoint.showResultContent(item.JuryResultStr)
 
-            }
-        }
+//        when (item.JuryResult) {
+//            1 -> {
+//                state.text = "候场中"
+//                state.setTextColor(Color.parseColor("#7CA861"))
+//            }
+//            2 -> {
+//                state.text = "考试中"
+//                state.setTextColor(Color.parseColor("#FF8D31"))
+//            }
+//            3 -> {
+//                state.text = "已结束"
+//                state.setTextColor(Color.parseColor("#FF3434"))
+//            }
+//            4 -> {
+//                state.text = "未到"
+//                state.setTextColor(Color.parseColor("#FF34EE"))
+//
+//            }
+//        }
+
+        state.text = "重新评分"
+        state.setTextColor(Color.parseColor("#52618B"))
 
 
     }

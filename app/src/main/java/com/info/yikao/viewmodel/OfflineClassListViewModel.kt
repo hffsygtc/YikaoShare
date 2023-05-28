@@ -17,21 +17,23 @@ class OfflineClassListViewModel : BaseViewModel() {
     var listData: MutableLiveData<ListDataUiState<ExamClassBean>> = MutableLiveData()
 
     fun getListData(isRefresh: Boolean) {
-        request({ apiService.getShowList() }, {
+        request({ apiService.getOfflineList() }, {
 
-            val it = arrayListOf(
-                ExamClassBean(1, "2022-2-2", "8:00", "1111", "1111"),
-                ExamClassBean(1, null, "8:00", "2222", "22222"),
-                ExamClassBean(1, null, "8:00", "3333", "3333")
-            )
+            val result = arrayListOf<ExamClassBean>()
+
+            for(dayBean in it){
+                //每一天的考试数据，先添加头部
+                result.add(ExamClassBean(-1,dayBean.BeginStr,"","",""))
+                result.addAll(dayBean.List)
+            }
 
             val listDataUiState =
                 ListDataUiState(
                     isSuccess = true,
                     isRefresh = isRefresh,
-                    isEmpty = it.isEmpty(),
-                    listData = it,
-                    hasMore = it.isNotEmpty()
+                    isEmpty = result.isEmpty(),
+                    listData = result,
+                    hasMore = result.isNotEmpty()
                 )
             listData.value = listDataUiState
 
@@ -41,6 +43,7 @@ class OfflineClassListViewModel : BaseViewModel() {
                     isSuccess = false,
                     isRefresh = isRefresh,
                     isEmpty = true,
+                    errMessage = it.errorMsg,
                     listData = arrayListOf<ExamClassBean>(),
                     hasMore = false
                 )

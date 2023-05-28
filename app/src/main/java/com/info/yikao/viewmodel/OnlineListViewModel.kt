@@ -12,22 +12,10 @@ import me.hgj.jetpackmvvm.ext.request
 class OnlineListViewModel : BaseViewModel() {
 
     //列表的数据
-    var listData: MutableLiveData<ListDataUiState<OnlinePointBean>> = MutableLiveData()
+    var listData: MutableLiveData<ListDataUiState<OnlineListBean>> = MutableLiveData()
 
     fun getListData(isRefresh: Boolean) {
-        request({ apiService.getShowList() }, {
-
-            val testList = arrayListOf(
-                OnlineExamBean(1, "111", "1111", "1111", "111", "1111"),
-                OnlineExamBean(2, "222", "2222", "2222", "2222", "2222"),
-                OnlineExamBean(2, "333", "3333", "3333", "3333", "333")
-            )
-
-            val it = arrayListOf(
-                OnlinePointBean(1, "1111", "8:00",false, testList, testList),
-                OnlinePointBean(2, "2222", "8:00",false, testList, testList),
-                OnlinePointBean(3, "3333", "8:00",false, testList, testList)
-            )
+        request({ apiService.getOnLineTestList() }, {
 
             val listDataUiState =
                 ListDataUiState(
@@ -38,14 +26,13 @@ class OnlineListViewModel : BaseViewModel() {
                     hasMore = it.isNotEmpty()
                 )
             listData.value = listDataUiState
-
         }, {
             val listDataUiState =
                 ListDataUiState(
                     isSuccess = false,
                     isRefresh = isRefresh,
                     isEmpty = true,
-                    listData = arrayListOf<OnlinePointBean>(),
+                    listData = arrayListOf<OnlineListBean>(),
                     hasMore = false
                 )
             listData.value = listDataUiState

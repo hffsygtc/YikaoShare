@@ -34,6 +34,24 @@ class OfflineExamClassAdapter(data: MutableList<ExamClassBean>?) :
     }
 
     override fun convert(helper: BaseViewHolder, item: ExamClassBean) {
+        when (helper.itemViewType) {
+            2 -> {
+                //考试日期的头部
+                val dataTv = helper.getView<TextView>(R.id.date_tv)
+                dataTv.text = item.date
+            }
+            else -> {
+                //正常的教室
+                val timeTv = helper.getView<TextView>(R.id.student_num)
+                val majorTv = helper.getView<TextView>(R.id.student_name)
+                val classTv = helper.getView<TextView>(R.id.student_card_id)
+                val enterTv = helper.getView<TextView>(R.id.student_type)
+
+                timeTv.text = item.TestTimeStart
+                majorTv.text = item.SubjectsStr
+                classTv.text = item.TestClass
+            }
+        }
 
 
     }

@@ -21,7 +21,7 @@ import com.yanzhenjie.recyclerview.SwipeRecyclerView
 import me.hgj.jetpackmvvm.ext.util.logw
 
 /**
- * 线下监考的第一个页面
+ * 线上监考的第一个页面
  * 考场列表
  */
 class OnlineExamListActivity : BaseActivity<OnlineListViewModel, ActivitySingleListF5Binding>() {
@@ -44,6 +44,10 @@ class OnlineExamListActivity : BaseActivity<OnlineListViewModel, ActivitySingleL
     override fun initView(savedInstanceState: Bundle?) {
 
         mDatabind.titleTv.text = "我的监考"
+
+        mDatabind.titleBackBtn.setOnClickListener {
+            finish()
+        }
 
         //状态页配置
         loadsir = loadServiceInit(mRefresh) {

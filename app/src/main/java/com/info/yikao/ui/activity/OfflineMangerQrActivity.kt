@@ -8,16 +8,20 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityOfflineManagerQrBinding
 import com.info.yikao.ext.init
 import com.info.yikao.ext.loadServiceInit
+import com.info.yikao.ext.showError
 import com.info.yikao.ext.showLoading
+import com.info.yikao.model.ClassAndSortBean
 import com.info.yikao.ui.adapter.OfflineStudentListAdapter
 import com.info.yikao.ui.adapter.PopPickerAdapter
 import com.info.yikao.viewmodel.OfflineManagerQrViewModel
 import com.kingja.loadsir.core.LoadService
+import me.hgj.jetpackmvvm.ext.parseState
 import me.hgj.jetpackmvvm.ext.util.logw
 import me.hgj.jetpackmvvm.util.get
 
@@ -32,16 +36,20 @@ class OfflineMangerQrActivity :
             "result str is $resultStr".logw()
         }
 
+    var examRoomId = -1
 
     //界面状态管理者
     private lateinit var loadsir: LoadService<Any>
 
     private val mAdapter by lazy { OfflineStudentListAdapter(arrayListOf()) }
-    private val classAdapter by lazy { PopPickerAdapter(arrayListOf()) }
-    private val sortAdapter by lazy { PopPickerAdapter(arrayListOf()) }
+    private val classAdapter by lazy { PopPickerAdapter(1, arrayListOf()) }
+    private val sortAdapter by lazy { PopPickerAdapter(2, arrayListOf()) }
 
     private var underClassPicker = false
     private var underSortPicker = false
+
+    private var selectClass: ClassAndSortBean? = null
+    private var selectSort: ClassAndSortBean? = null
 
     override fun layoutId(): Int = R.layout.activity_offline_manager_qr
 
@@ -49,10 +57,18 @@ class OfflineMangerQrActivity :
 
 //        mDatabind.titleTv.text = "考试"
         //状态页配置
+        intent?.let {
+            examRoomId = it.getIntExtra("id", -1)
+        }
+
+        mDatabind.titleBackBtn.setOnClickListener {
+            finish()
+        }
 
         loadsir = loadServiceInit(mDatabind.mainLayout) {
             //点击重试时触发操作
             loadsir.showLoading()
+            mViewModel.getOfflineClassInfo(examRoomId)
         }
 
         //初始化recycleview
@@ -64,11 +80,6 @@ class OfflineMangerQrActivity :
         )
         mDatabind.sortPickerRv.init(LinearLayoutManager(this@OfflineMangerQrActivity), sortAdapter)
 
-        mDatabind.nameTvContent.text = "赵本山"
-        mDatabind.dutyTvContent.text = "考场监考员/考场签到员"
-        mDatabind.classTvContent.text = "本部艺术楼202教室"
-        mDatabind.sortTvContent.text = "05月15日 10点场"
-        mDatabind.typeTvContent.text = "乐曲类>流行类>钢琴1级"
 
         mDatabind.shouldCome.text = "应到(25)"
         mDatabind.waitCome.text = "候场(25)"
@@ -100,7 +111,15 @@ class OfflineMangerQrActivity :
 
                 //取对应的场次显示
                 if (classAdapter.selectPos != -1) {
-                    val selectData = classAdapter.data.get(classAdapter.selectPos)
+                    selectClass = classAdapter.data[classAdapter.selectPos]
+                    if (selectClass != null) {
+                        mDatabind.classTvContent.text = selectClass?.TestClass
+                        mDatabind.sortTvContent.text = selectClass?.TestTimeStart
+                        //重新获取考场相关的场次
+                        mViewModel.getSortList(selectClass!!.TestClass)
+                        //获取对应场次的学生信息
+                        mViewModel.getStudentList(selectClass!!.ExamRoomId)
+                    }
                 }
             } else {
                 //弹窗
@@ -129,7 +148,12 @@ class OfflineMangerQrActivity :
 
                 //取对应的场次显示
                 if (sortAdapter.selectPos != -1) {
-                    val selectData = sortAdapter.data.get(sortAdapter.selectPos)
+                    selectSort = sortAdapter.data.get(sortAdapter.selectPos)
+                    if (selectSort != null) {
+                        mDatabind.sortTvContent.text = selectSort?.TestTimeStart
+                        //获取对应场次的学生信息
+                        mViewModel.getStudentList(selectSort!!.ExamRoomId)
+                    }
                 }
             } else {
                 //弹窗
@@ -139,10 +163,11 @@ class OfflineMangerQrActivity :
             }
         }
 
+        loadsir.showLoading()
+        mViewModel.getOfflineClassInfo(examRoomId)
 
-        mAdapter.setList(mViewModel.tests)
-        classAdapter.setList(mViewModel.testClass)
-        sortAdapter.setList(mViewModel.testClass)
+//        mAdapter.setList(mViewModel.tests)
+//        sortAdapter.setList(mViewModel.testClass)
 
     }
 
@@ -191,5 +216,39 @@ class OfflineMangerQrActivity :
         mDatabind.popLayout.postDelayed({
             mDatabind.popLayout.visibility = View.GONE
         }, 1500)
+    }
+
+    override fun createObserver() {
+        mViewModel.classDetail.observe(this) { result ->
+            parseState(result, {
+                loadsir.showSuccess()
+                mDatabind.nameTvContent.text = it.JuryName
+                mDatabind.dutyTvContent.text = it.Duty
+                mDatabind.classTvContent.text = it.TestClass
+                mDatabind.sortTvContent.text = it.TestTimeStart
+                mDatabind.typeTvContent.text = it.SubjectsStr
+
+                //获取可选的场次列表
+                mViewModel.getSortList(it.TestClass)
+
+            }, {
+                loadsir.showError()
+                Snackbar.make(mDatabind.qrBtn, it.errorMsg, Snackbar.LENGTH_SHORT).show()
+            })
+        }
+
+        mViewModel.pickClassList.observe(this) {
+            if (it != null && it.size > 1) {
+                mDatabind.classPickerBtn.visibility = View.VISIBLE
+                classAdapter.setList(it)
+            }
+        }
+
+        mViewModel.pickSortList.observe(this) {
+            if (it != null && it.size > 1) {
+                mDatabind.sortPickerBtn.visibility = View.VISIBLE
+                sortAdapter.setList(it)
+            }
+        }
     }
 }

@@ -34,12 +34,12 @@ class OfflineStudentListAdapter(data: MutableList<StudentBean>?) :
         val type = helper.getView<TextView>(R.id.student_type)
         val state = helper.getView<TextView>(R.id.student_state)
 
-        sortId.text = item.sort.toString()
-        name.text = item.name
-        num.text = item.examId
-        type.text = item.examType
+        sortId.text = item.ItemNum.toString()
+        name.text = item.RealName
+        num.text = item.TestCardNo
+        type.text = item.JuryTotalResultStr
 
-        when (item.examState) {
+        when (item.JuryResult) {
             1 -> {
                 state.text = "候场中"
                 state.setTextColor(Color.parseColor("#7CA861"))

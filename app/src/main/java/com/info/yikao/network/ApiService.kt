@@ -169,7 +169,7 @@ interface ApiService {
 
 
     /**
-     * 获取文章详情
+     * 获取会员考试详情
      */
     @GET("/api/Member/GetMyTestDetail")
     suspend fun getExamDetail(
@@ -177,7 +177,7 @@ interface ApiService {
     ): ApiResponse<ExamDetailBean>
 
     /**
-     * 获取文章详情
+     * 获取会员证书信息
      */
     @GET("/api/Member/GetMyCertificateDetailDto")
     suspend fun getCertificateDetail(
@@ -185,7 +185,7 @@ interface ApiService {
     ): ApiResponse<CertificateBean>
 
     /**
-     * 获取展演的列表
+     * 获取系统消息列表
      */
     @GET("/api/Member/GetMessageList")
     suspend fun getMsgList(): ApiResponse<ArrayList<MessageBean>>
@@ -198,6 +198,74 @@ interface ApiService {
     suspend fun getSysMsgDetail(
         @Query("MessageId") id: Int,
     ): ApiResponse<MessageBean>
+
+    /**
+     * 线下监考--获取评委的线下监考考场列表
+     */
+    @GET("/api/Jury/GetInvigilationOffLineList")
+    suspend fun getOfflineList(): ApiResponse<ArrayList<OfflineClassBean>>
+
+    /**
+     * 线下监考--获取指定考场的信息 (评委/签到员）
+     */
+    @GET("/api/Jury/GetExamRoomDetail")
+    suspend fun getOfflineClassDetail(
+        @Query("ExamRoomId") id: Int
+    ): ApiResponse<ExamClassBean>
+
+    /**
+     * 线下监考--获取当前评委(签到员/监考员)可选的考场列表
+     */
+    @GET("/api/Jury/GetExamRoomList")
+    suspend fun getOfflineClassList(): ApiResponse<ArrayList<ClassAndSortBean>>
+
+    /**
+     * 线下监考--获取当前评委(签到员/监考员)可选的场次列表
+     */
+    @GET("/api/Jury/GetExamRoomListByTestClass")
+    suspend fun getOfflineSortList(
+        @Query("TestClass") id: String
+    ): ApiResponse<ArrayList<ClassAndSortBean>>
+
+    /**
+     * 线下监考--获取指定考场的当前考生信息
+     */
+//    @GET("/api/Member/GetCurrentTestStudent")
+    @GET("/api/Jury/GetCurrentTestSutdent")
+    suspend fun getExamStudentList(
+        @Query("ExamRoomId") id: Int
+    ): ApiResponse<ArrayList<Any>>
+
+
+    /**
+     * 线下监考--获取当前考场的考生列表
+     */
+    @GET("/api/Jury/GetCurrentExamRoomList")
+    suspend fun getCurrentExamStuList(
+        @Query("ExamRoomId") id: Int
+    ): ApiResponse<ExamClassStuList>
+
+   /**
+     * 线下监考--获取当前考生的信息
+     */
+    @GET("/api/Jury/GetTestSutdentByTestCardNo")
+    suspend fun getStuInfoById(
+        @Query("TestCardNo") id: String
+    ): ApiResponse<Any>
+
+    /**
+     * 线下监考--获取当前考生的评分信息
+     */
+    @GET("/api/Jury/GetCurrentTestSutdentGradeInfo")
+    suspend fun getStuGradeInfoById(
+        @Query("TestCardNo") id: String
+    ): ApiResponse<Any>
+
+    /**
+     * 线上监考--考试列表
+     */
+    @GET("/api/Jury/GetOnLineTestList")
+    suspend fun getOnLineTestList(): ApiResponse<ArrayList<OnlineListBean>>
 
 
 }

@@ -37,8 +37,8 @@ class OnlineJudgePointActivity :
     private lateinit var loadsir: LoadService<Any>
 
     private val mAdapter by lazy { OfflineStudentPointListAdapter(arrayListOf()) }
-    private val classAdapter by lazy { PopPickerAdapter(arrayListOf()) }
-    private val sortAdapter by lazy { PopPickerAdapter(arrayListOf()) }
+    private val classAdapter by lazy { PopPickerAdapter(1,arrayListOf()) }
+    private val sortAdapter by lazy { PopPickerAdapter(2,arrayListOf()) }
 
     private var underClassPicker = false
     private var underSortPicker = false

@@ -1,21 +1,63 @@
 package com.info.yikao.viewmodel
 
 import com.info.yikao.model.ClassAndSortBean
+import com.info.yikao.model.ExamClassBean
+import com.info.yikao.model.ExamClassStuList
 import com.info.yikao.model.StudentBean
+import com.info.yikao.network.apiService
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hgj.jetpackmvvm.callback.livedata.UnPeekLiveData
+import me.hgj.jetpackmvvm.ext.request
+import me.hgj.jetpackmvvm.state.ResultState
 
 class OfflineJudgePointViewModel : BaseViewModel() {
 
-    val tests = arrayListOf<StudentBean>(
-        StudentBean(1,1,"赵本山1","111111","乐曲类>流行类>钢琴1级",1),
-        StudentBean(2,2,"赵本山2","2222222","乐曲类>流行类>钢琴1级",2),
-        StudentBean(2,3,"赵本山3","3333333","乐曲类>流行类>钢琴1级",3)
-    )
+    var classDetail = UnPeekLiveData<ResultState<ExamClassBean>>()
 
-    val testClass = arrayListOf<ClassAndSortBean>(
-        ClassAndSortBean(1,"111111"),
-        ClassAndSortBean(2,"222222"),
-        ClassAndSortBean(3,"333333"),
-    )
+    var pickClassList = UnPeekLiveData<ArrayList<ClassAndSortBean>>()
+    var pickSortList = UnPeekLiveData<ArrayList<ClassAndSortBean>>()
+
+    var fullStuListBean = UnPeekLiveData<ExamClassStuList>()
+
+    fun getOfflineClassInfo(id: Int) {
+        request({ apiService.getOfflineClassDetail(id) }, classDetail)
+        getClassList()
+        getStudentList(id)
+
+    }
+
+    fun getClassList() {
+        request({ apiService.getOfflineClassList() }, {
+            pickClassList.value = it
+        }, {})
+    }
+
+    fun getSortList(id: String) {
+        request({ apiService.getOfflineSortList(id) }, {
+            pickSortList.value = it
+        }, {})
+    }
+
+    fun getCurStudentList(id: Int) {
+        request({ apiService.getExamStudentList(id) }, {}, {})
+    }
+
+    fun getStudentList(id: Int) {
+        request({ apiService.getCurrentExamStuList(id) }, {
+            //获取到当前考场的考生信息
+            fullStuListBean.value = it
+        }, {})
+    }
+
+    fun getStudentGradeInfo(id: String) {
+        request({ apiService.getStuGradeInfoById(id) }, {
+            //获取考生的评分信息
+        }, {})
+
+        request({ apiService.getStuInfoById(id) }, {
+            //获取考生的评分信息
+        }, {})
+    }
+
 
 }

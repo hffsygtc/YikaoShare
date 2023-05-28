@@ -9,7 +9,7 @@ import com.info.yikao.R
 import com.info.yikao.ext.setAdapterAnimation
 import com.info.yikao.model.ClassAndSortBean
 
-class PopPickerAdapter(data: MutableList<ClassAndSortBean>?) :
+class PopPickerAdapter(val type:Int,data: MutableList<ClassAndSortBean>?) :
     BaseDelegateMultiAdapter<ClassAndSortBean, BaseViewHolder>(data) {
 
     var selectPos = -1
@@ -32,7 +32,11 @@ class PopPickerAdapter(data: MutableList<ClassAndSortBean>?) :
     override fun convert(helper: BaseViewHolder, item: ClassAndSortBean) {
         val name = helper.getView<TextView>(R.id.content_tv)
 
-        name.text = item.name
+        if (type == 1){
+            name.text = item.TestClass
+        }else{
+            name.text = item.TestTimeStart
+        }
 
         if (helper.adapterPosition == selectPos){
             name.setBackgroundColor(Color.parseColor("#EAF0FF"))

@@ -2,9 +2,11 @@ package com.info.yikao.ext
 
 import android.app.Activity
 import android.content.res.Resources
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
@@ -184,3 +186,22 @@ fun BottomNavigationViewEx.interceptLongClick(vararg ids: Int) {
     }
 }
 
+
+
+fun TextView.showResultContent(content: String) {
+    when (content) {
+        "合格" -> {
+            setTextColor(Color.parseColor("#FF8D31"))
+        }
+        "优秀" -> {
+            setTextColor(Color.parseColor("#7CA861"))
+        }
+        "不合格" -> {
+            setTextColor(Color.parseColor("#FF3434"))
+        }
+        else -> {
+            setTextColor(Color.parseColor("#333333"))
+        }
+    }
+    text = content
+}
