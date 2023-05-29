@@ -1,9 +1,6 @@
 package com.info.yikao.viewmodel
 
-import com.info.yikao.model.ClassAndSortBean
-import com.info.yikao.model.ExamClassBean
-import com.info.yikao.model.ExamClassStuList
-import com.info.yikao.model.StudentBean
+import com.info.yikao.model.*
 import com.info.yikao.network.apiService
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.UnPeekLiveData
@@ -19,11 +16,14 @@ class OfflineJudgePointViewModel : BaseViewModel() {
 
     var fullStuListBean = UnPeekLiveData<ExamClassStuList>()
 
+    val stuGradeBean = UnPeekLiveData<NetGradeBean>()
+
+    val templateContents = arrayListOf<String>()
+
     fun getOfflineClassInfo(id: Int) {
         request({ apiService.getOfflineClassDetail(id) }, classDetail)
         getClassList()
         getStudentList(id)
-
     }
 
     fun getClassList() {
@@ -42,6 +42,17 @@ class OfflineJudgePointViewModel : BaseViewModel() {
         request({ apiService.getCurrentTestStu(id) }, {}, {})
     }
 
+    fun getStuGrade(id: String){
+        request({ apiService.getStuGradeInfoById(id) }, {
+            //获取考生的评分信息
+            stuGradeBean.value = it
+            templateContents.clear()
+            for (temp in it.Template) {
+                templateContents.add(temp.TemplateStr)
+            }
+        }, {})
+    }
+
     fun getStudentList(id: Int) {
         request({ apiService.getCurrentExamStuList(id) }, {
             //获取到当前考场的考生信息
@@ -57,6 +68,8 @@ class OfflineJudgePointViewModel : BaseViewModel() {
         request({ apiService.getStuInfoById(id) }, {
             //获取考生的评分信息
         }, {})
+
+
     }
 
 

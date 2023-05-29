@@ -13,6 +13,8 @@ class OnlineJudgePointViewModel : BaseViewModel() {
 
     val stuGradeBean = UnPeekLiveData<NetGradeBean>()
 
+    val confirmOk = UnPeekLiveData<String>()
+
     val templateContents = arrayListOf<String>()
 
     fun getStudentInfo(id: String) {
@@ -40,7 +42,10 @@ class OnlineJudgePointViewModel : BaseViewModel() {
             ExamGradeBean(resultType, juryResult, remark, cardNum)
         request({ apiService.postStudentExamGrade(postGradeBean) }, {
             //提交考生的评分
-        }, {})
+            confirmOk.value = "ok"
+        }, {
+            confirmOk.value = it.errorMsg
+        })
     }
 
 }

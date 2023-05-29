@@ -199,6 +199,9 @@ fun TextView.showResultContent(content: String) {
         "不合格" -> {
             setTextColor(Color.parseColor("#FF3434"))
         }
+        "良好" -> {
+            setTextColor(Color.parseColor("#457AFF"))
+        }
         else -> {
             setTextColor(Color.parseColor("#333333"))
         }

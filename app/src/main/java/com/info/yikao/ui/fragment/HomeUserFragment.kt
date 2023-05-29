@@ -11,6 +11,7 @@ import com.info.yikao.ext.Constant
 import com.info.yikao.ext.getGlideRequestOptions
 import com.info.yikao.ui.activity.*
 import com.info.yikao.viewmodel.HomeUserViewModel
+import me.hgj.jetpackmvvm.ext.util.loge
 
 class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding>() {
 
@@ -71,10 +72,33 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
 
         mDatabind.teacherOfflineFunc.setOnClickListener {
             //线下监考
-            //扫码 候场
-            startActivity(Intent(requireActivity(), OfflineExamListActivity::class.java))
-            //评委打分
-//            startActivity(Intent(requireActivity(), OfflineJudgePointActivity::class.java))
+            val user = mViewModel.userInfo
+            if (user != null && user.Token != "") {
+//                学生：0， 评委：1 ， 签到员：2，监考员：3，其他：4
+                "user type is ${user.MemberType}".loge()
+                when (user.MemberType) {
+                    1 -> {
+                        //评委
+                        //评委打分
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                OfflineJudgePointActivity::class.java
+                            )
+                        )
+                    }
+                    2, 3 -> {
+                        //签到监考员，跳转到扫码页面
+                        //扫码 候场
+                        startActivity(
+                            Intent(
+                                requireActivity(),
+                                OfflineExamListActivity::class.java
+                            )
+                        )
+                    }
+                }
+            }
         }
 
         mDatabind.teacherSettingFunc.setOnClickListener {

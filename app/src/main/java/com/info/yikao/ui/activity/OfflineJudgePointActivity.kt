@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
@@ -41,11 +42,40 @@ class OfflineJudgePointActivity :
     private var underClassPicker = false
     private var underSortPicker = false
 
-    private var selectPos = 2
+    private var selectPos = 1
 
     var examRoomId = -1
     private var selectClass: ClassAndSortBean? = null
     private var selectSort: ClassAndSortBean? = null
+
+    var stuId = ""
+
+    val juryResultList = arrayListOf("优秀", "良好", "合格", "不合格")
+
+    var stuJuryResult = "优秀"
+    var stuJuryRemark = ""
+
+    private val resultPicker: OptionsPickerBuilder by lazy {
+        OptionsPickerBuilder(
+            this
+        ) { options1, _, _, _ ->
+            "picker check $options1".logw()
+            stuJuryResult = juryResultList[options1]
+            mDatabind.stuScoreTvContent.text = stuJuryResult
+        }
+    }
+
+    private val quickPicker: OptionsPickerBuilder by lazy {
+        OptionsPickerBuilder(
+            this
+        ) { options1, _, _, _ ->
+            "picker check $options1".logw()
+            stuJuryRemark = mViewModel.templateContents[options1]
+            mDatabind.stuFastScoreTvContent.text = stuJuryRemark
+            mDatabind.stuScorePonitTvContent.setText(stuJuryRemark)
+        }
+    }
+
 
     override fun layoutId(): Int = R.layout.activity_offline_exam_point
 
@@ -62,6 +92,7 @@ class OfflineJudgePointActivity :
         loadsir = loadServiceInit(mDatabind.mainLayout) {
             //点击重试时触发操作
             loadsir.showLoading()
+            mViewModel.getCurStudent(examRoomId)
             mViewModel.getOfflineClassInfo(examRoomId)
         }
 
@@ -175,7 +206,15 @@ class OfflineJudgePointActivity :
             mViewModel.getStudentGradeInfo(student.TestCardNo)
         }
 
+        mDatabind.refreshBtn.setOnClickListener {
+            //当前考生信息，点击刷新
+            loadsir.showLoading()
+            mViewModel.getCurStudent(examRoomId)
+            mViewModel.getOfflineClassInfo(examRoomId)
+        }
+
         loadsir.showLoading()
+        mViewModel.getCurStudent(examRoomId)
         mViewModel.getOfflineClassInfo(examRoomId)
 
     }
@@ -274,5 +313,7 @@ class OfflineJudgePointActivity :
 
             mAdapter.setList(it.List)
         }
+
+        //当前考生的信息
     }
 }

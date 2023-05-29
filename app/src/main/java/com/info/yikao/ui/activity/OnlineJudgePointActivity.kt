@@ -129,7 +129,7 @@ class OnlineJudgePointActivity :
 
         mDatabind.submitScoreBtn.setOnClickListener {
             //提交评分
-            mViewModel.submitUserGrade(stuJuryResult,stuJuryRemark,stuId)
+            mViewModel.submitUserGrade(stuJuryResult, stuJuryRemark, stuId)
         }
 
 
@@ -167,6 +167,16 @@ class OnlineJudgePointActivity :
                 //如果有用户的评分
                 stuJuryResult = it.JuryResultStr
                 mDatabind.stuScorePonitTvContent.setText(it.Remark)
+            }
+        }
+
+        mViewModel.confirmOk.observe(this) {
+            if (it != "ok") {
+                Snackbar.make(mDatabind.submitScoreBtn, it, Snackbar.LENGTH_SHORT).show()
+            } else {
+                //提交成功，关闭页面
+                Snackbar.make(mDatabind.submitScoreBtn, "提交成功", Snackbar.LENGTH_SHORT).show()
+                finish()
             }
         }
     }
