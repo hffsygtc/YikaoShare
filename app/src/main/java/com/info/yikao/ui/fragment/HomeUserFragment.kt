@@ -72,9 +72,9 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
         mDatabind.teacherOfflineFunc.setOnClickListener {
             //线下监考
             //扫码 候场
-//            startActivity(Intent(requireActivity(), OfflineExamListActivity::class.java))
+            startActivity(Intent(requireActivity(), OfflineExamListActivity::class.java))
             //评委打分
-            startActivity(Intent(requireActivity(), OfflineJudgePointActivity::class.java))
+//            startActivity(Intent(requireActivity(), OfflineJudgePointActivity::class.java))
         }
 
         mDatabind.teacherSettingFunc.setOnClickListener {
@@ -126,9 +126,6 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
             mDatabind.userName.text = "未登录"
             mDatabind.userDesc.text = "请点击头像登录"
             mDatabind.userEditBtn.setBackgroundResource(R.drawable.user_un_edit)
-
-            //todo 老师端的打开
-            mDatabind.teacherFuncLayout.visibility = View.VISIBLE
         }
     }
 

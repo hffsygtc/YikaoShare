@@ -32,6 +32,7 @@ class OnlineListViewModel : BaseViewModel() {
                     isSuccess = false,
                     isRefresh = isRefresh,
                     isEmpty = true,
+                    errMessage = it.errorMsg,
                     listData = arrayListOf<OnlineListBean>(),
                     hasMore = false
                 )

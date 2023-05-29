@@ -118,7 +118,7 @@ class OfflineMangerQrActivity :
                         //重新获取考场相关的场次
                         mViewModel.getSortList(selectClass!!.TestClass)
                         //获取对应场次的学生信息
-                        mViewModel.getStudentList(selectClass!!.ExamRoomId)
+//                        mViewModel.getStudentList(selectClass!!.ExamRoomId)
                     }
                 }
             } else {
@@ -152,7 +152,7 @@ class OfflineMangerQrActivity :
                     if (selectSort != null) {
                         mDatabind.sortTvContent.text = selectSort?.TestTimeStart
                         //获取对应场次的学生信息
-                        mViewModel.getStudentList(selectSort!!.ExamRoomId)
+//                        mViewModel.getStudentList(selectSort!!.ExamRoomId)
                     }
                 }
             } else {

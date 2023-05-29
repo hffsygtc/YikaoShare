@@ -38,8 +38,8 @@ class OfflineJudgePointViewModel : BaseViewModel() {
         }, {})
     }
 
-    fun getCurStudentList(id: Int) {
-        request({ apiService.getExamStudentList(id) }, {}, {})
+    fun getCurStudent(id: Int) {
+        request({ apiService.getCurrentTestStu(id) }, {}, {})
     }
 
     fun getStudentList(id: Int) {

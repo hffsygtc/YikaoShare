@@ -69,7 +69,7 @@ class OnlineExamExpandSubAdapter(val graded: Boolean = false, data: MutableList<
 
         val cover = Constant.imgUrlHead+""
         Glide.with(context).load(cover)
-            .apply(getGlideRequestOptions(Constant.GLIDE_OPTIONS_NEWS))
+            .apply(getGlideRequestOptions(Constant.GLIDE_TYPE_DEFAULT))
             .into(topImg)
 
         name.text = item.RealName

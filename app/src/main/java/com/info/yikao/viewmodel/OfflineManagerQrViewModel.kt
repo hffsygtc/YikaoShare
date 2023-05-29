@@ -20,7 +20,7 @@ class OfflineManagerQrViewModel : BaseViewModel() {
     fun getOfflineClassInfo(id: Int) {
         request({ apiService.getOfflineClassDetail(id) }, classDetail)
         getClassList()
-        getStudentList(id)
+//        getStudentList(id)
 
     }
 
@@ -36,8 +36,8 @@ class OfflineManagerQrViewModel : BaseViewModel() {
         }, {})
     }
 
-    fun getStudentList(id: Int){
-        request({ apiService.getExamStudentList(id)},{},{})
-    }
+//    fun getStudentList(id: Int){
+//        request({ apiService.getExamStudentList(id)},{},{})
+//    }
 
 }

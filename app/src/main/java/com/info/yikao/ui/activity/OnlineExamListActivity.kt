@@ -83,8 +83,9 @@ class OnlineExamListActivity : BaseActivity<OnlineListViewModel, ActivitySingleL
 //            }
 
             clickExam = {examItem->
-
-                startActivity(Intent(this@OnlineExamListActivity, OnlineJudgePointActivity::class.java))
+                val intent = Intent(this@OnlineExamListActivity, OnlineJudgePointActivity::class.java)
+                intent.putExtra("id",examItem.TestCardNo)
+                startActivity(intent)
             }
         }
 

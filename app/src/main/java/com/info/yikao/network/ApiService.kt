@@ -232,7 +232,7 @@ interface ApiService {
      */
 //    @GET("/api/Member/GetCurrentTestStudent")
     @GET("/api/Jury/GetCurrentTestSutdent")
-    suspend fun getExamStudentList(
+    suspend fun getCurrentTestStu(
         @Query("ExamRoomId") id: Int
     ): ApiResponse<ArrayList<Any>>
 
@@ -251,7 +251,7 @@ interface ApiService {
     @GET("/api/Jury/GetTestSutdentByTestCardNo")
     suspend fun getStuInfoById(
         @Query("TestCardNo") id: String
-    ): ApiResponse<Any>
+    ): ApiResponse<OnlineExamBean>
 
     /**
      * 线下监考--获取当前考生的评分信息
@@ -259,13 +259,21 @@ interface ApiService {
     @GET("/api/Jury/GetCurrentTestSutdentGradeInfo")
     suspend fun getStuGradeInfoById(
         @Query("TestCardNo") id: String
-    ): ApiResponse<Any>
+    ): ApiResponse<NetGradeBean>
 
     /**
      * 线上监考--考试列表
      */
     @GET("/api/Jury/GetOnLineTestList")
     suspend fun getOnLineTestList(): ApiResponse<ArrayList<OnlineListBean>>
+
+    /**
+     * 提交考生的评分
+     */
+    @POST("api/Jury/AddTestSutdentGradeInfo")
+    suspend fun postStudentExamGrade(
+        @Body postBody: ExamGradeBean
+    ): ApiResponse<Any?>
 
 
 }

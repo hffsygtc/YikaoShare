@@ -21,4 +21,7 @@ data class OnlineExamBean(
     val JuryResult: Int,
     val JuryResultStr: String,
     val Remark: String,
+    val StuImg1: String,
+    val Sex: String,
+    val Age: Int,
 )

@@ -55,9 +55,29 @@ class OnlineExamExpandAdapter(data: MutableList<OnlineListBean>?) :
         leftAdapter.onlineExamClick = clickExam
         subTopRv.init(LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false), leftAdapter)
 
+        if (item.GradedList.isNotEmpty()){
+            //如果存在已经评分的数据
+            subTopTv.text = "已评分（${item.GradedList.size}）"
+            subTopRv.visibility = View.VISIBLE
+        }else{
+            //还没有已经评分的数据
+            subTopTv.text = "已评分（0）"
+            subTopRv.visibility = View.GONE
+        }
+
         val rightAdapter = OnlineExamExpandSubAdapter(false,item.UnGradedList)
         rightAdapter.onlineExamClick = clickExam
         subBottomRv.init(LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false), rightAdapter)
+
+        if (item.UnGradedList.isNotEmpty()){
+            //如果存在已经评分的数据
+            subBottomTv.text = "未评分（${item.UnGradedList.size}）"
+            subBottomRv.visibility = View.VISIBLE
+        }else{
+            //还没有已经评分的数据
+            subBottomTv.text = "未评分（0）"
+            subBottomRv.visibility = View.GONE
+        }
 
         parentView.setOnClickListener {
             if (item.open) {
