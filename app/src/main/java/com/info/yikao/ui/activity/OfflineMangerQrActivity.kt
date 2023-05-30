@@ -34,6 +34,7 @@ class OfflineMangerQrActivity :
             val resultIntent = res?.data
             val resultStr = resultIntent?.get("result", "")
             "result str is $resultStr".logw()
+            //扫描完了后，调用签到接口
         }
 
     var examRoomId = -1
@@ -53,6 +54,8 @@ class OfflineMangerQrActivity :
 
     override fun layoutId(): Int = R.layout.activity_offline_manager_qr
 
+    private val mRefresh by lazy { mDatabind.swipeRefresh }
+
     override fun initView(savedInstanceState: Bundle?) {
 
 //        mDatabind.titleTv.text = "考试"
@@ -71,6 +74,11 @@ class OfflineMangerQrActivity :
             mViewModel.getOfflineClassInfo(examRoomId)
         }
 
+        //初始化swiperefreshlayout
+        mRefresh.init {
+            mViewModel.getOfflineClassInfo(examRoomId)
+        }
+
         //初始化recycleview
         mDatabind.teacherResultRv.init(LinearLayoutManager(this@OfflineMangerQrActivity), mAdapter)
 
@@ -79,13 +87,6 @@ class OfflineMangerQrActivity :
             classAdapter
         )
         mDatabind.sortPickerRv.init(LinearLayoutManager(this@OfflineMangerQrActivity), sortAdapter)
-
-
-        mDatabind.shouldCome.text = "应到(25)"
-        mDatabind.waitCome.text = "候场(25)"
-        mDatabind.underExam.text = "考试中(25)"
-        mDatabind.finishTv.text = "已结束(25)"
-        mDatabind.notCome.text = "未开始(25)"
 
         mDatabind.qrBtn.setOnClickListener {
             //扫码
@@ -222,6 +223,7 @@ class OfflineMangerQrActivity :
         mViewModel.classDetail.observe(this) { result ->
             parseState(result, {
                 loadsir.showSuccess()
+                mRefresh.isRefreshing = false
                 mDatabind.nameTvContent.text = it.JuryName
                 mDatabind.dutyTvContent.text = it.Duty
                 mDatabind.classTvContent.text = it.TestClass
@@ -241,6 +243,8 @@ class OfflineMangerQrActivity :
             if (it != null && it.size > 1) {
                 mDatabind.classPickerBtn.visibility = View.VISIBLE
                 classAdapter.setList(it)
+            } else {
+                mDatabind.classPickerBtn.visibility = View.GONE
             }
         }
 
@@ -248,7 +252,20 @@ class OfflineMangerQrActivity :
             if (it != null && it.size > 1) {
                 mDatabind.sortPickerBtn.visibility = View.VISIBLE
                 sortAdapter.setList(it)
+            } else {
+                mDatabind.sortPickerBtn.visibility = View.GONE
             }
+        }
+
+        mViewModel.fullStuListBean.observe(this) {
+            //获取到相应的考生信息
+            mDatabind.shouldCome.text = "应到(${it.TotalNum})"
+            mDatabind.waitCome.text = "候场(${it.WaitNum})"
+            mDatabind.underExam.text = "考试中(${it.TestingNum})"
+            mDatabind.finishTv.text = "已结束(${it.FinishNum})"
+            mDatabind.notCome.text = "未开始(${it.NotArrivalNum})"
+
+            mAdapter.setList(it.List)
         }
     }
 }

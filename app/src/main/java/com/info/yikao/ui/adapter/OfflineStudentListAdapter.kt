@@ -37,9 +37,9 @@ class OfflineStudentListAdapter(data: MutableList<StudentBean>?) :
         sortId.text = item.ItemNum.toString()
         name.text = item.RealName
         num.text = item.TestCardNo
-        type.text = item.JuryTotalResultStr
+        type.text = item.SubjectsStr
 
-        when (item.JuryResult) {
+        when (item.TestStatus) {
             1 -> {
                 state.text = "候场中"
                 state.setTextColor(Color.parseColor("#7CA861"))
@@ -55,7 +55,6 @@ class OfflineStudentListAdapter(data: MutableList<StudentBean>?) :
             4 -> {
                 state.text = "未到"
                 state.setTextColor(Color.parseColor("#FF34EE"))
-
             }
         }
 

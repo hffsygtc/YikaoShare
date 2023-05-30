@@ -24,3 +24,12 @@
 -keep public class com.google.android.material.bottomnavigation.BottomNavigationMenuView { *; }
 -keep public class com.google.android.material.bottomnavigation.BottomNavigationPresenter { *; }
 -keep public class com.google.android.material.bottomnavigation.BottomNavigationItemView { *; }
+
+
+#七牛播放器
+-keep class com.qiniu.qmedia.** {*;}
+-keep class com.qiniu.qplayer2ext.** {*;}
+#七牛云对象存储
+-keep class com.qiniu.**{*;}
+-keep class com.qiniu.**{public <init>();}
+-ignorewarnings

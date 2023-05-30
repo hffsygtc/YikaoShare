@@ -21,4 +21,7 @@ data class StudentBean(
     val JuryTotalResultStr: String,
     val JuryResult: Int,
     val JuryResultStr: String,
+    val SubjectsStr: String,
+    val TestStatus: Int,
+    val TestStatusStr: String,
 )

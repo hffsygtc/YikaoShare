@@ -234,7 +234,7 @@ interface ApiService {
     @GET("/api/Jury/GetCurrentTestSutdent")
     suspend fun getCurrentTestStu(
         @Query("ExamRoomId") id: Int
-    ): ApiResponse<ArrayList<Any>>
+    ): ApiResponse<OnlineExamBean>
 
 
     /**
@@ -245,7 +245,17 @@ interface ApiService {
         @Query("ExamRoomId") id: Int
     ): ApiResponse<ExamClassStuList>
 
-   /**
+
+    /**
+     * 线下监考--获取当前考场的监考列表
+     */
+    @GET("/api/Jury/GetCurrentExamRoomSignList")
+    suspend fun getCurrentExamRoomSignList(
+        @Query("ExamRoomId") id: Int
+    ): ApiResponse<ExamClassStuList>
+
+
+    /**
      * 线下监考--获取当前考生的信息
      */
     @GET("/api/Jury/GetTestSutdentByTestCardNo")

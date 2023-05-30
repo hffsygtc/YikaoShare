@@ -1,9 +1,6 @@
 package com.info.yikao.viewmodel
 
-import com.info.yikao.model.ClassAndSortBean
-import com.info.yikao.model.ExamClassBean
-import com.info.yikao.model.NewsBean
-import com.info.yikao.model.StudentBean
+import com.info.yikao.model.*
 import com.info.yikao.network.apiService
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.UnPeekLiveData
@@ -17,11 +14,13 @@ class OfflineManagerQrViewModel : BaseViewModel() {
     var pickClassList = UnPeekLiveData<ArrayList<ClassAndSortBean>>()
     var pickSortList = UnPeekLiveData<ArrayList<ClassAndSortBean>>()
 
+    var fullStuListBean = UnPeekLiveData<ExamClassStuList>()
+
+
     fun getOfflineClassInfo(id: Int) {
         request({ apiService.getOfflineClassDetail(id) }, classDetail)
         getClassList()
-//        getStudentList(id)
-
+        getStudentList(id)
     }
 
     fun getClassList() {
@@ -36,8 +35,10 @@ class OfflineManagerQrViewModel : BaseViewModel() {
         }, {})
     }
 
-//    fun getStudentList(id: Int){
-//        request({ apiService.getExamStudentList(id)},{},{})
-//    }
-
+    fun getStudentList(id: Int) {
+        request({ apiService.getCurrentExamRoomSignList(id) }, {
+            //获取到当前考场的考生信息
+            fullStuListBean.value = it
+        }, {})
+    }
 }

@@ -201,7 +201,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <View
+                <com.qiniu.qmedia.ui.QSurfacePlayerView
                     android:id="@+id/video_player_view"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -266,18 +266,22 @@
 
                 <TextView
                     android:id="@+id/stu_fast_score_tv_content"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="@dimen/globe_dimen_42"
                     android:layout_marginStart="@dimen/globe_dimen_18"
                     android:background="@color/color_F4F4F4"
-                    android:gravity="center"
+                    android:gravity="left|center_vertical"
                     android:paddingStart="@dimen/globe_dimen_20"
-                    android:paddingEnd="@dimen/globe_dimen_110"
+                    android:paddingEnd="@dimen/globe_dimen_80"
                     tools:text="考生表现优秀，几乎完美"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColor="@color/color_333333"
                     android:textSize="@dimen/font_text_size_26"
                     app:layout_constraintBottom_toBottomOf="@+id/stu_fast_score_tv"
                     app:layout_constraintStart_toEndOf="@+id/stu_fast_score_tv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="@dimen/globe_dimen_30"
                     app:layout_constraintTop_toTopOf="@+id/stu_fast_score_tv" />
 
                 <ImageView

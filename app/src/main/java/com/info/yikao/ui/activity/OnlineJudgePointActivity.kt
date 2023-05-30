@@ -26,6 +26,9 @@ import com.info.yikao.viewmodel.OfflineJudgePointViewModel
 import com.info.yikao.viewmodel.OfflineManagerQrViewModel
 import com.info.yikao.viewmodel.OnlineJudgePointViewModel
 import com.kingja.loadsir.core.LoadService
+import com.qiniu.qmedia.component.player.QMediaModelBuilder
+import com.qiniu.qmedia.component.player.QPlayerSetting
+import com.qiniu.qmedia.component.player.QURLType
 import me.hgj.jetpackmvvm.ext.parseState
 import me.hgj.jetpackmvvm.ext.util.logw
 import me.hgj.jetpackmvvm.util.get
@@ -94,6 +97,8 @@ class OnlineJudgePointActivity :
         }
 
 
+        initPlayer()
+
         loadsir = loadServiceInit(mDatabind.mainLayout) {
             //点击重试时触发操作
             loadsir.showLoading()
@@ -137,6 +142,29 @@ class OnlineJudgePointActivity :
         mViewModel.getStudentInfo(stuId)
     }
 
+    /**
+     * 初始化播放器
+     */
+    private fun initPlayer() {
+        mDatabind.videoPlayerView.playerControlHandler.apply {
+            init(this@OnlineJudgePointActivity)
+            setDecodeType(QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO)
+            setSeekMode(QPlayerSetting.QPlayerSeek.QPLAYER_SEEK_SETTING_NORMAL)
+            setStartAction(QPlayerSetting.QPlayerStart.QPLAYER_START_SETTING_PLAYING)
+            setSpeed(1.0f)
+        }
+    }
+
+    /**
+     * 播放视频
+     */
+    private fun playVideo(url: String) {
+        val builder = QMediaModelBuilder()
+        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0, url, true)
+        var mediaModel = builder.build(false)
+        mDatabind.videoPlayerView.playerControlHandler.playMediaModel(mediaModel, 0)
+    }
+
     override fun createObserver() {
         mViewModel.stuInfoBean.observe(this) { result ->
             //获取到了考生的信息
@@ -166,6 +194,7 @@ class OnlineJudgePointActivity :
             if (it.JuryResultStr.canShow()) {
                 //如果有用户的评分
                 stuJuryResult = it.JuryResultStr
+                mDatabind.stuScoreTvContent.text = stuJuryResult
                 mDatabind.stuScorePonitTvContent.setText(it.Remark)
             }
         }
@@ -179,6 +208,11 @@ class OnlineJudgePointActivity :
                 finish()
             }
         }
+    }
+
+    override fun onDestroy() {
+        mDatabind.videoPlayerView.playerControlHandler.release()
+        super.onDestroy()
     }
 
 }

@@ -132,6 +132,7 @@ class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUs
         mDatabind.nextBtn.setOnClickListener {
             //判断是不是需要添加判空逻辑
             mViewModel.inputUserInfo.apply {
+                RealName = mDatabind.realNameEt.text.toString()
                 IDNumber = mDatabind.inputIdCard.text.toString()
                 try {
                     StuHeight = mDatabind.inputHeight.text.toString()?.toFloat()
@@ -181,6 +182,7 @@ class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUs
                 //显示界面
                 mDatabind.proviceTv.showContent(it.Province)
                 mDatabind.inputIdCard.showContent(it.IDNumber)
+                mDatabind.realNameEt.showContent(it.RealName)
                 //一寸照片
                 mDatabind.userSmallHeadTv.showContent(it.StuImg1)
                 mDatabind.inputHeight.showContent(it.StuHeight.toString())

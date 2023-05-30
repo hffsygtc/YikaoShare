@@ -1,14 +1,11 @@
 package com.info.yikao.ui.fragment
 
 import android.Manifest
-import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.FragmentActivity
+import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentIdCardPhotoBinding
@@ -19,9 +16,12 @@ import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.permissionx.guolindev.PermissionX
+import com.qiniu.android.common.FixedZone
+import com.qiniu.android.storage.*
 import me.hgj.jetpackmvvm.ext.nav
 import me.hgj.jetpackmvvm.ext.util.logw
 import java.io.File
+
 
 class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhotoBinding>() {
 
@@ -33,6 +33,10 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
     private var backImageUri: Uri? = null
 
     private var isBack = false
+
+    private var uploadManager: UploadManager? = null
+    private var uploadBackOk = false
+    private var uploadFrontOk = false
 
     override fun layoutId(): Int = R.layout.fragment_id_card_photo
 
@@ -183,11 +187,94 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
 
 
         mDatabind.nextBtn.setOnClickListener {
-            nav().navigate(R.id.action_postIdCardFragment_to_postIdUserInfoFragment)
+            uploadBackOk = false
+            uploadFrontOk = false
+            upload("",frontUrlpath?:"",false)
+            upload("",backUrlpath?:"",true)
+        }
+    }
+
+
+    //FixedZone.zone0   华东机房
+    //FixedZone.zone1   华北机房
+    //FixedZone.zone2   华南机房
+    //FixedZone.zoneNa0 北美机房
+    private fun upload(token: String,path:String,isBack:Boolean) {
+        val startTime = System.currentTimeMillis()
+
+//        //可以自定义zone
+//        val zone = FixedZone(arrayOf("domain1","domain2"))
+//        //手动指定上传区域
+//        val zone = FixedZone.zone0 //华东
+        //config配置上传参数
+        val config = Configuration.Builder()
+            .connectTimeout(90) // 链接超时。默认90秒
+            .useHttps(true) // 是否使用https上传域名
+            .useConcurrentResumeUpload(true) // 使用并发上传，使用并发上传时，除最后一块大小不定外，其余每个块大小固定为4M，
+            .resumeUploadVersion(Configuration.RESUME_UPLOAD_VERSION_V2) // 使用新版分片上传
+            .concurrentTaskCount(3) // 并发上传线程数量为3
+            .responseTimeout(90) // 服务器响应超时。默认90秒
+//            .recorder(recorder) // recorder分片上传时，已上传片记录器。默认null
+//            .recorder(recorder, keyGen) // keyGen 分片上传时，生成标识符，用于片记录器区分是那个文件的上传记录
+            .zone(FixedZone.zone0) // 设置区域，不指定会自动选择。指定不同区域的上传域名、备用域名、备用IP。
+            .build()
+
+        if (uploadManager == null) {
+            uploadManager = UploadManager(config)
         }
 
+        val key = "<指定七牛服务上的文件名，或 null>"
+        val token = "<从服务端 SDK 获取>"
+        uploadManager!!.put(
+            path, key, token,
+            { key, info, res ->
+                //res 包含 hash、key 等信息，具体字段取决于上传策略的设置
+                if (info.isOK()) {
+                    if (isBack){
+                        uploadBackOk = true
+                    }else{
+                        uploadFrontOk = true
+                    }
+                    doNext()
+                } else {
+                    //如果失败，这里可以把 info 信息上报自己的服务器，便于后面分析上传错误原因
+                    Snackbar.make(mDatabind.nextBtn,"图片上传失败，请重试",Snackbar.LENGTH_SHORT).show()
+                }
+                "$key \r\n $info \r\n $res".logw()
+            }, null
+        )
+
+//        uploadManager!!.put(
+//            path,
+//            key,
+//            token,
+//            { key, info, res ->
+//                //res 包含 hash、key 等信息，具体字段取决于上传策略的设置
+//                if (info.isOK()) {
+//                } else {
+//                    //如果失败，这里可以把 info 信息上报自己的服务器，便于后面分析上传错误原因
+//                }
+//                "$key \r\n $info \r\n $res".logw()
+//            },
+//            UploadOptions(null, null, false, object : UpProgressHandler {
+//                override fun progress(key: String?, percent: Double) {
+//                    "上传进度 $key---$percent".logw()
+//                }
+//            }) {
+//                //取消上传，通过返回参数，需要一个全局变量控制
+//                false
+//            }
+//        )
 
     }
+
+    private fun doNext() {
+        //如果上传成功
+        if (uploadBackOk && uploadFrontOk){
+            nav().navigate(R.id.action_postIdCardFragment_to_postIdUserInfoFragment)
+        }
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -217,10 +304,10 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
                             val file: File = File(urlpath)
                             val imageUri = Uri.fromFile(file)
 
-                            if (isBack){
+                            if (isBack) {
                                 backUrlpath = urlpath
                                 mDatabind.backImg.setImageURI(imageUri)
-                            }else{
+                            } else {
                                 frontUrlpath = urlpath
                                 mDatabind.frontImg.setImageURI(imageUri)
                             }

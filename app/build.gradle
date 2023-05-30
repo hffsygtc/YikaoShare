@@ -28,6 +28,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            //outputFileName = "mobilecloud-v${defaultConfig.versionName}-${getDate()}-${variant.productFlavors[0].name}.apk"
+            outputFileName = "yikao-v${defaultConfig.versionName}-${getDate()}.apk"
+        }
+
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -39,6 +47,15 @@ android {
         enabled = true
     }
 }
+
+
+//获取时间戳
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy.MM.dd.HH.mm')
+    return formattedDate
+}
+
 
 dependencies {
 
@@ -92,6 +109,18 @@ dependencies {
     implementation 'com.github.crazyandcoder:citypicker:6.0.2'
     implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc09'
     implementation 'com.contrarywind:Android-PickerView:4.1.9'
+
+    //七牛云视频播放
+    implementation 'com.qiniu:qplayer2-core:1.2.4'
+    implementation 'com.qiniu:qplayer2-ext:1.2.4'
+    implementation "io.reactivex.rxjava3:rxjava:3.1.3"
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    //七牛云对象存储
+    implementation 'com.qiniu:qiniu-android-sdk:8.4.+'
+//    implementation ('com.qiniu:qiniu-android-sdk:8.4.+'){
+//        exclude (group: 'com.squareup.okhttp3', module: 'okhttp')
+//    }
+//    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
 
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 }

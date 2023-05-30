@@ -17,6 +17,7 @@ import com.info.yikao.viewmodel.ShowListViewModel
 import com.info.yikao.weight.DefineLoadMoreView
 import com.kingja.loadsir.core.LoadService
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
+import me.hgj.jetpackmvvm.ext.util.loge
 import me.hgj.jetpackmvvm.ext.util.logw
 
 /**
@@ -82,6 +83,7 @@ class OfflineExamListActivity :
                 var posData = adapter.data[position] as ExamClassBean
                 if (!posData.date.canShow()) {
                     //todo 判断当前人员身份，评委进入打分，监考员进入扫码页面
+//                学生：0， 评委：1 ， 签到员：2，监考员：3，其他：4
                     when(teacherType){
                         1->{
                             //评委
