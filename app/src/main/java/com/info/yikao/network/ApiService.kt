@@ -105,7 +105,7 @@ interface ApiService {
     @POST("/api/Apply/GetSubjects")
     suspend fun getSchoolMajors(
         @Query("SchoolId") id: Int,
-    ): ApiResponse<ArrayList<MajorGroupBean>>
+    ): ApiResponse<ArrayList<MajorGroupBean>?>
 
     /**
      * 获取专业详情
@@ -135,7 +135,7 @@ interface ApiService {
      */
     @POST("api/Member/EditMember")
     suspend fun postMemberInfo(
-        @Body postGroups: PostMemberInfo
+        @Body postGroups: UserDetailInfo
     ): ApiResponse<Any?>
 
     /**

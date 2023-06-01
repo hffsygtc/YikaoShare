@@ -18,6 +18,8 @@ data class TeacherResultBean(
     val TestCardNo: String,
     val JuryResult: Int,
     val JuryResultStr: String,
+    val JuryName: String,
+    val JuryHeadImg: String,
     val MemberId: Int,
     val Remark: String,
     val AddTime: String,

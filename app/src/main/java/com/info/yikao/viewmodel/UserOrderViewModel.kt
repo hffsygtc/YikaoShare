@@ -14,7 +14,6 @@ class UserOrderViewModel : BaseViewModel() {
     var listData: MutableLiveData<ListDataUiState<OrderBean>> = MutableLiveData()
 
     fun getListData(isRefresh: Boolean) {
-
         request({ apiService.getApplyOrderList() }, {
             val listDataUiState =
                 ListDataUiState(

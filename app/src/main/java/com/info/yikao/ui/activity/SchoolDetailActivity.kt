@@ -56,23 +56,12 @@ class SchoolDetailActivity : BaseActivity<SchoolDetailViewModel, ActivitySchoolD
             }
 
         mAdapter.run {
-            setOnItemClickListener { adapter, view, position ->
-                //点击了对象
-//                var posData = adapter.data[position] as OrderBean
-
-            }
-
             clickMajor = { major ->
                 "click major $major".logw()
                 val intent = Intent(this@SchoolDetailActivity, MajorIntroActivity::class.java)
                 intent.putExtra("id", major.SubjectsId)
                 startActivity(intent)
-
             }
-
-//            addChildClickViewIds(
-//            )
-//            setOnItemChildClickListener { adapter, view, position ->}
         }
 
         mDatabind.schoolLeftFunc.setOnClickListener {

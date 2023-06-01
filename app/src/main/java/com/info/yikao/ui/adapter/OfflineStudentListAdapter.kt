@@ -52,7 +52,7 @@ class OfflineStudentListAdapter(data: MutableList<StudentBean>?) :
                 state.text = "已结束"
                 state.setTextColor(Color.parseColor("#FF3434"))
             }
-            4 -> {
+            else -> {
                 state.text = "未到"
                 state.setTextColor(Color.parseColor("#FF34EE"))
             }

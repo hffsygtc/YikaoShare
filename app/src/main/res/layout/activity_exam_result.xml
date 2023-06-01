@@ -202,6 +202,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_text_size_26"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@+id/offline_class_tv"
             app:layout_constraintBottom_toBottomOf="@+id/offline_class_tv"
             app:layout_constraintTop_toTopOf="@+id/offline_class_tv" />

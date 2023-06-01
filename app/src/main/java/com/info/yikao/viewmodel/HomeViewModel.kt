@@ -84,4 +84,12 @@ class HomeViewModel : BaseViewModel() {
     }
 
 
+    fun syncMemberInfo() {
+
+        request({
+            apiService.getMemberInfo()
+        },{},{})
+    }
+
+
 }

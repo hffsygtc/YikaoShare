@@ -1,16 +1,15 @@
 package com.info.yikao.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityExamIntorBinding
-import com.info.yikao.ext.init
-import com.info.yikao.ext.loadListData
-import com.info.yikao.ext.loadServiceInit
-import com.info.yikao.ext.showLoading
+import com.info.yikao.ext.*
 import com.info.yikao.model.MajorIntroWrapper
 import com.info.yikao.ui.adapter.MajorIntroAdapter
+import com.info.yikao.util.CacheUtil
 import com.info.yikao.viewmodel.MajorIntroViewModel
 import com.info.yikao.weight.EmptyLoadMore
 import com.kingja.loadsir.core.LoadService
@@ -34,6 +33,7 @@ class MajorIntroActivity : BaseActivity<MajorIntroViewModel, ActivityExamIntorBi
 
     private var underType = 0
     private var majorId = -1
+
 
     override fun layoutId(): Int = R.layout.activity_exam_intor
 
@@ -69,20 +69,28 @@ class MajorIntroActivity : BaseActivity<MajorIntroViewModel, ActivityExamIntorBi
 
         mAdapter.run {
             setOnItemClickListener { adapter, view, position ->
-
                 "click news data jump $position".loge()
                 //点击了对象
                 var posData = adapter.data[position] as MajorIntroWrapper
-
             }
-
-//            addChildClickViewIds(
-//            )
-//            setOnItemChildClickListener { adapter, view, position ->}
         }
 
         mDatabind.nextBtn.setOnClickListener {
-            //点击了报名，需要判断考生的身份实名认证情况
+            //判断登录
+            val user = appViewModel.userInfo.value
+            if (user != null && user.Token.canShow()) {
+                //有登录信息
+                //点击了付款按钮
+                val intent = Intent(this@MajorIntroActivity, SignUpPayActivity::class.java)
+                intent.putExtra("id", majorId)
+                intent.putExtra("subject", mViewModel.subject)
+                intent.putExtra("time", mViewModel.time)
+                intent.putExtra("price", mViewModel.price)
+                startActivity(intent)
+            } else {
+                startActivity(Intent(this@MajorIntroActivity, LoginActivity::class.java))
+            }
+
         }
 
         loadsir.showLoading()

@@ -211,9 +211,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/globe_dimen_12"
+            android:text="微信支付"
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_text_size_26"
-            android:text="微信支付"
             app:layout_constraintBottom_toBottomOf="@+id/wechat_icon"
             app:layout_constraintStart_toEndOf="@+id/wechat_icon"
             app:layout_constraintTop_toTopOf="@+id/wechat_icon" />
@@ -227,6 +227,20 @@
             app:layout_constraintBottom_toBottomOf="@+id/wechat_icon"
             app:layout_constraintEnd_toEndOf="@+id/pay_layout"
             app:layout_constraintTop_toTopOf="@+id/wechat_icon" />
+
+        <View
+            android:id="@+id/wechat_btn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/ali_btn"
+            app:layout_constraintTop_toTopOf="@+id/pay_layout" />
+
+        <View
+            android:id="@+id/ali_btn"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pay_layout"
+            app:layout_constraintTop_toBottomOf="@+id/wechat_btn" />
 
         <ImageView
             android:id="@+id/ali_icon"
@@ -243,9 +257,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/globe_dimen_12"
+            android:text="支付宝支付"
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_text_size_26"
-            android:text="支付宝支付"
             app:layout_constraintBottom_toBottomOf="@+id/ali_icon"
             app:layout_constraintStart_toEndOf="@+id/ali_icon"
             app:layout_constraintTop_toTopOf="@+id/ali_icon" />

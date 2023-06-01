@@ -44,20 +44,32 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
 
         mDatabind.userFuncInfo.setOnClickListener {
             //考生信息
-            val intent = Intent(requireActivity(), FragmentContainerActivity::class.java)
-            intent.putExtra("type", 1)
-            startActivity(intent)
+            if (!isLogin) {
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            } else {
+                val intent = Intent(requireActivity(), FragmentContainerActivity::class.java)
+                intent.putExtra("type", 1)
+                startActivity(intent)
+            }
         }
 
         mDatabind.userFuncExam.setOnClickListener {
             //我的考试
-            val intent = Intent(requireActivity(), UserExamActivity::class.java)
-            startActivity(intent)
+            if (!isLogin) {
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            } else {
+                val intent = Intent(requireActivity(), UserExamActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         mDatabind.userFuncOrder.setOnClickListener {
             //报考订单
-            startActivity(Intent(requireActivity(), UserOrderActivity::class.java))
+            if (!isLogin) {
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            } else {
+                startActivity(Intent(requireActivity(), UserOrderActivity::class.java))
+            }
         }
 
         mDatabind.userFuncSetting.setOnClickListener {
@@ -67,17 +79,25 @@ class HomeUserFragment : BaseFragment<HomeUserViewModel, FragmentMainUserBinding
 
         mDatabind.teacherOnlineFunc.setOnClickListener {
             //线上监考
-            startActivity(Intent(requireActivity(), OnlineExamListActivity::class.java))
+            if (!isLogin) {
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            } else {
+                startActivity(Intent(requireActivity(), OnlineExamListActivity::class.java))
+            }
         }
 
         mDatabind.teacherOfflineFunc.setOnClickListener {
             //线下监考
-            startActivity(
-                Intent(
-                    requireActivity(),
-                    OfflineExamListActivity::class.java
+            if (!isLogin) {
+                startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            } else {
+                startActivity(
+                    Intent(
+                        requireActivity(),
+                        OfflineExamListActivity::class.java
+                    )
                 )
-            )
+            }
         }
 
         mDatabind.teacherSettingFunc.setOnClickListener {

@@ -15,12 +15,16 @@ class MajorIntroViewModel : BaseViewModel() {
     var listData: MutableLiveData<ListDataUiState<MajorIntroWrapper>> = MutableLiveData()
 
     var price = ""
+    var subject = ""
+    var time = ""
 
 
     fun getListData(isRefresh: Boolean, id: Int) {
 
         request({ apiService.getMajorDetail(id) }, {
             price = it.Price.toString() + "元"
+            subject = it.TestContent
+            time = "${it.TestStart}~${it.TestEnd}"
             val datas = arrayListOf(
                 MajorIntroWrapper(
                     1,

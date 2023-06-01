@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentIdCardPhotoBinding
+import com.info.yikao.util.CacheUtil
 import com.info.yikao.util.GlideEngine
 import com.info.yikao.viewmodel.PostIdCardViewModel
 import com.luck.picture.lib.PictureSelector
@@ -189,8 +190,11 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
         mDatabind.nextBtn.setOnClickListener {
             uploadBackOk = false
             uploadFrontOk = false
-            upload("",frontUrlpath?:"",false)
-            upload("",backUrlpath?:"",true)
+            val user = CacheUtil.getUser()
+            val keyPrefix = user?.Tel ?: "Default"
+
+            upload("", frontUrlpath ?: "", false,"$keyPrefix-front-id-card")
+            upload("", backUrlpath ?: "", true,"$keyPrefix-back-id-card")
         }
     }
 
@@ -199,7 +203,7 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
     //FixedZone.zone1   华北机房
     //FixedZone.zone2   华南机房
     //FixedZone.zoneNa0 北美机房
-    private fun upload(token: String,path:String,isBack:Boolean) {
+    private fun upload(token: String, path: String, isBack: Boolean, key: String) {
         val startTime = System.currentTimeMillis()
 
 //        //可以自定义zone
@@ -223,22 +227,21 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
             uploadManager = UploadManager(config)
         }
 
-        val key = "<指定七牛服务上的文件名，或 null>"
         val token = "<从服务端 SDK 获取>"
         uploadManager!!.put(
             path, key, token,
             { key, info, res ->
                 //res 包含 hash、key 等信息，具体字段取决于上传策略的设置
                 if (info.isOK()) {
-                    if (isBack){
+                    if (isBack) {
                         uploadBackOk = true
-                    }else{
+                    } else {
                         uploadFrontOk = true
                     }
                     doNext()
                 } else {
                     //如果失败，这里可以把 info 信息上报自己的服务器，便于后面分析上传错误原因
-                    Snackbar.make(mDatabind.nextBtn,"图片上传失败，请重试",Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(mDatabind.nextBtn, "图片上传失败，请重试", Snackbar.LENGTH_SHORT).show()
                 }
                 "$key \r\n $info \r\n $res".logw()
             }, null
@@ -270,7 +273,7 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
 
     private fun doNext() {
         //如果上传成功
-        if (uploadBackOk && uploadFrontOk){
+        if (uploadBackOk && uploadFrontOk) {
             nav().navigate(R.id.action_postIdCardFragment_to_postIdUserInfoFragment)
         }
     }

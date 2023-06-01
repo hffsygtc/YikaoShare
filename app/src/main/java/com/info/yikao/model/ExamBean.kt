@@ -23,6 +23,8 @@ CertificateNo (string, optional): 通过证书的编号,通过以后，会集中
 }
  */
 data class ExamBean(
+    val RealName: String,
+    val IDNumber: String,
     val OrderNum: String,
     val SubjectsId: Int,
     val SubjectsName: String,

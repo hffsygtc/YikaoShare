@@ -3,6 +3,7 @@ package com.info.yikao.network
 import com.google.gson.Gson
 import com.info.yikao.App
 import com.info.yikao.model.ApiResponse
+import me.hgj.jetpackmvvm.ext.util.loge
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody
@@ -23,6 +24,7 @@ class TokenOutInterceptor : Interceptor {
             //判断逻辑 模拟一下
             if (apiResponse.Code == 401) {
                 //如果是普通的activity话 可以直接跳转，如果是navigation中的fragment，可以发送通知跳转
+                "get result 401 !!! with $responseBody".loge()
                 App.instance.loginOut()
             }
             response.newBuilder().body(responseBody).build()

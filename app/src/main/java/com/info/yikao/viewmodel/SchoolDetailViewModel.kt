@@ -12,7 +12,7 @@ class SchoolDetailViewModel : BaseViewModel() {
 
 
     var schoolDetail = UnPeekLiveData<ResultState<SchoolBean>>()
-    var schoolMajors = UnPeekLiveData<ResultState<ArrayList<MajorGroupBean>>>()
+    var schoolMajors = UnPeekLiveData<ResultState<ArrayList<MajorGroupBean>?>>()
 
     fun getSchoolDetail(id: Int) {
         request({ apiService.getSchoolDetail(id) }, schoolDetail)

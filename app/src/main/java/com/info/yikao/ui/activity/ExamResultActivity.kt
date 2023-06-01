@@ -51,10 +51,12 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
             //线上考试，需要显示考生的视频
             mDatabind.videoView.visibility = View.VISIBLE
             mDatabind.offlineClassTv.visibility = View.GONE
+            mDatabind.offlineClassTvContent.visibility = View.GONE
         } else {
             //不显示视频
             mDatabind.videoView.visibility = View.GONE
             mDatabind.offlineClassTv.visibility = View.VISIBLE
+            mDatabind.offlineClassTvContent.visibility = View.VISIBLE
         }
 
         mDatabind.titleTv.text = examName
@@ -72,9 +74,9 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
 //            if (certNum.canShow()) {
 //                //有证书ID才跳转
 //            }
-            val intent = Intent(this@ExamResultActivity,CertiDetailActivity::class.java)
-            intent.putExtra("id",examNum)
-            intent.putExtra("name",examName)
+            val intent = Intent(this@ExamResultActivity, CertiDetailActivity::class.java)
+            intent.putExtra("id", examNum)
+            intent.putExtra("name", examName)
             startActivity(intent)
         }
 
@@ -88,10 +90,10 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
             parseState(result, {
                 loadsir.showSuccess()
                 //显示界面
-                mDatabind.nameTvContent.text = ""
-                mDatabind.idCardTvContent.text = ""
+                mDatabind.nameTvContent.text = it.Detail.RealName
+                mDatabind.idCardTvContent.text = it.Detail.IDNumber
                 mDatabind.majorTvContent.text = it.Detail.SubjectsName
-                mDatabind.timeTvContent.text = it.Detail.TestTimeStart
+                mDatabind.timeTvContent.text = it.Detail.TestStart
                 mDatabind.offlineClassTvContent.text = it.Detail.TestClassAddr
 
                 if (it.Detail.CertificateNo.canShow()) {
@@ -111,6 +113,7 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
                         "",
                         it.Detail.TestResult,
                         it.Detail.JuryTotalResultStr,
+                        "", "",
                         -1,
                         "",
                         ""
@@ -121,7 +124,8 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
 
                 } else {
                     //没有数据
-                    val emptyGrade = arrayListOf(TeacherResultBean(3, -1, "", -1, "", -1, "", ""))
+                    val emptyGrade =
+                        arrayListOf(TeacherResultBean(3, -1, "", -1, "", "", "", -1, "", ""))
                     mAdapter.setList(emptyGrade)
                 }
             }, {

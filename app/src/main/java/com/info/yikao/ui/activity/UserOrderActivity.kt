@@ -66,7 +66,11 @@ class UserOrderActivity : BaseActivity<UserOrderViewModel, ActivitySingleListBin
                 var posData = adapter.data[position] as OrderBean
 
                 //todo 跳转到准考证
-                startActivity(Intent(this@UserOrderActivity,StuExamCardActivity::class.java))
+//                startActivity(Intent(this@UserOrderActivity, StuExamCardActivity::class.java))
+
+
+                //调到对应的报名详情页
+                startActivity(Intent(this@UserOrderActivity, SignUpDetailActivity::class.java))
 
             }
 
@@ -75,13 +79,21 @@ class UserOrderActivity : BaseActivity<UserOrderViewModel, ActivitySingleListBin
                 R.id.bottom_cancel_btn,
             )
             setOnItemChildClickListener { adapter, view, position ->
-                when(view.id){
-                    R.id.bottom_pay_btn->{
+                when (view.id) {
+                    R.id.bottom_pay_btn -> {
                         //跳转支付
+                        //点击了付款按钮
+                        var posData = adapter.data[position] as OrderBean
+                        val intent = Intent(this@UserOrderActivity, SignUpPayActivity::class.java)
+                        intent.putExtra("id", posData.SubjectsId)
+                        intent.putExtra("subject", posData.SubjectsName)
+                        intent.putExtra("time", posData.TestStart)
+                        intent.putExtra("price", posData.Amount)
+                        startActivity(intent)
                     }
-                    R.id.bottom_cancel_btn->{
+                    R.id.bottom_cancel_btn -> {
                         //取消
-                        var posData =  adapter.data[position] as OrderBean
+                        var posData = adapter.data[position] as OrderBean
                         mViewModel.cancelOrder(posData.OrderNum)
                         posData.PayStatus = "2"
                         mAdapter.notifyItemChanged(position)

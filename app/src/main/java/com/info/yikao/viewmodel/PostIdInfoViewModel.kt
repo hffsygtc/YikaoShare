@@ -19,9 +19,9 @@ class PostIdInfoViewModel : BaseViewModel() {
     var memberInfo = UnPeekLiveData<ResultState<UserDetailInfo>>()
 
     fun postMemberInfo() {
-        val postBean = PostMemberInfo(inputUserInfo)
+//        val postBean = PostMemberInfo(inputUserInfo)
         request({
-            apiService.postMemberInfo(postBean)
+            apiService.postMemberInfo(inputUserInfo)
         }, postResult)
     }
 
@@ -29,7 +29,6 @@ class PostIdInfoViewModel : BaseViewModel() {
         request({
             apiService.getMemberInfo()
         }, memberInfo)
-
     }
 
 }

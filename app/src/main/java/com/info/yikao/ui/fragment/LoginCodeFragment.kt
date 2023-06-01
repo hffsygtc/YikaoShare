@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentLoginInputCodeBinding
+import com.info.yikao.ext.Constant
 import com.info.yikao.util.CacheUtil
 import com.info.yikao.view.VerificationCodeView
 import com.info.yikao.viewmodel.LoginCodeViewModel
@@ -91,6 +92,7 @@ class LoginCodeFragment : BaseFragment<LoginCodeViewModel, FragmentLoginInputCod
             parseState(result, {
                 //登录成功了
                 CacheUtil.setUser(it)
+                Constant.userToken = it.Token
                 appViewModel.userInfo.value = it
                 activity?.finish()
             }, {

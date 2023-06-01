@@ -59,6 +59,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
 
         mDatabind.recyclerView.init(LinearLayoutManager(context), mAdapter)
 
+//        mViewModel.syncMemberInfo()
+
         //初始化swiperefreshlayout
         mRefresh.init {
             mViewModel.getBannerNews()

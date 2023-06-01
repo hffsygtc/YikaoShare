@@ -11,4 +11,7 @@ object Constant {
     var imgUrlHead: String = ""
     var PostCerFee: Float = 0f
     var userToken: String = ""
+
+
+    const val WX_APP_ID = "wx861541c375ab6f4b"
 }

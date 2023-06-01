@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.info.yikao"
-        minSdk 21
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -121,6 +121,9 @@ dependencies {
 //        exclude (group: 'com.squareup.okhttp3', module: 'okhttp')
 //    }
 //    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+    //微信支付
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android:+'
+    implementation 'com.alipay.sdk:alipaysdk-android:+@aar'
 
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 }

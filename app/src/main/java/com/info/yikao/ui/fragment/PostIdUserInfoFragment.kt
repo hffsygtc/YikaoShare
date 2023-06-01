@@ -9,6 +9,8 @@ import com.google.gson.reflect.TypeToken
 import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentInputUserInfoBinding
+import com.info.yikao.ext.canShow
+import com.info.yikao.ext.isIDNumber
 import com.info.yikao.model.CityData
 import com.info.yikao.viewmodel.PostIdInfoViewModel
 import com.lljjcoder.Interface.OnCustomCityPickerItemClickListener
@@ -131,6 +133,17 @@ class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUs
 
         mDatabind.nextBtn.setOnClickListener {
             //判断是不是需要添加判空逻辑
+            //增加判断身份证合法正则
+            val idNum = mDatabind.inputIdCard.text.toString()
+            if (idNum.canShow()) {
+                //如果填写了，则需要判断合法性
+                if (!isIDNumber(idNum)) {
+                    //没有合法
+                    Snackbar.make(mDatabind.nextBtn, "请输入合法的身份证号码", Snackbar.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+            }
+
             mViewModel.inputUserInfo.apply {
                 RealName = mDatabind.realNameEt.text.toString()
                 IDNumber = mDatabind.inputIdCard.text.toString()
@@ -187,13 +200,12 @@ class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUs
                 mDatabind.userSmallHeadTv.showContent(it.StuImg1)
                 mDatabind.inputHeight.showContent(it.StuHeight.toString())
                 mDatabind.inputWeight.showContent(it.StuWeight.toString())
-                mDatabind.detailLocationTv.showContent(it.PostProvince+it.PostCity+it.PostArea)
+                mDatabind.detailLocationTv.showContent(it.PostProvince + it.PostCity + it.PostArea)
                 mDatabind.inputStreet.showContent(it.PostDetail)
                 mDatabind.inputEmsName.showContent(it.PostName)
                 mDatabind.inputEmsPhone.showContent(it.PostTel)
                 mDatabind.inputRelativeName.showContent(it.EmergencyContact)
                 mDatabind.inputRelativePhone.showContent(it.EmergencyContactTel)
-
 
 
             }, {

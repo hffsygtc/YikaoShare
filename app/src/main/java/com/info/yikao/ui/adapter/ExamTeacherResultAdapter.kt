@@ -68,11 +68,11 @@ class ExamTeacherResultAdapter(data: MutableList<TeacherResultBean>?) :
                 val result = helper.getView<TextView>(R.id.result)
                 val comment = helper.getView<TextView>(R.id.comment)
 
-                val userHead = Constant.imgUrlHead + "item.HeadImg"
+                val userHead = Constant.imgUrlHead + item.JuryHeadImg
                 Glide.with(context).load(userHead)
                     .apply(getGlideRequestOptions(Constant.GLIDE_TYPE_USER_HEAD))
                     .into(headIcon)
-                name.text = "评委老师"
+                name.text = item.JuryName
                 result.text = item.JuryResultStr
                 comment.text = item.Remark
             }

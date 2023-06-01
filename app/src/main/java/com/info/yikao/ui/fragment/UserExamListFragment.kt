@@ -49,7 +49,7 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
     override fun initView(savedInstanceState: Bundle?) {
         //初始化bundle数据
         arguments?.let {
-            online = it.getBoolean("from_user")
+            online = it.getBoolean("online")
         }
 
 
