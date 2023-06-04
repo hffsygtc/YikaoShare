@@ -285,5 +285,13 @@ interface ApiService {
         @Body postBody: ExamGradeBean
     ): ApiResponse<Any?>
 
+    /**
+     * 获取报考订单详情信息
+     */
+    @GET("api/Member/GetApplyOrderDetail")
+    suspend fun getOrderDetail(
+        @Query("OrderNum") id: String
+    ): ApiResponse<ExamBean>
+
 
 }

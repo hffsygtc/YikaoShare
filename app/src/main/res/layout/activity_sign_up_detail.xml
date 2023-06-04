@@ -9,6 +9,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_F5F5F5"
@@ -232,6 +233,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
+                    android:id="@+id/exam_state_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/globe_dimen_30"
@@ -242,6 +244,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/height_layout" />
 
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/enter_exam_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="weight_layout,exam_release_time,enter_exam_line,enter_exam_btn"
+                    />
 
                 <View
                     android:id="@+id/weight_layout"
@@ -263,6 +272,7 @@
                     app:layout_constraintTop_toTopOf="@+id/weight_layout" />
 
                 <View
+                    android:id="@+id/enter_exam_line"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/globe_dimen_2"
                     android:layout_marginStart="@dimen/globe_dimen_30"

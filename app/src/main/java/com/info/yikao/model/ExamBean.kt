@@ -43,4 +43,8 @@ data class ExamBean(
     val JuryTotalResultStr: String,
     val TestTypeId: Int,
     val CertificateNo: String,
+
+    val TestStatus: Int,
+    val TestStatusStr: String,
+    val Amount: String,
 )
