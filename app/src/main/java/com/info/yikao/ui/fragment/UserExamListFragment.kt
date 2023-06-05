@@ -13,6 +13,7 @@ import com.info.yikao.ext.showLoading
 import com.info.yikao.model.ExamBean
 import com.info.yikao.model.OrderBean
 import com.info.yikao.ui.activity.ExamResultActivity
+import com.info.yikao.ui.activity.StuExamCardActivity
 import com.info.yikao.ui.adapter.UserExamListAdapter
 import com.info.yikao.viewmodel.UserExamViewModel
 import com.kingja.loadsir.core.LoadService
@@ -83,12 +84,20 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
 
             addChildClickViewIds(
                 R.id.show_cert_btn,
+                R.id.stu_card_btn
             )
             setOnItemChildClickListener { adapter, view, position ->
+                val examBean = adapter.data[position] as ExamBean
                 when(view.id){
                     R.id.show_cert_btn->{
                         //跳转领取证书
-                        //todo 添加跳转证书页面
+
+                    }
+                    R.id.stu_card_btn->{
+                        //跳转查看准考证
+                        val intent = Intent(requireActivity(), StuExamCardActivity::class.java)
+                        intent.putExtra("id",examBean.TestCardNo)
+                        startActivity(intent)
                     }
                 }
 

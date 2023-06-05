@@ -31,6 +31,12 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
             val resultIntent = res?.data
             val resultStr = resultIntent?.get("result", "")
             "result str is $resultStr".logw()
+
+            if (resultStr.canShow()){
+                val intent = Intent(requireContext(), WebviewActivity::class.java)
+                intent.putExtra("url", resultStr)
+                startActivity(intent)
+            }
         }
 
 
@@ -140,11 +146,11 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
 
         mDatabind.iconTopQr.setOnClickListener {
             //点击了扫描按钮
-//            val intent = Intent(requireActivity(), CustomCaptureActivity::class.java)
-//            launcher.launch(intent)
+            val intent = Intent(requireActivity(), CustomCaptureActivity::class.java)
+            launcher.launch(intent)
 
 
-            startActivity(Intent(requireActivity(), QrStuCardResultActivity::class.java))
+//            startActivity(Intent(requireActivity(), QrStuCardResultActivity::class.java))
         }
 
         mDatabind.iconTopNotice.setOnClickListener {

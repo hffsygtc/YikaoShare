@@ -45,6 +45,7 @@ class UserExamListAdapter(data: MutableList<ExamBean>?) :
         val bottomGroup = helper.getView<Group>(R.id.bottom_more_group)
         val certName = helper.getView<TextView>(R.id.cert_tv)
         val certBtn = helper.getView<TextView>(R.id.show_cert_btn)
+        val stuCardBtn = helper.getView<TextView>(R.id.stu_card_btn)
 
 
         val schoolIcon = Constant.imgUrlHead + item.Logo
@@ -79,6 +80,12 @@ class UserExamListAdapter(data: MutableList<ExamBean>?) :
             certName.text = item.SubjectsName
         } else {
             bottomGroup.visibility = View.GONE
+        }
+
+        if (item.TestCardNo.canShow()) {
+            stuCardBtn.visibility = View.VISIBLE
+        } else {
+            stuCardBtn.visibility = View.GONE
         }
 
 

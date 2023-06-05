@@ -1,37 +1,56 @@
 package com.info.yikao.ui.activity
 
 import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.EncodeHintType
+import com.google.zxing.qrcode.QRCodeWriter
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
-import com.info.yikao.databinding.ActivitySignPayBinding
-import com.info.yikao.databinding.ActivityUserExamBinding
 import com.info.yikao.databinding.ActivityUserExamCardBinding
-import com.info.yikao.ext.Constant
-import com.info.yikao.ext.ImageSaveUtil
-import com.info.yikao.ext.getGlideRequestOptions
-import com.info.yikao.ext.saveToAlbum
-import com.info.yikao.util.GlideEngine
-import com.info.yikao.viewmodel.SignUpPayViewModel
+import com.info.yikao.ext.*
 import com.info.yikao.viewmodel.StudentExamCardViewModel
-import com.luck.picture.lib.PictureSelector
-import com.luck.picture.lib.config.PictureConfig
-import com.luck.picture.lib.config.PictureMimeType
+import com.kingja.loadsir.core.LoadService
 import com.permissionx.guolindev.PermissionX
+import me.hgj.jetpackmvvm.ext.parseState
 
 /**
  * 考生准考证页面
  */
 class StuExamCardActivity : BaseActivity<StudentExamCardViewModel, ActivityUserExamCardBinding>() {
 
+    private var cardNum = ""
+
+    //界面状态管理者
+    private lateinit var loadsir: LoadService<Any>
+
+    val qrCodeWriter: QRCodeWriter by lazy {
+        QRCodeWriter()
+    }
+
+
     override fun layoutId(): Int = R.layout.activity_user_exam_card
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        cardNum = intent.getStringExtra("id") ?: ""
+
+        //状态页配置
+        loadsir = loadServiceInit(mDatabind.mainLayout) {
+            //点击重试时触发操作
+            loadsir.showLoading()
+            mViewModel.getTestCardInfo(cardNum)
+        }
+
 
         mDatabind.saveStuExamCard.setOnClickListener {
             val viewWidth = mDatabind.shotLayout.width
@@ -60,46 +79,24 @@ class StuExamCardActivity : BaseActivity<StudentExamCardViewModel, ActivityUserE
                     if (allGranted) {
                         //用户授权文件读取
                         //"用户授权文件读取".logw()
-                        ImageSaveUtil.saveAlbum(this@StuExamCardActivity,bitmap,Bitmap.CompressFormat.JPEG,90,true)
-                        Snackbar.make(mDatabind.saveStuExamCard,"准考证已保存到相册",Snackbar.LENGTH_SHORT).show()
+                        ImageSaveUtil.saveAlbum(
+                            this@StuExamCardActivity,
+                            bitmap,
+                            Bitmap.CompressFormat.JPEG,
+                            90,
+                            true
+                        )
+                        Snackbar.make(mDatabind.saveStuExamCard, "准考证已保存到相册", Snackbar.LENGTH_SHORT)
+                            .show()
                     } else {
                         //"拒绝了权限申请".logw()
                     }
                 }
 
-
 //            bitmap.saveToAlbum(this,"stu_card")
         }
 
-        val schoolIcon = Constant.imgUrlHead+""
-        Glide.with(this@StuExamCardActivity).load(schoolIcon)
-            .apply(getGlideRequestOptions(Constant.GLIDE_OPTIONS_NEWS))
-            .into(mDatabind.stuCardSchoolIcon)
-
-        mDatabind.stuCardTitle.text = "四川音乐学院社会艺术培训与考级中心"
-        mDatabind.stuCardSubTitle.text = "四川音乐学院社会艺术培训与考级中心"
-
-
-        val headPhoto = Constant.imgUrlHead+""
-        Glide.with(this@StuExamCardActivity).load(headPhoto)
-            .apply(getGlideRequestOptions(Constant.GLIDE_TYPE_DEFAULT))
-            .into(mDatabind.stuCardPhoto)
-
-        val qrImg = Constant.imgUrlHead+""
-        Glide.with(this@StuExamCardActivity).load(qrImg)
-            .apply(getGlideRequestOptions(Constant.GLIDE_TYPE_DEFAULT))
-            .into(mDatabind.stuCardQrImg)
-
-        mDatabind.stuCardNameContent.text = "赵本山"
-        mDatabind.stuCardSexContent.text = "男"
-        mDatabind.stuCardNumContent.text = "15456451231231"
-        mDatabind.stuCardClassNumContent.text ="12"
-        mDatabind.stuCardLocationContent.text = "第三教学楼"
-        mDatabind.stuCardMajorContent.text ="音乐10级"
-        mDatabind.stuCardGradeContent.text = "10级"
-        mDatabind.stuCardTimeContent.text="14:00:12"
-        mDatabind.stuCardShowContent.text="《节目》"
-        mDatabind.stuCardTips.text = "1．考生应按规定的时间入场，开始考试后15分钟禁止迟到考生进入考场。\n" +
+        mDatabind.stuCardTips.text = "　　1．考生应按规定的时间入场，开始考试后15分钟禁止迟到考生进入考场。\n" +
                 "\n" +
                 "　　2．考生入场时须主动出示《准考证》以及有效身份证件(身份证、军人、武警人员证件、未成年人的户口本、公安户籍部门开具的《身份证》号码证明、护照或者港、澳、台同胞证件)，接受考试工作人员的核验，并按要求在“考生花名册”上签自己的姓名。\n" +
                 "\n" +
@@ -114,6 +111,10 @@ class StuExamCardActivity : BaseActivity<StudentExamCardViewModel, ActivityUserE
                 "　　7．考生遇试卷分发错误或试题字迹不清等情况应及时要求更换；涉及试题内容的疑问，不得向监考人员询问。"
 
 
+
+        loadsir.showLoading()
+        mViewModel.getTestCardInfo(cardNum)
+
     }
 
 
@@ -127,5 +128,96 @@ class StuExamCardActivity : BaseActivity<StudentExamCardViewModel, ActivityUserE
         return b
     }
 
+    override fun createObserver() {
+        mViewModel.currentStu.observe(this) { result ->
+            //获取考试信息
+            parseState(result, {
+                loadsir.showSuccess()
+
+                val schoolIcon = Constant.imgUrlHead + it.Logo
+                Glide.with(this@StuExamCardActivity).load(schoolIcon)
+                    .apply(getGlideRequestOptions(Constant.GLIDE_OPTIONS_SCHOOL_ICON))
+                    .into(mDatabind.stuCardSchoolIcon)
+
+                mDatabind.stuCardTitle.text = it.SchoolName
+                mDatabind.stuCardSubTitle.text = it.Title
+
+                val headPhoto = Constant.imgUrlHead + it.StuImg1
+                Glide.with(this@StuExamCardActivity).load(headPhoto)
+                    .apply(getGlideRequestOptions(Constant.GLIDE_TYPE_DEFAULT))
+                    .into(mDatabind.stuCardPhoto)
+
+                //生成二维码
+               val qrImg = createQRImage(this,it.QrUrl)
+
+                Glide.with(this@StuExamCardActivity).load(qrImg)
+                    .apply(getGlideRequestOptions(Constant.GLIDE_TYPE_DEFAULT))
+                    .into(mDatabind.stuCardQrImg)
+
+                mDatabind.stuCardNameContent.text = it.RealName
+                mDatabind.stuCardSexContent.text = it.Sex
+                mDatabind.stuCardNumContent.text = it.TestCardNo
+                mDatabind.stuCardClassNumContent.text = it.TestClass
+                mDatabind.stuCardLocationContent.text = it.TestClassAddr
+                mDatabind.stuCardMajorContent.text = it.SubjectsNameParent
+                mDatabind.stuCardGradeContent.text = it.SubjectsName
+                mDatabind.stuCardTimeContent.text = it.TestTimeStart
+                mDatabind.stuCardShowContent.text = it.TestContent
+
+            }, {
+                loadsir.showError()
+                Snackbar.make(mDatabind.saveStuExamCard, it.errorMsg, Snackbar.LENGTH_SHORT).show()
+            })
+        }
+    }
+
+
+    fun createQRImage(context: Context, data: String): Bitmap? {
+        try {
+            if (data == null || "" == data) {
+                return null
+            }
+            var widthPix = (context as Activity).windowManager.defaultDisplay
+                .width
+            widthPix = widthPix / 5 * 3
+            val heightPix = widthPix
+
+            //配置参数
+            val hints: MutableMap<EncodeHintType, Any?> = HashMap()
+            hints[EncodeHintType.CHARACTER_SET] = "utf-8"
+            //容错级别 L<M<Q<H 7%-30%
+            hints[EncodeHintType.ERROR_CORRECTION] = ErrorCorrectionLevel.Q
+            //设置空白边距的宽度
+            hints[EncodeHintType.MARGIN] = 1 //default is 4
+
+
+            // 图像数据转换，使用了矩阵转换
+            val bitMatrix =
+                QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, widthPix, heightPix, hints)
+            val pixels = IntArray(widthPix * heightPix)
+            // 下面这里按照二维码的算法，逐个生成二维码的图片，
+            // 两个for循环是图片横列扫描的结果
+            for (y in 0 until heightPix) {
+                for (x in 0 until widthPix) {
+                    if (bitMatrix[x, y]) {
+                        pixels[y * widthPix + x] = -0x1000000
+                    } else {
+                        pixels[y * widthPix + x] = -0x1
+                    }
+                }
+            }
+
+            // 生成二维码图片的格式，使用ARGB_8888
+            var bitmap = Bitmap.createBitmap(widthPix, heightPix, Bitmap.Config.ARGB_8888)
+            bitmap.setPixels(pixels, 0, widthPix, 0, 0, widthPix, heightPix)
+
+            return bitmap
+            //必须使用compress方法将bitmap保存到文件中再进行读取。直接返回的bitmap是没有任何压缩的，内存消耗巨大！
+            //return bitmap != null && bitmap.compress(Bitmap.CompressFormat.JPEG, 100, new FileOutputStream(filePath));
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return null
+    }
 
 }

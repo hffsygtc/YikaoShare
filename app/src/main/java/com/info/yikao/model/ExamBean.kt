@@ -47,4 +47,6 @@ data class ExamBean(
     val TestStatus: Int,
     val TestStatusStr: String,
     val Amount: String,
+    val Title: String,
+    val TestCardNo: String?,
 )

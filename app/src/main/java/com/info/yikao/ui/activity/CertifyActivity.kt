@@ -13,6 +13,9 @@ import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.util.logw
 import java.io.File
 
+/**
+ * 上传身份证认证页面
+ */
 class CertifyActivity : BaseActivity<BaseViewModel, ActivityVertifyInfoBinding>() {
 
 

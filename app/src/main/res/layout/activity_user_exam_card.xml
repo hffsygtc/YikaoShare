@@ -85,42 +85,50 @@
                 android:background="@color/color_F5F5F5"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/stu_card_title"
+                <View
+                    android:id="@+id/stu_card_title_bg"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/globe_dimen_90"
                     android:layout_marginStart="@dimen/globe_dimen_30"
                     android:layout_marginTop="@dimen/globe_dimen_30"
                     android:layout_marginEnd="@dimen/globe_dimen_30"
                     android:background="@drawable/stu_exam_item_bg"
-                    android:paddingStart="@dimen/globe_dimen_96"
-                    android:paddingTop="@dimen/globe_dimen_28"
-                    android:paddingEnd="@dimen/globe_dimen_30"
-                    android:paddingBottom="@dimen/globe_dimen_28"
-                    android:textColor="@color/color_333333"
-                    android:textSize="@dimen/font_text_size_30"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="四川音乐学院社会艺术培训与考级中心" />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <ImageView
                     android:id="@+id/stu_card_school_icon"
                     android:layout_width="@dimen/globe_dimen_46"
                     android:layout_height="@dimen/globe_dimen_46"
-                    android:layout_marginStart="@dimen/globe_dimen_30"
+                    app:layout_constraintHorizontal_chainStyle="packed"
                     android:background="@mipmap/default_school_icon"
-                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_title"
-                    app:layout_constraintStart_toStartOf="@+id/stu_card_title"
-                    app:layout_constraintTop_toTopOf="@+id/stu_card_title" />
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_title_bg"
+                    app:layout_constraintStart_toStartOf="@+id/stu_card_title_bg"
+                    app:layout_constraintEnd_toStartOf="@+id/stu_card_title"
+                    app:layout_constraintTop_toTopOf="@+id/stu_card_title_bg" />
+
+                <TextView
+                    android:id="@+id/stu_card_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/globe_dimen_4"
+                    android:textColor="@color/color_333333"
+                    android:textSize="@dimen/font_text_size_30"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/stu_card_title_bg"
+                    app:layout_constraintStart_toEndOf="@+id/stu_card_school_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/stu_card_title_bg"
+                    app:layout_constraintTop_toTopOf="@+id/stu_card_title_bg"
+                    tools:text="四川音乐学院社会艺术培训与考级中心" />
+
 
                 <TextView
                     android:id="@+id/stu_card_sub_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/globe_dimen_30"
-                    android:layout_marginTop="@dimen/globe_dimen__2"
+                    android:layout_marginTop="@dimen/globe_dimen_88"
                     android:layout_marginEnd="@dimen/globe_dimen_30"
                     android:background="@drawable/stu_exam_item_bg"
                     android:gravity="center"
@@ -131,7 +139,7 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/stu_card_title"
+                    app:layout_constraintTop_toTopOf="@+id/stu_card_title_bg"
                     tools:text="四川音乐学院社会艺术培训与考级中心" />
 
                 <View

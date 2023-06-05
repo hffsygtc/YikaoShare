@@ -2,6 +2,7 @@ package com.info.yikao.ui.activity
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -12,16 +13,14 @@ import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityOfflineManagerQrBinding
-import com.info.yikao.ext.init
-import com.info.yikao.ext.loadServiceInit
-import com.info.yikao.ext.showError
-import com.info.yikao.ext.showLoading
+import com.info.yikao.ext.*
 import com.info.yikao.model.ClassAndSortBean
 import com.info.yikao.ui.adapter.OfflineStudentListAdapter
 import com.info.yikao.ui.adapter.PopPickerAdapter
 import com.info.yikao.viewmodel.OfflineManagerQrViewModel
 import com.kingja.loadsir.core.LoadService
 import me.hgj.jetpackmvvm.ext.parseState
+import me.hgj.jetpackmvvm.ext.util.loge
 import me.hgj.jetpackmvvm.ext.util.logw
 import me.hgj.jetpackmvvm.util.get
 
@@ -35,6 +34,7 @@ class OfflineMangerQrActivity :
             val resultStr = resultIntent?.get("result", "")
             "result str is $resultStr".logw()
             //扫描完了后，调用签到接口
+            dealQrResult(resultStr)
         }
 
     var examRoomId = -1
@@ -200,7 +200,9 @@ class OfflineMangerQrActivity :
 
         mDatabind.popLayout.postDelayed({
             mDatabind.popLayout.visibility = View.GONE
-        }, 1500)
+            mRefresh.isRefreshing = true
+            mViewModel.getOfflineClassInfo(examRoomId)
+        }, 3000)
     }
 
     private fun showError(name: String, msg: String) {
@@ -216,7 +218,8 @@ class OfflineMangerQrActivity :
 
         mDatabind.popLayout.postDelayed({
             mDatabind.popLayout.visibility = View.GONE
-        }, 1500)
+
+        }, 3000)
     }
 
     override fun createObserver() {
@@ -267,5 +270,37 @@ class OfflineMangerQrActivity :
 
             mAdapter.setList(it.List)
         }
+
+        mViewModel.qrResult.observe(this) { result ->
+            parseState(result, {
+                if (it.Success) {
+                    showSuccess(it.RealName)
+                } else {
+                    showError(it.RealName, it.Message)
+                }
+            }, {
+                Snackbar.make(mDatabind.qrBtn, it.errorMsg, Snackbar.LENGTH_SHORT).show()
+            })
+
+        }
     }
+
+
+    /**
+     * 处理扫码的结果
+     */
+    private fun dealQrResult(resultStr: String?) {
+        if (resultStr.canShow()) {
+            val uri = Uri.parse(resultStr)
+            val num = uri.getQueryParameter("TestCardNo")
+            if (num.canShow()) {
+                "qr stu id is $num".loge()
+                mViewModel.qrSign(examRoomId, num!!)
+            }
+
+
+        }
+
+    }
+
 }

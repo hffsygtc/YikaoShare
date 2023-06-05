@@ -40,6 +40,22 @@
         tools:text="中国舞-四级考试" />
 
     <TextView
+        android:id="@+id/stu_card_btn"
+        android:layout_width="@dimen/globe_dimen_130"
+        android:layout_height="@dimen/globe_dimen_46"
+        android:layout_marginEnd="@dimen/globe_dimen_60"
+        android:background="@drawable/sign_up_bg"
+        android:gravity="center"
+        android:text="准考证"
+        android:textColor="@color/color_52618B"
+        android:textSize="@dimen/font_text_size_24"
+        android:visibility="gone"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/order_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/order_info" />
+
+    <TextView
         android:id="@+id/pay_state"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/globe_dimen_36"

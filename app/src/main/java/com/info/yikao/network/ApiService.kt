@@ -293,5 +293,22 @@ interface ApiService {
         @Query("OrderNum") id: String
     ): ApiResponse<ExamBean>
 
+    /**
+     * 获取准考证信息
+     */
+    @GET("api/Member/GetTestCardInfo")
+    suspend fun getTestCardInfo(
+        @Query("TestCardNo") id: String
+    ): ApiResponse<UserCardInfoBean>
+
+    /**
+     * 监考员对考生签到
+     */
+    @POST("/api/Jury/AddStudentSign")
+    suspend fun addStudentSign(
+        @Query("TestCardNo") TestCardNo: String,
+        @Query("ExamRoomId") ExamRoomId: Int,
+    ): ApiResponse<SignResult>
+
 
 }

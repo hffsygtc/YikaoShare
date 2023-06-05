@@ -16,6 +16,8 @@ class OfflineManagerQrViewModel : BaseViewModel() {
 
     var fullStuListBean = UnPeekLiveData<ExamClassStuList>()
 
+    var qrResult = UnPeekLiveData<ResultState<SignResult>>()
+
 
     fun getOfflineClassInfo(id: Int) {
         request({ apiService.getOfflineClassDetail(id) }, classDetail)
@@ -40,5 +42,10 @@ class OfflineManagerQrViewModel : BaseViewModel() {
             //获取到当前考场的考生信息
             fullStuListBean.value = it
         }, {})
+    }
+
+    fun qrSign(room: Int, num: String) {
+        request({ apiService.addStudentSign(num, room) },qrResult)
+
     }
 }

@@ -1,7 +1,6 @@
 package com.info.yikao.viewmodel
 
-import com.info.yikao.model.MessageBean
-import com.info.yikao.model.NewsBean
+import com.info.yikao.model.*
 import com.info.yikao.network.apiService
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.callback.livedata.UnPeekLiveData
@@ -13,5 +12,10 @@ import me.hgj.jetpackmvvm.state.ResultState
  */
 class StudentExamCardViewModel : BaseViewModel() {
 
+    var currentStu = UnPeekLiveData<ResultState<UserCardInfoBean>>()
+
+    fun getTestCardInfo(id: String) {
+        request({ apiService.getTestCardInfo(id) }, currentStu)
+    }
 
 }
