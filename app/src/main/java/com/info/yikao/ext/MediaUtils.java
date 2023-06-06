@@ -107,12 +107,12 @@ public class MediaUtils {
                 newbitmap.compress(Bitmap.CompressFormat.JPEG, 60, out);
                 out.flush();
                 out.close();
+                mmr.release();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            mmr.release();
             return f;
         }
 

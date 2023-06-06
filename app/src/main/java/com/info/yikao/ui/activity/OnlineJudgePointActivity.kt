@@ -26,9 +26,9 @@ import com.info.yikao.viewmodel.OfflineJudgePointViewModel
 import com.info.yikao.viewmodel.OfflineManagerQrViewModel
 import com.info.yikao.viewmodel.OnlineJudgePointViewModel
 import com.kingja.loadsir.core.LoadService
-import com.qiniu.qmedia.component.player.QMediaModelBuilder
-import com.qiniu.qmedia.component.player.QPlayerSetting
-import com.qiniu.qmedia.component.player.QURLType
+//import com.qiniu.qmedia.component.player.QMediaModelBuilder
+//import com.qiniu.qmedia.component.player.QPlayerSetting
+//import com.qiniu.qmedia.component.player.QURLType
 import me.hgj.jetpackmvvm.ext.parseState
 import me.hgj.jetpackmvvm.ext.util.logw
 import me.hgj.jetpackmvvm.util.get
@@ -146,23 +146,23 @@ class OnlineJudgePointActivity :
      * 初始化播放器
      */
     private fun initPlayer() {
-        mDatabind.videoPlayerView.playerControlHandler.apply {
-            init(this@OnlineJudgePointActivity)
-            setDecodeType(QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO)
-            setSeekMode(QPlayerSetting.QPlayerSeek.QPLAYER_SEEK_SETTING_NORMAL)
-            setStartAction(QPlayerSetting.QPlayerStart.QPLAYER_START_SETTING_PLAYING)
-            setSpeed(1.0f)
-        }
+//        mDatabind.videoPlayerView.playerControlHandler.apply {
+//            init(this@OnlineJudgePointActivity)
+//            setDecodeType(QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO)
+//            setSeekMode(QPlayerSetting.QPlayerSeek.QPLAYER_SEEK_SETTING_NORMAL)
+//            setStartAction(QPlayerSetting.QPlayerStart.QPLAYER_START_SETTING_PLAYING)
+//            setSpeed(1.0f)
+//        }
     }
 
     /**
      * 播放视频
      */
     private fun playVideo(url: String) {
-        val builder = QMediaModelBuilder()
-        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0, url, true)
-        var mediaModel = builder.build(false)
-        mDatabind.videoPlayerView.playerControlHandler.playMediaModel(mediaModel, 0)
+//        val builder = QMediaModelBuilder()
+//        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0, url, true)
+//        var mediaModel = builder.build(false)
+//        mDatabind.videoPlayerView.playerControlHandler.playMediaModel(mediaModel, 0)
     }
 
     override fun createObserver() {
@@ -211,7 +211,7 @@ class OnlineJudgePointActivity :
     }
 
     override fun onDestroy() {
-        mDatabind.videoPlayerView.playerControlHandler.release()
+//        mDatabind.videoPlayerView.playerControlHandler.release()
         super.onDestroy()
     }
 

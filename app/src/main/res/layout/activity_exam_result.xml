@@ -215,7 +215,7 @@
             app:layout_constraintStart_toStartOf="@+id/info_layout"
             app:layout_constraintTop_toBottomOf="@+id/offline_class_tv" />
 
-        <FrameLayout
+        <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/video_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -227,17 +227,17 @@
             app:layout_constraintDimensionRatio="16:9"
             android:layout_marginTop="@dimen/globe_dimen_30"
             android:background="@color/color_CCCCCC"
-            >
+            app:use_controller="false"
+            />
 
-            <SurfaceView
-                android:id="@+id/surface_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                />
-
-
-        </FrameLayout>
+        <com.google.android.exoplayer2.ui.PlayerControlView
+            android:id="@+id/custom_player_controller"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/video_view"
+            app:layout_constraintEnd_toEndOf="@+id/video_view"
+            app:layout_constraintBottom_toBottomOf="@+id/video_view"
+            app:controller_layout_id="@layout/custom_player_control_view" />
 
         <TextView
             android:id="@+id/teacher_tv"

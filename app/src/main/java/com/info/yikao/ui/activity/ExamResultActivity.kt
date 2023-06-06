@@ -1,21 +1,19 @@
 package com.info.yikao.ui.activity
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
-import android.os.PowerManager
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.view.SurfaceHolder
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.upstream.DefaultDataSource
+import com.google.android.exoplayer2.util.MimeTypes
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityExamResultBinding
@@ -24,21 +22,7 @@ import com.info.yikao.model.TeacherResultBean
 import com.info.yikao.ui.adapter.ExamTeacherResultAdapter
 import com.info.yikao.viewmodel.ExamResultViewModel
 import com.kingja.loadsir.core.LoadService
-import com.qiniu.qmedia.component.player.QMediaModelBuilder
-import com.qiniu.qmedia.component.player.QPlayerSetting
-import com.qiniu.qmedia.component.player.QURLType
-import com.qiniu.qplayer2ext.commonplayer.CommonPlayer
-import com.qiniu.qplayer2ext.commonplayer.CommonPlayerConfig
-import com.qiniu.qplayer2ext.commonplayer.data.CommonPlayerDataSource
-import com.qiniu.qplayer2ext.commonplayer.data.DisplayOrientation
-import com.qiniu.qplayer2ext.commonplayer.layer.control.ControlPanelConfig
-import com.qiniu.qplayer2ext.commonplayer.layer.control.ControlPanelConfigElement
-import com.qiniu.qplayer2ext.commonplayer.screen.ScreenType
 import me.hgj.jetpackmvvm.ext.parseState
-import tv.danmaku.ijk.media.player.IjkMediaPlayer
-import java.lang.Exception
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultBinding>() {
     //界面状态管理者
@@ -52,9 +36,8 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
 
     private var certNum = ""
 
-    private val player: IjkMediaPlayer by lazy {
-        IjkMediaPlayer()
-    }
+    private var player: ExoPlayer? = null
+    private val isPlaying get() = player?.isPlaying ?: false
 
     override fun layoutId(): Int = R.layout.activity_exam_result
 
@@ -127,23 +110,39 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
 //        mDatabind.videoView.setVideoURI(Uri.parse("http://rvin5iszh.hn-bkt.clouddn.com/Video/13412341234-2023051516043002-1686039627069.mp4"))
 //        mDatabind.videoView.start()
 
-        mDatabind.surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
-            override fun surfaceCreated(holder: SurfaceHolder) {
-                player.setDisplay(holder)
-            }
+        player = ExoPlayer.Builder(this) // <- context
+            .build()
 
-            override fun surfaceChanged(holder: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
-            }
+// create a media item.
+        val mediaItem = MediaItem.Builder()
+            .setUri("http://rvin5iszh.hn-bkt.clouddn.com/Video/13412341234-2023051516043002-1686039627069.mp4")
+            .setMimeType(MimeTypes.APPLICATION_MP4)
+            .build()
 
-            override fun surfaceDestroyed(p0: SurfaceHolder) {
-            }
-        })
+        // Create a media source and pass the media item
+        val mediaSource = ProgressiveMediaSource.Factory(
+            DefaultDataSource.Factory(this) // <- context
+        )
+            .createMediaSource(mediaItem)
 
-        try {
-            player.dataSource = "http://rvin5iszh.hn-bkt.clouddn.com/Video/13412341234-2023051516043002-1686039627069.mp4"
-            player.prepareAsync()
-            player.start()
-        } catch (e: Exception) {
+        // Finally assign this media source to the player
+        player!!.apply {
+            setMediaSource(mediaSource)
+            playWhenReady = true // start playing when the exoplayer has setup
+            seekTo(0, 0L) // Start from the beginning
+            prepare() // Change the state from idle.
+        }.also {
+            // Do not forget to attach the player to the view
+            mDatabind.videoView.player = it
+            mDatabind.customPlayerController.player = it
+        }
+
+        mDatabind.videoView.setOnClickListener {
+            if (mDatabind.customPlayerController.isVisible){
+                mDatabind.customPlayerController.hide()
+            }else{
+                mDatabind.customPlayerController.show()
+            }
         }
 
     }
@@ -206,5 +205,20 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
             })
 
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        player?.play()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        player?.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        player?.release()
     }
 }
