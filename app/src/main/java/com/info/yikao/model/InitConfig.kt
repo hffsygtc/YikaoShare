@@ -9,4 +9,6 @@ data class InitConfig(
     val TestResultDiff: Int,
     val PostCerFee: Float,
     val ImgPrefix: String,
+    val OnLineVideoRequire: String,
+    val RecordingDuration: Int,
 )

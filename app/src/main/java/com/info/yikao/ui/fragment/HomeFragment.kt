@@ -139,9 +139,15 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
         mViewModel.getListData()
 
         mDatabind.searchSectionView.setOnClickListener {
-            val intent = Intent(requireActivity(), CaptureRecordActivity::class.java)
-            intent.putExtra("id", "")
-            startActivity(intent)
+//            val intent = Intent(requireActivity(), CaptureRecordActivity::class.java)
+//            intent.putExtra("id", "")
+//            startActivity(intent)
+            startActivity(
+                Intent(
+                    requireActivity(),
+                    SchoolListActivity::class.java
+                )
+            )
         }
 
         mDatabind.iconTopQr.setOnClickListener {

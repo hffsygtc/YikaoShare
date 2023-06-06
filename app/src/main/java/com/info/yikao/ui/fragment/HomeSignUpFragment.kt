@@ -139,7 +139,7 @@ class HomeSignUpFragment : BaseFragment<HomeSignUpViewModel, FragmentMainSignUpB
             parseState(result, {
                 "member info is $it".logw()
                 //获取到了用户信息
-                if (it.IDNumber.canShow()) {
+                if (it.IDNumber.canShow() && it.IDCard.canShow() && it.IDCardBack.canShow()) {
                     //有身份证号码，认证用户
                     needCertify = false
                     showLightView(0, false)

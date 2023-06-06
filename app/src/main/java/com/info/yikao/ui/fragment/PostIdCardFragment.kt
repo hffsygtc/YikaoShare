@@ -9,6 +9,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentIdCardPhotoBinding
+import com.info.yikao.ext.canShow
+import com.info.yikao.ext.getFileMD5
 import com.info.yikao.util.CacheUtil
 import com.info.yikao.util.GlideEngine
 import com.info.yikao.viewmodel.PostIdCardViewModel
@@ -20,18 +22,21 @@ import com.permissionx.guolindev.PermissionX
 import com.qiniu.android.common.FixedZone
 import com.qiniu.android.storage.*
 import me.hgj.jetpackmvvm.ext.nav
+import me.hgj.jetpackmvvm.ext.util.loge
 import me.hgj.jetpackmvvm.ext.util.logw
 import java.io.File
 
 
 class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhotoBinding>() {
 
-
     private var frontUrlpath: String? = null
     private var frontImageUri: Uri? = null
 
     private var backUrlpath: String? = null
     private var backImageUri: Uri? = null
+
+    private var frontName = ""
+    private var backtName = ""
 
     private var isBack = false
 
@@ -142,7 +147,7 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
                             .minSelectNum(1)// 最小选择数量
                             .imageSpanCount(4)// 每行显示个数
                             .selectionMode(PictureConfig.SINGLE)// 多选 or 单选
-                            //.previewImage(false)// 是否可预览图片
+                            .previewImage(false)// 是否可预览图片
                             //.previewVideo(false)
                             .isCamera(true)// 是否显示拍照按钮
                             //.isZoomAnim(true)// 图片列表点击 缩放效果 默认true
@@ -166,7 +171,7 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
                             .showCropGrid(false)// 是否显示裁剪矩形网格 圆形裁剪时建议设为false
                             .openClickSound(false)// 是否开启点击声音
                             //.selectionMedia(selectList)// 是否传入已选图片
-                            //.isDragFrame(false)// 是否可拖动裁剪框(固定)
+                            .isDragFrame(false)// 是否可拖动裁剪框(固定)
                             //.videoMaxSecond(15)
                             //.videoMinSecond(10)
                             //.previewEggs(false)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中)
@@ -191,11 +196,31 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
             uploadBackOk = false
             uploadFrontOk = false
             val user = CacheUtil.getUser()
-            val keyPrefix = user?.Tel ?: "Default"
-
-            upload("", frontUrlpath ?: "", false,"$keyPrefix-front-id-card")
-            upload("", backUrlpath ?: "", true,"$keyPrefix-back-id-card")
+            val keyPrefix = "Student/"
+            if (mViewModel.uploadToken.canShow()) {
+                if (frontUrlpath.canShow() && backUrlpath.canShow()) {
+                    "upload call $frontUrlpath --- $backUrlpath".loge()
+                    upload(
+                        mViewModel.uploadToken,
+                        frontUrlpath ?: "",
+                        false,
+                        "$keyPrefix$frontName"
+                    )
+                    upload(
+                        mViewModel.uploadToken,
+                        backUrlpath ?: "",
+                        true,
+                        "$keyPrefix$backtName"
+                    )
+                } else {
+                    Snackbar.make(mDatabind.nextBtn, "请选择身份证正反面图片", Snackbar.LENGTH_SHORT).show()
+                }
+            } else {
+                Snackbar.make(mDatabind.nextBtn, "上传失败，请稍后重试", Snackbar.LENGTH_SHORT).show()
+            }
         }
+
+        mViewModel.getUploadToken()
     }
 
 
@@ -204,6 +229,7 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
     //FixedZone.zone2   华南机房
     //FixedZone.zoneNa0 北美机房
     private fun upload(token: String, path: String, isBack: Boolean, key: String) {
+        "call uplad $isBack   -- $key".loge()
         val startTime = System.currentTimeMillis()
 
 //        //可以自定义zone
@@ -220,14 +246,13 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
             .responseTimeout(90) // 服务器响应超时。默认90秒
 //            .recorder(recorder) // recorder分片上传时，已上传片记录器。默认null
 //            .recorder(recorder, keyGen) // keyGen 分片上传时，生成标识符，用于片记录器区分是那个文件的上传记录
-            .zone(FixedZone.zone0) // 设置区域，不指定会自动选择。指定不同区域的上传域名、备用域名、备用IP。
+            .zone(FixedZone.zone2) // 设置区域，不指定会自动选择。指定不同区域的上传域名、备用域名、备用IP。
             .build()
 
         if (uploadManager == null) {
             uploadManager = UploadManager(config)
         }
 
-        val token = "<从服务端 SDK 获取>"
         uploadManager!!.put(
             path, key, token,
             { key, info, res ->
@@ -238,6 +263,8 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
                     } else {
                         uploadFrontOk = true
                     }
+
+                    "$key \r\n $info \r\n $res".logw()
                     doNext()
                 } else {
                     //如果失败，这里可以把 info 信息上报自己的服务器，便于后面分析上传错误原因
@@ -271,10 +298,21 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
 
     }
 
+    override fun createObserver() {
+        mViewModel.result.observe(this) {
+            if (it == "ok") {
+                nav().navigate(R.id.action_postIdCardFragment_to_postIdUserInfoFragment)
+            } else {
+                Snackbar.make(mDatabind.nextBtn, it, Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun doNext() {
         //如果上传成功
         if (uploadBackOk && uploadFrontOk) {
-            nav().navigate(R.id.action_postIdCardFragment_to_postIdUserInfoFragment)
+            //先把链接保存到服务器
+            mViewModel.saveIdCard(frontName, backtName)
         }
     }
 
@@ -310,11 +348,12 @@ class PostIdCardFragment : BaseFragment<PostIdCardViewModel, FragmentIdCardPhoto
                             if (isBack) {
                                 backUrlpath = urlpath
                                 mDatabind.backImg.setImageURI(imageUri)
+                                backtName = getFileMD5(file) + System.currentTimeMillis() + ".jpeg"
                             } else {
                                 frontUrlpath = urlpath
                                 mDatabind.frontImg.setImageURI(imageUri)
+                                frontName = getFileMD5(file) + System.currentTimeMillis() + ".jpeg"
                             }
-
                         }
                     } else {
 

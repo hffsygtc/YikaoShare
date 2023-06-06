@@ -43,7 +43,9 @@ class SignUpDetailActivity : BaseActivity<SignUpDetailViewModel, ActivitySignUpD
 
 
         mDatabind.enterExamBtn.setOnClickListener {
-            startActivity(Intent(this@SignUpDetailActivity, SignUpCertifyActivity::class.java))
+            val intent = Intent(this@SignUpDetailActivity, SignUpCertifyActivity::class.java)
+            intent.putExtra("orderNum",orderNum)
+            startActivity(intent)
         }
 
 

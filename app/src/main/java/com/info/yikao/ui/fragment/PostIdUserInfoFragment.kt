@@ -179,9 +179,9 @@ class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUs
             parseState(result, {
                 appViewModel.memberData = mViewModel.inputUserInfo
                 appViewModel.memberInfo.value = mViewModel.inputUserInfo
-                if (fromUser) {
-                    activity?.finish()
-                }
+//                if (fromUser) {
+                activity?.finish()
+//                }
             }, {
                 Snackbar.make(mDatabind.nextBtn, it.errorMsg, Snackbar.LENGTH_SHORT).show()
             })

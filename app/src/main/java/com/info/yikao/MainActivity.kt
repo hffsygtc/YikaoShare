@@ -151,6 +151,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             parseState(result, {
                 Constant.imgUrlHead = it.ImgPrefix
                 Constant.PostCerFee = it.PostCerFee
+                Constant.OnLineVideoRequire = it.OnLineVideoRequire
+                Constant.RecordingDuration = it.RecordingDuration
             }, {
 
             })

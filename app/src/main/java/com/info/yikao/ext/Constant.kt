@@ -12,6 +12,9 @@ object Constant {
     var PostCerFee: Float = 0f
     var userToken: String = ""
 
+    var OnLineVideoRequire: String = ""
+    var RecordingDuration: Int = 0
+
 
     const val WX_APP_ID = "wx861541c375ab6f4b"
 }

@@ -3,7 +3,10 @@ package com.info.yikao.ext
 import android.content.Context
 import android.os.Environment
 import java.io.File
+import java.io.FileInputStream
 import java.math.BigDecimal
+import java.security.DigestInputStream
+import java.security.MessageDigest
 
 
 fun sizeOfDirectory(directory: File): Long {
@@ -88,4 +91,26 @@ fun getCacheDir(context: Context): String {
         }
     }
     return context.cacheDir.absolutePath
+}
+
+fun getFileMD5(file: File): String {
+    val digest = MessageDigest.getInstance("MD5")
+    val inputStream1 = FileInputStream(file)
+    val inputStream = DigestInputStream(inputStream1, digest)
+
+    while (inputStream.read() != -1);
+
+    val md5 = digest.digest()
+    return bytesToHex(md5)
+}
+
+fun bytesToHex(bytes: ByteArray): String {
+    val hexArray = "0123456789ABCDEF".toCharArray()
+    val hexChars = CharArray(bytes.size * 2)
+    for (j in bytes.indices) {
+        val v = bytes[j].toInt() and 0xFF
+        hexChars[j * 2] = hexArray[v.ushr(4)]
+        hexChars[j * 2 + 1] = hexArray[v and 0x0F]
+    }
+    return String(hexChars)
 }

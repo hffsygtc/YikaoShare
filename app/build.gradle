@@ -15,8 +15,14 @@ android {
         versionCode 1
         versionName "1.0"
 
+        ndk{
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -124,6 +130,11 @@ dependencies {
     //微信支付
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android:+'
     implementation 'com.alipay.sdk:alipaysdk-android:+@aar'
+
+    //哔站播放器
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
 
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 }

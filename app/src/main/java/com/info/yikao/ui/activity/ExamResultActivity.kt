@@ -1,12 +1,19 @@
 package com.info.yikao.ui.activity
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.os.PowerManager
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.view.SurfaceHolder
 import android.view.View
+import android.view.WindowManager
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
@@ -17,7 +24,19 @@ import com.info.yikao.model.TeacherResultBean
 import com.info.yikao.ui.adapter.ExamTeacherResultAdapter
 import com.info.yikao.viewmodel.ExamResultViewModel
 import com.kingja.loadsir.core.LoadService
+import com.qiniu.qmedia.component.player.QMediaModelBuilder
+import com.qiniu.qmedia.component.player.QPlayerSetting
+import com.qiniu.qmedia.component.player.QURLType
+import com.qiniu.qplayer2ext.commonplayer.CommonPlayer
+import com.qiniu.qplayer2ext.commonplayer.CommonPlayerConfig
+import com.qiniu.qplayer2ext.commonplayer.data.CommonPlayerDataSource
+import com.qiniu.qplayer2ext.commonplayer.data.DisplayOrientation
+import com.qiniu.qplayer2ext.commonplayer.layer.control.ControlPanelConfig
+import com.qiniu.qplayer2ext.commonplayer.layer.control.ControlPanelConfigElement
+import com.qiniu.qplayer2ext.commonplayer.screen.ScreenType
 import me.hgj.jetpackmvvm.ext.parseState
+import tv.danmaku.ijk.media.player.IjkMediaPlayer
+import java.lang.Exception
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -33,9 +52,15 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
 
     private var certNum = ""
 
+    private val player: IjkMediaPlayer by lazy {
+        IjkMediaPlayer()
+    }
+
     override fun layoutId(): Int = R.layout.activity_exam_result
 
     override fun initView(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         mDatabind.titleBackBtn.setOnClickListener {
             finish()
@@ -52,6 +77,7 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
             mDatabind.videoView.visibility = View.VISIBLE
             mDatabind.offlineClassTv.visibility = View.GONE
             mDatabind.offlineClassTvContent.visibility = View.GONE
+            initPlayer()
         } else {
             //不显示视频
             mDatabind.videoView.visibility = View.GONE
@@ -83,6 +109,53 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
         loadsir.showLoading()
         mViewModel.getExamDetail(examNum)
 
+    }
+
+    /**
+     * 初始化播放器
+     */
+    private fun initPlayer() {
+//        mDatabind.videoView.playerControlHandler.apply {
+//            init(this@ExamResultActivity)
+//            setDecodeType(QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO)
+//            setSeekMode(QPlayerSetting.QPlayerSeek.QPLAYER_SEEK_SETTING_NORMAL)
+//            setStartAction(QPlayerSetting.QPlayerStart.QPLAYER_START_SETTING_PLAYING)
+//            setSpeed(1.0f)
+//        }
+//
+//        playVideo("http://rvin5iszh.hn-bkt.clouddn.com/Video/1686036324700")
+//        mDatabind.videoView.setVideoURI(Uri.parse("http://rvin5iszh.hn-bkt.clouddn.com/Video/13412341234-2023051516043002-1686039627069.mp4"))
+//        mDatabind.videoView.start()
+
+        mDatabind.surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
+            override fun surfaceCreated(holder: SurfaceHolder) {
+                player.setDisplay(holder)
+            }
+
+            override fun surfaceChanged(holder: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun surfaceDestroyed(p0: SurfaceHolder) {
+            }
+        })
+
+        try {
+            player.dataSource = "http://rvin5iszh.hn-bkt.clouddn.com/Video/13412341234-2023051516043002-1686039627069.mp4"
+            player.prepareAsync()
+            player.start()
+        } catch (e: Exception) {
+        }
+
+    }
+
+    /**
+     * 播放视频
+     */
+    private fun playVideo(url: String) {
+//        val builder = QMediaModelBuilder()
+//        builder.addElement("", QURLType.QAUDIO_AND_VIDEO, 0, url, true)
+//        var mediaModel = builder.build(false)
+//        mDatabind.videoView.playerControlHandler.playMediaModel(mediaModel, 0)
     }
 
     override fun createObserver() {

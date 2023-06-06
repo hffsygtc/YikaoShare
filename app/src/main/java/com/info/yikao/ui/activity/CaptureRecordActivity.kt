@@ -2,6 +2,7 @@ package com.info.yikao.ui.activity
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -20,6 +21,8 @@ import androidx.core.content.PermissionChecker
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityCaptureRecordBinding
+import com.info.yikao.ext.Constant
+import com.info.yikao.ext.canShow
 import com.info.yikao.ext.getNameString
 import com.info.yikao.ui.fragment.video.CaptureFragment
 import com.info.yikao.viewmodel.VideoRecordViewModel
@@ -43,6 +46,9 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
     private var recordState = 0
 
     private var outVideoPath: Uri? = null
+    private var maxTime = 0f
+
+    private var orderNum = ""
 
     override fun showMajorStatusBar() {
         showTransStatusBar()
@@ -51,8 +57,15 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
     override fun layoutId(): Int = R.layout.activity_capture_record
 
     override fun initView(savedInstanceState: Bundle?) {
+
+        orderNum = intent.getStringExtra("orderNum") ?: ""
         //申请权限
         checkPermission()
+        maxTime = if (Constant.RecordingDuration > 0) {
+            Constant.RecordingDuration * 60.toFloat()
+        } else {
+            360f
+        }
 
         mDatabind.cameraButton.setOnClickListener {
             //切换前后镜头
@@ -77,28 +90,17 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
                 }
                 1 -> {
                     //录制的情况下，点击停止录制
-                    recordState = 2
-                    //如果是在录像情况下，停止录像
-                    if (recording == null || recordingState is VideoRecordEvent.Finalize) {
-                        return@setOnClickListener
-                    }
-
-                    if (recording != null) {
-                        recording?.stop()
-                        recording = null
-                    }
-
-                    mDatabind.captureButton.visibility = View.GONE
-                    mDatabind.processCircle.visibility = View.GONE
-                    mDatabind.recordTimeTv.visibility = View.GONE
-                    mDatabind.redoBtn.visibility = View.VISIBLE
-                    mDatabind.nextBtn.visibility = View.VISIBLE
+                    stopRecord()
                 }
             }
         }
 
         mDatabind.nextBtn.setOnClickListener {
             "to next page $outVideoPath".logw()
+            val intent = Intent(this, UploadVideoActivity::class.java)
+            intent.putExtra("path", outVideoPath.toString())
+            intent.putExtra("orderNum", orderNum)
+            startActivity(intent)
 
         }
 
@@ -123,6 +125,37 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
 
             mDatabind.captureButton.setBackgroundResource(R.mipmap.icon_under_record_vide)
         }
+
+        if (Constant.OnLineVideoRequire.canShow()) {
+            mDatabind.recordNoticeTv.text = Constant.OnLineVideoRequire
+            mDatabind.recordNoticeTv.visibility = View.VISIBLE
+
+            mDatabind.recordNoticeTv.postDelayed({
+                mDatabind.recordNoticeTv.visibility = View.GONE
+            }, 3000)
+        }
+    }
+
+    /**
+     * 停止录制
+     */
+    private fun stopRecord() {
+        recordState = 2
+        //如果是在录像情况下，停止录像
+        if (recording == null || recordingState is VideoRecordEvent.Finalize) {
+            return
+        }
+
+        if (recording != null) {
+            recording?.stop()
+            recording = null
+        }
+
+        mDatabind.captureButton.visibility = View.GONE
+        mDatabind.processCircle.visibility = View.GONE
+        mDatabind.recordTimeTv.visibility = View.GONE
+        mDatabind.redoBtn.visibility = View.VISIBLE
+        mDatabind.nextBtn.visibility = View.VISIBLE
     }
 
     /**
@@ -316,8 +349,12 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
 
                 text.loge()
                 //算进度
-                val percent = time.toFloat() / 6f
+                val percent = time.toFloat() / maxTime
                 mDatabind.processCircle.SetCurrent(percent)
+                if (percent >= 1) {
+                    //如果进度满了，停止录制
+                    stopRecord()
+                }
 
 //                if(event is VideoRecordEvent.Finalize)
 //                    text = "${text}\nFile saved to: ${event.outputResults.outputUri}"

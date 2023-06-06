@@ -301,6 +301,7 @@ interface ApiService {
         @Query("TestCardNo") id: String
     ): ApiResponse<UserCardInfoBean>
 
+
     /**
      * 监考员对考生签到
      */
@@ -309,6 +310,31 @@ interface ApiService {
         @Query("TestCardNo") TestCardNo: String,
         @Query("ExamRoomId") ExamRoomId: Int,
     ): ApiResponse<SignResult>
+
+
+    /**
+     * 获取上传凭证
+     */
+    @GET("api/Member/GetQiniuToken")
+    suspend fun getUploadToken(): ApiResponse<UploadToken>
+
+    /**
+     * 保存考生的身份证图片地址
+     */
+    @POST("/api/Member/AddStudentIdentityCardUrl")
+    suspend fun saveStudentIdCard(
+        @Query("IDCard") front: String,
+        @Query("IDCardBack") back: String,
+    ): ApiResponse<Any?>
+
+    /**
+     * 线上考试--保存考生的视频地址
+     */
+    @POST("/api/Member/AddStudentVideoUrl")
+    suspend fun saveStudentOnlineVideo(
+        @Query("ApplyOrderId") orderNum: String,
+        @Query("videoUrl") url: String,
+    ): ApiResponse<Any?>
 
 
 }

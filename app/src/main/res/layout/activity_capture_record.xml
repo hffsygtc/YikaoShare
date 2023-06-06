@@ -157,5 +157,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/redo_btn" />
 
+        <TextView
+            android:id="@+id/record_notice_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="@dimen/globe_dimen_80"
+            android:layout_marginEnd="@dimen/globe_dimen_80"
+            android:padding="@dimen/globe_dimen_30"
+            android:background="@drawable/white_corner_15"
+            android:gravity="center"
+            android:textSize="@dimen/font_text_size_28"
+            android:textColor="@color/color_333333"
+            tools:text="录制提示"
+            android:visibility="gone"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
