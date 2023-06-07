@@ -1,5 +1,6 @@
 package com.info.yikao.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.info.yikao.R
@@ -75,5 +76,11 @@ class UserExamActivity : BaseActivity<BaseViewModel, ActivityUserExamBinding>() 
             }
         }
 
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        onlineFragment.handleRefresh()
+//        offlineFragment.handleRefresh()
     }
 }

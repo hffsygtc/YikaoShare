@@ -7,6 +7,7 @@
     android:background="@color/color_F5F5F5">
 
     <View
+        android:id="@+id/content_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/globe_dimen_30"
@@ -21,10 +22,16 @@
         android:id="@+id/top_gap"
         android:layout_width="match_parent"
         android:layout_height="@dimen/globe_dimen_30"
-        android:layout_marginTop="@dimen/globe_dimen_30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/globe_dimen_30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content_view" />
 
     <TextView
         android:id="@+id/order_info"

@@ -13,6 +13,8 @@ import com.info.yikao.ext.showLoading
 import com.info.yikao.model.ExamBean
 import com.info.yikao.model.OrderBean
 import com.info.yikao.ui.activity.ExamResultActivity
+import com.info.yikao.ui.activity.SignUpCertifyActivity
+import com.info.yikao.ui.activity.SignUpDetailActivity
 import com.info.yikao.ui.activity.StuExamCardActivity
 import com.info.yikao.ui.adapter.UserExamListAdapter
 import com.info.yikao.viewmodel.UserExamViewModel
@@ -36,7 +38,7 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
     private lateinit var loadsir: LoadService<Any>
 
     private val mAdapter: UserExamListAdapter by lazy {
-        UserExamListAdapter(arrayListOf())
+        UserExamListAdapter(arrayListOf(), online)
     }
 
     //-1 全部 1 通过 0 等待结果 2未通过
@@ -68,18 +70,25 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
 
         mDatabind.recyclerView.init(LinearLayoutManager(context), mAdapter)
 
-
         mAdapter.run {
+            onlineState = online
 
             setOnItemClickListener { adapter, view, position ->
                 //点击了具体的考试，跳转到考试详情，就是可以查看评分的那个页面
                 val examBean = adapter.data[position] as ExamBean
 
-                val intent = Intent(requireActivity(),ExamResultActivity::class.java)
-                intent.putExtra("online",online)
-                intent.putExtra("id",examBean.OrderNum)
-                intent.putExtra("name",examBean.SubjectsName)
+                val intent = Intent(requireActivity(), ExamResultActivity::class.java)
+                intent.putExtra("online", online)
+                intent.putExtra("id", examBean.OrderNum)
+                intent.putExtra("name", examBean.SubjectsName)
                 startActivity(intent)
+
+
+//                //调到对应的报名详情页，线上考试
+//                val intent = Intent(this@UserOrderActivity, SignUpDetailActivity::class.java)
+//                intent.putExtra("id",posData.OrderNum)
+//                startActivity(intent)
+
             }
 
             addChildClickViewIds(
@@ -88,16 +97,24 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
             )
             setOnItemChildClickListener { adapter, view, position ->
                 val examBean = adapter.data[position] as ExamBean
-                when(view.id){
-                    R.id.show_cert_btn->{
+                when (view.id) {
+                    R.id.show_cert_btn -> {
                         //跳转领取证书
 
                     }
-                    R.id.stu_card_btn->{
+                    R.id.stu_card_btn -> {
                         //跳转查看准考证
-                        val intent = Intent(requireActivity(), StuExamCardActivity::class.java)
-                        intent.putExtra("id",examBean.TestCardNo)
-                        startActivity(intent)
+                        if (online) {
+                            //跳转到进入考试
+                            val intent =
+                                Intent(requireActivity(), SignUpCertifyActivity::class.java)
+                            intent.putExtra("orderNum", examBean.OrderNum)
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(requireActivity(), StuExamCardActivity::class.java)
+                            intent.putExtra("id", examBean.TestCardNo)
+                            startActivity(intent)
+                        }
                     }
                 }
 
@@ -106,7 +123,7 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
         }
 
         mDatabind.typeAll.setOnClickListener {
-            if (underSelect != -1){
+            if (underSelect != -1) {
                 resetTabBg()
                 underSelect = -1
                 mDatabind.typeAll.setBackgroundResource(R.drawable.white_corner_10)
@@ -116,7 +133,7 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
         }
 
         mDatabind.typeUnder.setOnClickListener {
-            if (underSelect != 1){
+            if (underSelect != 1) {
                 resetTabBg()
                 underSelect = 1
                 mDatabind.typeUnder.setBackgroundResource(R.drawable.white_corner_10)
@@ -126,7 +143,7 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
         }
 
         mDatabind.typeWait.setOnClickListener {
-            if (underSelect != 0){
+            if (underSelect != 0) {
                 resetTabBg()
                 underSelect = 0
                 mDatabind.typeWait.setBackgroundResource(R.drawable.white_corner_10)
@@ -136,7 +153,7 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
         }
 
         mDatabind.typeFinish.setOnClickListener {
-            if (underSelect != 2){
+            if (underSelect != 2) {
                 resetTabBg()
                 underSelect = 2
                 mDatabind.typeFinish.setBackgroundResource(R.drawable.white_corner_10)
@@ -149,18 +166,18 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
         mViewModel.getListData(true, underSelect, online)
     }
 
-    private fun resetTabBg(){
-        when(underSelect){
-            -1->{
+    private fun resetTabBg() {
+        when (underSelect) {
+            -1 -> {
                 mDatabind.typeAll.setBackgroundResource(R.drawable.f5_corner_10)
             }
-            1->{
+            1 -> {
                 mDatabind.typeUnder.setBackgroundResource(R.drawable.f5_corner_10)
             }
-            0->{
+            0 -> {
                 mDatabind.typeWait.setBackgroundResource(R.drawable.f5_corner_10)
             }
-            2->{
+            2 -> {
                 mDatabind.typeFinish.setBackgroundResource(R.drawable.f5_corner_10)
             }
         }
@@ -171,4 +188,12 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
             loadListData(it, mAdapter, loadsir, mRecycler, mRefresh)
         }
     }
+
+    fun handleRefresh() {
+        if (mRefresh != null && mRecycler != null) {
+            mRefresh.isRefreshing = true
+            mViewModel.getListData(true, underSelect, online)
+        }
+    }
+
 }

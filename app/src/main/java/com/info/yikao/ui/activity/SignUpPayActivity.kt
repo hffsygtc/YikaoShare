@@ -24,7 +24,7 @@ import me.hgj.jetpackmvvm.ext.parseState
 import me.hgj.jetpackmvvm.ext.util.logw
 
 /**
- * 报名支付
+ * 报名支付页面
  */
 class SignUpPayActivity : BaseActivity<SignUpPayViewModel, ActivitySignPayBinding>() {
 
@@ -71,7 +71,6 @@ class SignUpPayActivity : BaseActivity<SignUpPayViewModel, ActivitySignPayBindin
 
         mDatabind.nextBtn.setOnClickListener {
             mViewModel.getPayInfo(id, isWechat)
-
         }
 
 
@@ -94,11 +93,22 @@ class SignUpPayActivity : BaseActivity<SignUpPayViewModel, ActivitySignPayBindin
         }
 
         mViewModel.wxSignInfo.observe(this) {
-            callWxPay(it)
+//            callWxPay(it)
+            //todo 测试支付成功
+            mViewModel.postPayResult(it.OrderNum)
         }
 
         mViewModel.aliSignInfo.observe(this) {
-            callAliPay(it.sign)
+//            callAliPay(it.sign)
+            //测试支付失败
+            Snackbar.make(mDatabind.nextBtn,"未知错误，请前往订单查看支付状态",Snackbar.LENGTH_SHORT).show()
+        }
+
+        mViewModel.syncResult.observe(this){
+            Snackbar.make(mDatabind.nextBtn,"支付完成，请前往订单查看支付状态",Snackbar.LENGTH_SHORT).show()
+            mDatabind.nextBtn.postDelayed({
+                finish()
+            },1500)
         }
     }
 

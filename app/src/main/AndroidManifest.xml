@@ -27,7 +27,6 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
 
 
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -153,6 +152,7 @@
         <activity
             android:name=".ui.activity.UserExamActivity"
             android:exported="false"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.OfflineExamListActivity"

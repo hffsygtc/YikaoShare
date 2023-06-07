@@ -1,5 +1,6 @@
 package com.info.yikao.viewmodel
 
+import com.info.yikao.model.ExamBean
 import com.info.yikao.model.UserDetailInfo
 import com.info.yikao.network.apiService
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
@@ -12,6 +13,8 @@ class UploadVideoViewModel : BaseViewModel() {
     var memberInfo = UnPeekLiveData<ResultState<UserDetailInfo>>()
 
     var token = UnPeekLiveData<String>()
+
+    var orderDetail = UnPeekLiveData<ResultState<ExamBean>>()
 
     fun getUserMemberInfo() {
         request({
@@ -38,6 +41,11 @@ class UploadVideoViewModel : BaseViewModel() {
         })
 
     }
+
+    fun getOrderDetail(id: String) {
+        request({ apiService.getOrderDetail(id) }, orderDetail)
+    }
+
 
 
 }

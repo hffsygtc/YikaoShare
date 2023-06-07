@@ -214,14 +214,22 @@ class OfflineJudgePointActivity :
 
         mAdapter.setOnItemClickListener { adapter, view, position ->
             //点击了项目，跳转到对应的考生评分
-            if (selectPos != 1) {
-                selectPos = 1
-                showTabView()
-            }
+//            if (selectPos != 1) {
+//                selectPos = 1
+//                showTabView()
+//            }
+//
+//            val student = mAdapter.data[position] as StudentBean
+//            //切换当前考生为嗦选中的考生
+//            mViewModel.getStudentGradeInfo(student.TestCardNo)
 
-            val student = mAdapter.data[position] as StudentBean
-            //切换当前考生为嗦选中的考生
-            mViewModel.getStudentGradeInfo(student.TestCardNo)
+            //跳转到线上同一个页面
+
+            val examBean = adapter.data.get(position) as StudentBean
+
+            val intent = Intent(this@OfflineJudgePointActivity, OnlineJudgePointActivity::class.java)
+            intent.putExtra("id",examBean.TestCardNo)
+            startActivity(intent)
         }
 
         mDatabind.refreshBtn.setOnClickListener {

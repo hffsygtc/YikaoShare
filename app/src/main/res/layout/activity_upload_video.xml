@@ -171,7 +171,7 @@
             app:layout_constraintTop_toTopOf="@+id/icon_video"
             tools:text="赵本山 | 中国舞-四级考试2012/4/23.MP4" />
 
-        <com.ycbjie.webviewlib.widget.WebProgress
+        <ProgressBar
             android:id="@+id/progress"
             android:layout_width="0dp"
             android:layout_height="@dimen/globe_dimen_8"
@@ -179,14 +179,16 @@
             app:layout_constraintEnd_toEndOf="@+id/upload_layout"
             app:layout_constraintTop_toBottomOf="@+id/video_name"
             android:layout_marginTop="@dimen/globe_dimen_36"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:background="@color/color_CCCCCC"
+            android:progressDrawable="@drawable/progress_color"
             android:layout_marginStart="@dimen/globe_dimen_30"
             android:layout_marginEnd="@dimen/globe_dimen_30"
             />
 
         <TextView
             android:id="@+id/progress_tv"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/globe_dimen_30"
             android:layout_marginEnd="@dimen/globe_dimen_20"
@@ -202,7 +204,7 @@
 
         <TextView
             android:id="@+id/upload_state"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/globe_dimen_30"
             android:ellipsize="end"

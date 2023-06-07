@@ -2,18 +2,23 @@ package com.info.yikao.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.SurfaceHolder
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.PlaybackException
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.google.android.exoplayer2.util.MimeTypes
+import com.google.android.material.snackbar.Snackbar
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityExamResultBinding
@@ -23,6 +28,7 @@ import com.info.yikao.ui.adapter.ExamTeacherResultAdapter
 import com.info.yikao.viewmodel.ExamResultViewModel
 import com.kingja.loadsir.core.LoadService
 import me.hgj.jetpackmvvm.ext.parseState
+
 
 class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultBinding>() {
     //界面状态管理者
@@ -39,7 +45,20 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
     private var player: ExoPlayer? = null
     private val isPlaying get() = player?.isPlaying ?: false
 
+
+    private var fullBtn: ImageView? = null
+    private var playBtn: ImageView? = null
+    private var progressBar: ProgressBar? = null
+    private var fullScreen = false
+
+    private var oriParams: ConstraintLayout.LayoutParams? = null
+
+
     override fun layoutId(): Int = R.layout.activity_exam_result
+
+    override fun showMajorStatusBar() {
+        showTransStatusBar()
+    }
 
     override fun initView(savedInstanceState: Bundle?) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
@@ -57,10 +76,11 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
 
         if (online) {
             //线上考试，需要显示考生的视频
-            mDatabind.videoView.visibility = View.VISIBLE
+            //默认先不显示视频
+            mDatabind.videoView.visibility = View.GONE
             mDatabind.offlineClassTv.visibility = View.GONE
             mDatabind.offlineClassTvContent.visibility = View.GONE
-            initPlayer()
+//            initPlayer()
         } else {
             //不显示视频
             mDatabind.videoView.visibility = View.GONE
@@ -97,54 +117,111 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
     /**
      * 初始化播放器
      */
-    private fun initPlayer() {
-//        mDatabind.videoView.playerControlHandler.apply {
-//            init(this@ExamResultActivity)
-//            setDecodeType(QPlayerSetting.QPlayerDecoder.QPLAYER_DECODER_SETTING_AUTO)
-//            setSeekMode(QPlayerSetting.QPlayerSeek.QPLAYER_SEEK_SETTING_NORMAL)
-//            setStartAction(QPlayerSetting.QPlayerStart.QPLAYER_START_SETTING_PLAYING)
-//            setSpeed(1.0f)
-//        }
-//
-//        playVideo("http://rvin5iszh.hn-bkt.clouddn.com/Video/1686036324700")
-//        mDatabind.videoView.setVideoURI(Uri.parse("http://rvin5iszh.hn-bkt.clouddn.com/Video/13412341234-2023051516043002-1686039627069.mp4"))
-//        mDatabind.videoView.start()
-
+    private fun initPlayer(url: String) {
         player = ExoPlayer.Builder(this) // <- context
             .build()
 
-// create a media item.
         val mediaItem = MediaItem.Builder()
-            .setUri("http://rvin5iszh.hn-bkt.clouddn.com/Video/13412341234-2023051516043002-1686039627069.mp4")
+            .setUri(url)
             .setMimeType(MimeTypes.APPLICATION_MP4)
             .build()
 
-        // Create a media source and pass the media item
         val mediaSource = ProgressiveMediaSource.Factory(
             DefaultDataSource.Factory(this) // <- context
         )
             .createMediaSource(mediaItem)
 
-        // Finally assign this media source to the player
-        player!!.apply {
-            setMediaSource(mediaSource)
-            playWhenReady = true // start playing when the exoplayer has setup
-            seekTo(0, 0L) // Start from the beginning
-            prepare() // Change the state from idle.
-        }.also {
-            // Do not forget to attach the player to the view
-            mDatabind.videoView.player = it
-            mDatabind.customPlayerController.player = it
-        }
+        progressBar = mDatabind.videoView.findViewById(R.id.load_buffering)
+        fullBtn = mDatabind.videoView.findViewById(R.id.full_btn)
+        playBtn = mDatabind.videoView.findViewById(R.id.play_btn)
 
-        mDatabind.videoView.setOnClickListener {
-            if (mDatabind.customPlayerController.isVisible){
-                mDatabind.customPlayerController.hide()
-            }else{
-                mDatabind.customPlayerController.show()
+        playBtn?.setOnClickListener {
+            if (player!!.isPlaying) {
+                player!!.pause();
+                playBtn?.setBackgroundResource(R.mipmap.icon_play_white)
+            } else {
+                player!!.play();
+                playBtn?.setBackgroundResource(R.mipmap.icon_pause_white)
             }
         }
 
+        player!!.addListener(object : Player.Listener {
+            override fun onPlaybackStateChanged(state: Int) {
+                if (state == Player.STATE_BUFFERING) {
+                    progressBar?.visibility = View.VISIBLE
+                } else {
+                    progressBar?.visibility = View.GONE
+                }
+
+                if (state == Player.STATE_READY && !player!!.isPlaying) {
+                    playBtn?.setBackgroundResource(R.mipmap.icon_play_white);
+                } else if (state == Player.STATE_READY && player!!.isPlaying) {
+                    playBtn?.setBackgroundResource(R.mipmap.icon_pause_white);
+                }
+            }
+
+            override fun onPlayerError(error: PlaybackException) {
+                Snackbar.make(mDatabind.saveCertBook,error.message.toString(), Snackbar.LENGTH_LONG).show()
+            }
+        })
+
+        player!!.apply {
+            setMediaSource(mediaSource)
+            playWhenReady = true
+            seekTo(0, 0L)
+            prepare()
+        }.also {
+            mDatabind.videoView.player = it
+        }
+
+        fullBtn?.setOnClickListener {
+            if (fullScreen) {
+                exitFullscreen()
+            } else {
+                enterFullscreen()
+            }
+        }
+
+    }
+
+
+    private fun enterFullscreen() {
+        // 隐藏系统 UI
+        window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                )
+
+        // 设置 PlayerView 的布局参数        // 设置 PlayerView 的布局参数
+        oriParams = mDatabind.videoView.layoutParams as ConstraintLayout.LayoutParams?
+
+        val params = ConstraintLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        mDatabind.videoView.setLayoutParams(params)
+        // 更新全屏状态
+        fullScreen = true
+    }
+
+    private fun exitFullscreen() {
+        // 显示系统 UI
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+
+        // 还原 PlayerView 的布局参数
+//        val params = ConstraintLayout.LayoutParams(
+//            ViewGroup.LayoutParams.MATCH_PARENT,
+//            ViewGroup.LayoutParams.WRAP_CONTENT
+//        )
+        if (oriParams != null) {
+            mDatabind.videoView.setLayoutParams(oriParams)
+        }
+
+        // 更新全屏状态
+        fullScreen = false
     }
 
     /**
@@ -167,6 +244,16 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
                 mDatabind.majorTvContent.text = it.Detail.SubjectsName
                 mDatabind.timeTvContent.text = it.Detail.TestStart
                 mDatabind.offlineClassTvContent.text = it.Detail.TestClassAddr
+
+                if (online) {
+                    if (it.Detail.OnLineVideoUrl.canShow()) {
+                        //如果有录制的视频，则显示视频并且播放
+                        mDatabind.videoView.visibility = View.VISIBLE
+                        initPlayer(it.Detail.OnLineVideoUrl)
+                    } else {
+                        mDatabind.videoView.visibility = View.GONE
+                    }
+                }
 
                 if (it.Detail.CertificateNo.canShow()) {
                     //有证书领取

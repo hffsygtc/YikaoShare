@@ -15,16 +15,36 @@ class SignUpPayViewModel : BaseViewModel() {
 
     var wxSignInfo: UnPeekLiveData<PayOrderInfo> = UnPeekLiveData()
 
-    var aliSignInfo:  UnPeekLiveData<PayOrderInfo> = UnPeekLiveData()
+    var aliSignInfo: UnPeekLiveData<PayOrderInfo> = UnPeekLiveData()
+
+    var syncResult: UnPeekLiveData<Boolean> = UnPeekLiveData()
 
     /**
      * 获取报名请求支付的订单
      */
-    fun getPayInfo(subjectId:Int,wechat:Boolean){
+    fun getPayInfo(subjectId: Int, wechat: Boolean) {
         //获取对应的支付签名订单
+        val payType = if (wechat) "wechat" else "alipay"
+        request({ apiService.createOrder(subjectId, payType) }, {
+            if (wechat) {
+                wxSignInfo.value = it
+            } else {
+                aliSignInfo.value = it
+            }
+        }, {
 
+        })
     }
 
+
+    /**
+     * 回调支付结果
+     */
+    fun postPayResult(orderNum: String) {
+        request({ apiService.payOrderResult(orderNum) }, {
+            syncResult.value = true
+        }, { syncResult.value = false })
+    }
 
     var memberInfo = UnPeekLiveData<ResultState<UserDetailInfo>>()
 
@@ -34,7 +54,6 @@ class SignUpPayViewModel : BaseViewModel() {
         }, memberInfo)
 
     }
-
 
 
 }

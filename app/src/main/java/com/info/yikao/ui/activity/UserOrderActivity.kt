@@ -67,12 +67,6 @@ class UserOrderActivity : BaseActivity<UserOrderViewModel, ActivitySingleListBin
 
                 //todo 跳转到准考证
 //                startActivity(Intent(this@UserOrderActivity, StuExamCardActivity::class.java))
-
-                //调到对应的报名详情页
-                val intent = Intent(this@UserOrderActivity, SignUpDetailActivity::class.java)
-                intent.putExtra("id",posData.OrderNum)
-                startActivity(intent)
-
             }
 
             addChildClickViewIds(

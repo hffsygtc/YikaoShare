@@ -18,6 +18,9 @@ class PostIdInfoViewModel : BaseViewModel() {
 
     var memberInfo = UnPeekLiveData<ResultState<UserDetailInfo>>()
 
+    var uploadToken = ""
+
+
     fun postMemberInfo() {
 //        val postBean = PostMemberInfo(inputUserInfo)
         request({
@@ -30,5 +33,13 @@ class PostIdInfoViewModel : BaseViewModel() {
             apiService.getMemberInfo()
         }, memberInfo)
     }
+
+
+    fun getUploadToken() {
+        request({ apiService.getUploadToken() }, {
+            uploadToken = it.QiniuToken
+        }, {})
+    }
+
 
 }

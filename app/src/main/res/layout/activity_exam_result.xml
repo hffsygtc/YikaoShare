@@ -15,13 +15,21 @@
         tools:context=".MainActivity">
 
         <View
+            android:id="@+id/status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/globe_dimen_60"
+            android:background="@color/color_FFFFFF"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <View
             android:id="@+id/title_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/globe_dimen_84"
             android:background="@color/color_FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/status_bar" />
 
         <ImageView
             android:layout_width="@dimen/globe_dimen_42"
@@ -89,8 +97,8 @@
             android:layout_marginTop="@dimen/globe_dimen_20"
             android:layout_marginEnd="@dimen/globe_dimen_30"
             android:background="@drawable/white_corner_15"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/info_tail"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_info_title" />
 
@@ -99,10 +107,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="考生姓名："
             android:textColor="@color/color_999999"
             android:textSize="@dimen/font_text_size_26"
-            android:text="考生姓名："
-            android:layout_marginTop="@dimen/globe_dimen_30"
             app:layout_constraintStart_toStartOf="@+id/info_layout"
             app:layout_constraintTop_toBottomOf="@+id/user_info_title" />
 
@@ -112,8 +120,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_text_size_26"
-            app:layout_constraintStart_toEndOf="@+id/name_tv"
             app:layout_constraintBottom_toBottomOf="@+id/name_tv"
+            app:layout_constraintStart_toEndOf="@+id/name_tv"
             app:layout_constraintTop_toTopOf="@+id/name_tv" />
 
 
@@ -122,10 +130,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="身份证号："
             android:textColor="@color/color_999999"
             android:textSize="@dimen/font_text_size_26"
-            android:text="身份证号："
-            android:layout_marginTop="@dimen/globe_dimen_30"
             app:layout_constraintStart_toStartOf="@+id/info_layout"
             app:layout_constraintTop_toBottomOf="@+id/name_tv" />
 
@@ -135,8 +143,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_text_size_26"
-            app:layout_constraintStart_toEndOf="@+id/id_card_tv"
             app:layout_constraintBottom_toBottomOf="@+id/id_card_tv"
+            app:layout_constraintStart_toEndOf="@+id/id_card_tv"
             app:layout_constraintTop_toTopOf="@+id/id_card_tv" />
 
         <TextView
@@ -144,10 +152,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="考试科目："
             android:textColor="@color/color_999999"
             android:textSize="@dimen/font_text_size_26"
-            android:text="考试科目："
-            android:layout_marginTop="@dimen/globe_dimen_30"
             app:layout_constraintStart_toStartOf="@+id/info_layout"
             app:layout_constraintTop_toBottomOf="@+id/id_card_tv" />
 
@@ -157,8 +165,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_text_size_26"
-            app:layout_constraintStart_toEndOf="@+id/major_tv"
             app:layout_constraintBottom_toBottomOf="@+id/major_tv"
+            app:layout_constraintStart_toEndOf="@+id/major_tv"
             app:layout_constraintTop_toTopOf="@+id/major_tv" />
 
         <TextView
@@ -166,10 +174,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="考试时间："
             android:textColor="@color/color_999999"
             android:textSize="@dimen/font_text_size_26"
-            android:text="考试时间："
-            android:layout_marginTop="@dimen/globe_dimen_30"
             app:layout_constraintStart_toStartOf="@+id/info_layout"
             app:layout_constraintTop_toBottomOf="@+id/major_tv" />
 
@@ -179,8 +187,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_text_size_26"
-            app:layout_constraintStart_toEndOf="@+id/time_tv"
             app:layout_constraintBottom_toBottomOf="@+id/time_tv"
+            app:layout_constraintStart_toEndOf="@+id/time_tv"
             app:layout_constraintTop_toTopOf="@+id/time_tv" />
 
         <TextView
@@ -188,11 +196,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/globe_dimen_30"
-            android:textColor="@color/color_999999"
-            android:visibility="gone"
-            android:textSize="@dimen/font_text_size_26"
-            android:text="考场信息："
             android:layout_marginTop="@dimen/globe_dimen_30"
+            android:text="考场信息："
+            android:textColor="@color/color_999999"
+            android:textSize="@dimen/font_text_size_26"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/info_layout"
             app:layout_constraintTop_toBottomOf="@+id/time_tv" />
 
@@ -203,8 +211,8 @@
             android:textColor="@color/color_333333"
             android:textSize="@dimen/font_text_size_26"
             android:visibility="gone"
-            app:layout_constraintStart_toEndOf="@+id/offline_class_tv"
             app:layout_constraintBottom_toBottomOf="@+id/offline_class_tv"
+            app:layout_constraintStart_toEndOf="@+id/offline_class_tv"
             app:layout_constraintTop_toTopOf="@+id/offline_class_tv" />
 
         <View
@@ -219,25 +227,17 @@
             android:id="@+id/video_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/info_layout"
             android:layout_marginStart="@dimen/globe_dimen_30"
-            android:layout_marginEnd="@dimen/globe_dimen_30"
-            app:layout_constraintDimensionRatio="16:9"
             android:layout_marginTop="@dimen/globe_dimen_30"
-            android:background="@color/color_CCCCCC"
-            app:use_controller="false"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:background="@color/black"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/info_layout"
+            app:controller_layout_id="@layout/custom_player_control_view"
             />
 
-        <com.google.android.exoplayer2.ui.PlayerControlView
-            android:id="@+id/custom_player_controller"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/video_view"
-            app:layout_constraintEnd_toEndOf="@+id/video_view"
-            app:layout_constraintBottom_toBottomOf="@+id/video_view"
-            app:controller_layout_id="@layout/custom_player_control_view" />
 
         <TextView
             android:id="@+id/teacher_tv"
@@ -255,16 +255,15 @@
             android:id="@+id/teacher_result_rv"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/teacher_tv"
-            app:layout_constraintBottom_toTopOf="@+id/save_cert_book"
             android:layout_marginStart="@dimen/globe_dimen_30"
+            android:layout_marginTop="@dimen/globe_dimen_20"
             android:layout_marginEnd="@dimen/globe_dimen_30"
             android:layout_marginBottom="@dimen/globe_dimen_20"
-            android:layout_marginTop="@dimen/globe_dimen_20"
             android:background="@drawable/white_corner_15"
-            />
+            app:layout_constraintBottom_toTopOf="@+id/save_cert_book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teacher_tv" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

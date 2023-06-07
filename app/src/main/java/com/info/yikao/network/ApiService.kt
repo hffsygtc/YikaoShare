@@ -332,9 +332,28 @@ interface ApiService {
      */
     @POST("/api/Member/AddStudentVideoUrl")
     suspend fun saveStudentOnlineVideo(
-        @Query("ApplyOrderId") orderNum: String,
+        @Query("OrderNum") orderNum: String,
         @Query("videoUrl") url: String,
     ): ApiResponse<Any?>
+
+    /**
+     * 创建订单
+     */
+    @POST("/api/Member/CreateOrder")
+    suspend fun createOrder(
+        @Query("SubjectsId") orderNum: Int,
+        @Query("PayType") PayType: String,
+    ): ApiResponse<PayOrderInfo>
+
+    /**
+     * 支付订单
+     */
+    @POST("/api/Member/ToPayOrder")
+    suspend fun payOrderResult(
+        @Query("OrderNum") orderNum: String,
+    ): ApiResponse<Any?>
+
+
 
 
 }

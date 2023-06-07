@@ -17,7 +17,7 @@ import com.info.yikao.ext.getGlideRequestOptions
 import com.info.yikao.ext.setAdapterAnimation
 import com.info.yikao.model.ExamBean
 
-class UserExamListAdapter(data: MutableList<ExamBean>?) :
+class UserExamListAdapter(data: MutableList<ExamBean>?,var onlineState:Boolean) :
     BaseDelegateMultiAdapter<ExamBean, BaseViewHolder>(data) {
 
     init {
@@ -82,13 +82,23 @@ class UserExamListAdapter(data: MutableList<ExamBean>?) :
             bottomGroup.visibility = View.GONE
         }
 
-        if (item.TestCardNo.canShow()) {
-            stuCardBtn.visibility = View.VISIBLE
-        } else {
-            stuCardBtn.visibility = View.GONE
+        if (onlineState){
+            //线上考试，显示进入考试
+            stuCardBtn.text = "进入考试"
+            if (!item.OnLineVideoUrl.canShow()) {
+                stuCardBtn.visibility = View.VISIBLE
+            } else {
+                stuCardBtn.visibility = View.GONE
+            }
+        }else{
+            //线下考试，显示准考证
+            stuCardBtn.text = "准考证"
+            if (item.TestCardNo.canShow()) {
+                stuCardBtn.visibility = View.VISIBLE
+            } else {
+                stuCardBtn.visibility = View.GONE
+            }
         }
-
-
     }
 
 

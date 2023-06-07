@@ -1,5 +1,6 @@
 package com.info.yikao.ui.activity
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -7,6 +8,7 @@ import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityUploadVideoBinding
 import com.info.yikao.ext.canShow
+import com.info.yikao.ext.getFeatureTime
 import com.info.yikao.viewmodel.UploadVideoViewModel
 import com.qiniu.android.common.FixedZone
 import com.qiniu.android.storage.Configuration
@@ -42,6 +44,7 @@ class UploadVideoActivity : BaseActivity<UploadVideoViewModel, ActivityUploadVid
 
         mViewModel.getUploadToken()
         mViewModel.getUserMemberInfo()
+        mViewModel.getOrderDetail(orderNum)
 
         mDatabind.nextBtn.setOnClickListener {
             if (videoName.canShow() && uploadToken.canShow()) {
@@ -49,6 +52,10 @@ class UploadVideoActivity : BaseActivity<UploadVideoViewModel, ActivityUploadVid
             } else {
                 Snackbar.make(mDatabind.nextBtn, "获取凭证失败，稍后重试", Snackbar.LENGTH_SHORT).show()
             }
+        }
+
+        mDatabind.reRecordBtn.setOnClickListener {
+            finish()
         }
     }
 
@@ -88,17 +95,23 @@ class UploadVideoActivity : BaseActivity<UploadVideoViewModel, ActivityUploadVid
                 //res 包含 hash、key 等信息，具体字段取决于上传策略的设置
                 if (info.isOK()) {
                     "$key \r\n $info \r\n $res".logw()
+                    mDatabind.uploadState.text = "上传成功"
                     mViewModel.saveVideo(orderNum, videoName)
-
                 } else {
                     //如果失败，这里可以把 info 信息上报自己的服务器，便于后面分析上传错误原因
                     Snackbar.make(mDatabind.nextBtn, "图片视频失败，请重试", Snackbar.LENGTH_SHORT).show()
+                    mDatabind.uploadState.text = "上传失败"
                 }
                 "$key \r\n $info \r\n $res".logw()
             }, UploadOptions(null, null, false, object : UpProgressHandler {
                 override fun progress(key: String?, percent: Double) {
-                    "上传进度 $key---$percent".logw()
-                    mDatabind.progress.setProgress((percent * 100).toInt())
+                    val process = (percent * 100).toInt()
+                    "上传进度 $percent   $process".logw()
+                    mDatabind.progressTv.text = "$process%"
+                    mDatabind.progress.setProgress(process, true)
+                    if (process < 100) {
+                        mDatabind.uploadState.text = "上传中.."
+                    }
                 }
             }) {
                 //取消上传，通过返回参数，需要一个全局变量控制
@@ -144,10 +157,34 @@ class UploadVideoActivity : BaseActivity<UploadVideoViewModel, ActivityUploadVid
             })
         }
 
+        mViewModel.orderDetail.observe(this) { result ->
+            parseState(result, {
+                mDatabind.videoName.text = "${it.RealName} | ${it.SubjectsName} ${
+                    System.currentTimeMillis().getFeatureTime()
+                } .mp4"
+            }, {})
+
+        }
+
         mViewModel.token.observe(this) {
             //获取到token，开始上传
             uploadToken = it
 
+        }
+
+        mViewModel.result.observe(this) {
+            if (it == "ok") {
+                //保存成功
+                Snackbar.make(mDatabind.nextBtn, "上传成功", Snackbar.LENGTH_SHORT).show()
+
+                mDatabind.nextBtn.postDelayed({
+                    val intent = Intent(this@UploadVideoActivity, UserExamActivity::class.java)
+                    startActivity(intent)
+                }, 1500)
+            } else {
+                //保存失败
+                Snackbar.make(mDatabind.nextBtn, it, Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
 

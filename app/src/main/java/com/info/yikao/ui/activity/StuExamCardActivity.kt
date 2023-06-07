@@ -42,6 +42,10 @@ class StuExamCardActivity : BaseActivity<StudentExamCardViewModel, ActivityUserE
 
     override fun initView(savedInstanceState: Bundle?) {
 
+        mDatabind.titleBackBtn.setOnClickListener {
+            finish()
+        }
+
         cardNum = intent.getStringExtra("id") ?: ""
 
         //状态页配置
