@@ -100,13 +100,13 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
         mDatabind.teacherResultRv.init(LinearLayoutManager(this@ExamResultActivity), mAdapter)
 
         mDatabind.saveCertBook.setOnClickListener {
-//            if (certNum.canShow()) {
-//                //有证书ID才跳转
-//            }
-            val intent = Intent(this@ExamResultActivity, CertiDetailActivity::class.java)
-            intent.putExtra("id", examNum)
-            intent.putExtra("name", examName)
-            startActivity(intent)
+            if (certNum.canShow()) {
+                //有证书ID才跳转
+                val intent = Intent(this@ExamResultActivity, CertiDetailActivity::class.java)
+                intent.putExtra("id", examNum)
+                intent.putExtra("name", examName)
+                startActivity(intent)
+            }
         }
 
         loadsir.showLoading()

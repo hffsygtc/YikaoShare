@@ -12,10 +12,7 @@ import com.info.yikao.ext.loadServiceInit
 import com.info.yikao.ext.showLoading
 import com.info.yikao.model.ExamBean
 import com.info.yikao.model.OrderBean
-import com.info.yikao.ui.activity.ExamResultActivity
-import com.info.yikao.ui.activity.SignUpCertifyActivity
-import com.info.yikao.ui.activity.SignUpDetailActivity
-import com.info.yikao.ui.activity.StuExamCardActivity
+import com.info.yikao.ui.activity.*
 import com.info.yikao.ui.adapter.UserExamListAdapter
 import com.info.yikao.viewmodel.UserExamViewModel
 import com.kingja.loadsir.core.LoadService
@@ -100,6 +97,10 @@ class UserExamListFragment : BaseFragment<UserExamViewModel, FragmentUserExamsBi
                 when (view.id) {
                     R.id.show_cert_btn -> {
                         //跳转领取证书
+                        val intent = Intent(requireActivity(), CertiDetailActivity::class.java)
+                        intent.putExtra("id", examBean.OrderNum)
+                        intent.putExtra("name", examBean.SubjectsName)
+                        startActivity(intent)
 
                     }
                     R.id.stu_card_btn -> {

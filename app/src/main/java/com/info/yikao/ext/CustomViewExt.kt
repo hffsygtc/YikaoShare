@@ -148,7 +148,8 @@ fun getGlideRequestOptions(type: Int, corner: Float = 0f): RequestOptions {
                 .placeholder(R.mipmap.default_show_img)
                 .transform(
                     MultiTransformation(
-                        CircleCrop()
+                        CenterCrop(),
+                        RoundedCorners(2f.px())
                     )
                 )
         Constant.GLIDE_OPTIONS_NEWS ->
@@ -156,7 +157,8 @@ fun getGlideRequestOptions(type: Int, corner: Float = 0f): RequestOptions {
                 .placeholder(R.mipmap.default_news_img)
                 .transform(
                     MultiTransformation(
-                        CircleCrop()
+                        CenterCrop(),
+                        RoundedCorners(2f.px())
                     )
                 )
         else -> RequestOptions()
@@ -185,7 +187,6 @@ fun BottomNavigationViewEx.interceptLongClick(vararg ids: Int) {
             }
     }
 }
-
 
 
 fun TextView.showResultContent(content: String) {
