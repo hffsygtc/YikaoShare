@@ -255,7 +255,7 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
                 .also { it.setSurfaceProvider(mDatabind.previewView.surfaceProvider) } // preview 作为 usecase
             imageCapture = ImageCapture.Builder().build()
             val recorder =
-                Recorder.Builder().setQualitySelector(QualitySelector.from(Quality.HIGHEST)).build()
+                Recorder.Builder().setQualitySelector(QualitySelector.from(Quality.HD)).build()
             videoCapture = VideoCapture.withOutput(recorder)
 
             val cameraSelector = if (isBack) {
