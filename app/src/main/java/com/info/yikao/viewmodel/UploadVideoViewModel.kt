@@ -1,5 +1,6 @@
 package com.info.yikao.viewmodel
 
+import com.info.yikao.ext.Constant
 import com.info.yikao.model.ExamBean
 import com.info.yikao.model.UserDetailInfo
 import com.info.yikao.network.apiService
@@ -33,7 +34,8 @@ class UploadVideoViewModel : BaseViewModel() {
 
 
     fun saveVideo(orderNum: String, path: String) {
-        val frontUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Video/$path"
+//        val frontUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Video/$path"
+        val frontUrl = "${Constant.imgUrlHead}/Video/$path"
         request({ apiService.saveStudentOnlineVideo(orderNum, frontUrl) }, {
             result.value = "ok"
         }, {

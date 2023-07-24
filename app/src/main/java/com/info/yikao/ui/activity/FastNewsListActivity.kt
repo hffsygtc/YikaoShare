@@ -38,6 +38,10 @@ class FastNewsListActivity : BaseActivity<FastNewsListViewModel, ActivitySingleL
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.titleTv.text = "艺考头条"
 
+        mDatabind.titleBackBtn.setOnClickListener {
+            finish()
+        }
+
         //状态页配置
         loadsir = loadServiceInit(mRefresh) {
             //点击重试时触发操作

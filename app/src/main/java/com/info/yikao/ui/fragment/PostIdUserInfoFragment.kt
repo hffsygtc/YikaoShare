@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken
 import com.info.yikao.R
 import com.info.yikao.base.BaseFragment
 import com.info.yikao.databinding.FragmentInputUserInfoBinding
+import com.info.yikao.ext.Constant
 import com.info.yikao.ext.canShow
 import com.info.yikao.ext.getFileMD5
 import com.info.yikao.ext.isIDNumber
@@ -360,7 +361,8 @@ class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUs
 
                     "$key \r\n $info \r\n $res".logw()
 
-                    val frontUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Student/$frontName"
+//                    val frontUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Student/$frontName"
+                    val frontUrl = "${Constant.imgUrlHead}/Student/$frontName"
 
                     mViewModel.inputUserInfo.StuImg1 = frontUrl
                     mDatabind.userSmallHeadTv.showContent("已上传")

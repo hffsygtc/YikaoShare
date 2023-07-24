@@ -2,6 +2,7 @@ package com.info.yikao.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -113,7 +114,7 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
                         //新闻快讯类
                         val intent = Intent(requireActivity(), FastNewsDetailActivity::class.java)
                         intent.putExtra("article_id", wrapper.newsBean?.ArticleId)
-                        startActivity(Intent(requireActivity(), FastNewsDetailActivity::class.java))
+                        startActivity(intent)
                     }
                     2 -> {
                         //艺考报名
@@ -197,9 +198,17 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentMainHomeBinding>() {
                     setOnPageClickListener { index ->
                         val clickItem = bannerItems.getOrNull(index)
                         if (clickItem?.GoUrl.canShow()) {
-                            val intent = Intent(requireActivity(), WebviewActivity::class.java)
-                            intent.putExtra("url", clickItem?.GoUrl)
-                            startActivity(intent)
+                            //目前仅支持跳转公告详情 /Article/1
+                            val typeAndId = clickItem!!.GoUrl.split("/")
+                            if (typeAndId !=null && typeAndId.size == 3){
+                                val id = typeAndId[2].toInt()
+                                val intent = Intent(requireActivity(), FastNewsDetailActivity::class.java)
+                                intent.putExtra("article_id",id)
+                                startActivity(intent)
+                            }
+//                            val intent = Intent(requireActivity(), WebviewActivity::class.java)
+//                            intent.putExtra("url", clickItem?.GoUrl)
+//                            startActivity(intent)
                         }
                     }
                     create(bannerItems)

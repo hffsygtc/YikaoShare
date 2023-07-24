@@ -1,5 +1,6 @@
 package com.info.yikao.viewmodel
 
+import com.info.yikao.ext.Constant
 import com.info.yikao.model.CertificateBean
 import com.info.yikao.network.apiService
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
@@ -22,8 +23,10 @@ class PostIdCardViewModel : BaseViewModel() {
     }
 
     fun saveIdCard(front: String, back: String) {
-        val frontUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Student/$front"
-        val backUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Student/$back"
+//        val frontUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Student/$front"
+        val frontUrl = "${Constant.imgUrlHead}/Student/$front"
+//        val backUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Student/$back"
+        val backUrl = "${Constant.imgUrlHead}/Student/$back"
         request({ apiService.saveStudentIdCard(frontUrl, backUrl) }, {
             result.value = "ok"
         }, {

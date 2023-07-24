@@ -10,7 +10,8 @@ import retrofit2.http.Query
 interface ApiService {
 
     companion object {
-        const val SERVER_URL = "http://47.108.152.207:8088"
+//        const val SERVER_URL = "http://47.108.152.207:8088"
+        const val SERVER_URL = "http://api.yiqibang8.com"
     }
 
     /**

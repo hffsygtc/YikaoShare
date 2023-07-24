@@ -226,6 +226,7 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
             .permissions(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.CAMERA,
             )
             .onExplainRequestReason { scope, deniedList ->
                 val message = "上传本地图片需要您同意获取读取权限才能正常使用"
