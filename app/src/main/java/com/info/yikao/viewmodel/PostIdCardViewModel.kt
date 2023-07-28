@@ -24,9 +24,11 @@ class PostIdCardViewModel : BaseViewModel() {
 
     fun saveIdCard(front: String, back: String) {
 //        val frontUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Student/$front"
-        val frontUrl = "${Constant.imgUrlHead}/Student/$front"
+//        val frontUrl = "${Constant.imgUrlHead}/Student/$front"
+        val frontUrl = "/Student/$front"
 //        val backUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Student/$back"
-        val backUrl = "${Constant.imgUrlHead}/Student/$back"
+//        val backUrl = "${Constant.imgUrlHead}/Student/$back"
+        val backUrl = "/Student/$back"
         request({ apiService.saveStudentIdCard(frontUrl, backUrl) }, {
             result.value = "ok"
         }, {

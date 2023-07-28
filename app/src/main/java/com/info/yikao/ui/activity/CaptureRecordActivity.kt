@@ -27,10 +27,12 @@ import com.info.yikao.ext.getNameString
 import com.info.yikao.ui.fragment.video.CaptureFragment
 import com.info.yikao.viewmodel.VideoRecordViewModel
 import com.permissionx.guolindev.PermissionX
+import com.tencent.smtt.utils.Base64.encodeToString
 import me.hgj.jetpackmvvm.ext.util.loge
 import me.hgj.jetpackmvvm.ext.util.logw
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.Executors
 
 class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCaptureRecordBinding>() {
 
@@ -272,12 +274,31 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
                     preview,
                     videoCapture
                 ) // Bind use cases to camera: 把 cameraSelector 和 preview 绑定
+
+                //添加视频截图的资源
+//                cameraExecutor = Executors.newSingleThreadExecutor()
+//                cameraExecutor.execute {
+//                    while (true) {
+//                        // Capture a frame every 1 second and convert to Base64
+//                        val bitmap = mDatabind.previewView.bitmap
+//                        val base64Image = convertBitmapToBase64(bitmap)
+//                        // Handle or send the base64Image as needed
+//                        Thread.sleep(1000)
+//                    }
+//                }
             } catch (exc: Exception) {
                 // 有多种原因可能会导致此代码失败，例如应用不再获得焦点。在此记录日志。
             }
         }, ContextCompat.getMainExecutor(this))
     }
 
+
+//    private fun convertBitmapToBase64(bitmap: Bitmap): String {
+//        val outputStream = ByteArrayOutputStream()
+//        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+//        val byteArray = outputStream.toByteArray()
+//        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+//    }
 
     private fun captureVideo() {
 

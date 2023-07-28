@@ -250,7 +250,7 @@ class ExamResultActivity : BaseActivity<ExamResultViewModel, ActivityExamResultB
                     if (it.Detail.OnLineVideoUrl.canShow()) {
                         //如果有录制的视频，则显示视频并且播放
                         mDatabind.videoView.visibility = View.VISIBLE
-                        initPlayer(it.Detail.OnLineVideoUrl)
+                        initPlayer(Constant.imgUrlHead+it.Detail.OnLineVideoUrl)
                     } else {
                         mDatabind.videoView.visibility = View.GONE
                     }

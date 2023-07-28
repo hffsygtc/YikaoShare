@@ -295,7 +295,7 @@ class OnlineJudgePointActivity :
                 if (it.OnLineVideoUrl.canShow()){
                     //有线上视频
                     mDatabind.videoView.visibility = View.VISIBLE
-                    initPlayer(it.OnLineVideoUrl)
+                    initPlayer(Constant.imgUrlHead+it.OnLineVideoUrl)
                 }else{
                     mDatabind.videoView.visibility = View.GONE
                 }

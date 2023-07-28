@@ -35,7 +35,8 @@ class UploadVideoViewModel : BaseViewModel() {
 
     fun saveVideo(orderNum: String, path: String) {
 //        val frontUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Video/$path"
-        val frontUrl = "${Constant.imgUrlHead}/Video/$path"
+//        val frontUrl = "${Constant.imgUrlHead}/Video/$path"
+        val frontUrl = "/Video/$path"
         request({ apiService.saveStudentOnlineVideo(orderNum, frontUrl) }, {
             result.value = "ok"
         }, {

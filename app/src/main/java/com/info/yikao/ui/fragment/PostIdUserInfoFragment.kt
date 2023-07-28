@@ -362,7 +362,8 @@ class PostIdUserInfoFragment : BaseFragment<PostIdInfoViewModel, FragmentInputUs
                     "$key \r\n $info \r\n $res".logw()
 
 //                    val frontUrl = "http://rvin5iszh.hn-bkt.clouddn.com/Student/$frontName"
-                    val frontUrl = "${Constant.imgUrlHead}/Student/$frontName"
+//                    val frontUrl = "${Constant.imgUrlHead}/Student/$frontName"
+                    val frontUrl = "/Student/$frontName"
 
                     mViewModel.inputUserInfo.StuImg1 = frontUrl
                     mDatabind.userSmallHeadTv.showContent("已上传")
