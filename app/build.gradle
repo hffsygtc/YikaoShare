@@ -148,4 +148,9 @@ dependencies {
 //    implementation 'androidx.media3:media3-exoplayer:1.0.2'
 
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+    implementation("com.aliyun:facebody20191230:3.0.8"){
+        exclude group: 'xml-apis', module: 'xml-apis'
+        exclude group: 'dom4j', module: 'dom4j'
+    }
 }
