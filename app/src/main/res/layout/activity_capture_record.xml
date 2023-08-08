@@ -193,5 +193,33 @@
             android:visibility="gone"
             />
 
+        <ImageView
+            android:id="@+id/count_gif"
+            android:layout_width="@dimen/globe_dimen_200"
+            android:layout_height="@dimen/globe_dimen_200"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            />
+
+
+        <TextView
+            android:id="@+id/no_people_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="视频中未检测到考生，多次判定为作弊！"
+            android:textSize="@dimen/font_text_size_30"
+            android:layout_marginStart="@dimen/font_text_size_30"
+            android:layout_marginEnd="@dimen/globe_dimen_30"
+            android:textColor="#ff0000"
+            android:visibility="gone"
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

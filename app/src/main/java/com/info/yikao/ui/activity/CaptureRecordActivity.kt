@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.res.AssetFileDescriptor
 import android.database.Cursor
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
@@ -21,6 +22,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.*
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat
 import com.aliyun.common.Common
 import com.aliyun.facebody20191230.Client
 import com.aliyun.facebody20191230.models.DetectBodyCountAdvanceRequest
@@ -28,6 +30,12 @@ import com.aliyun.ossutil.models.RuntimeOptions
 import com.aliyun.tea.TeaException
 import com.aliyun.tea.TeaModel
 import com.aliyun.teaopenapi.models.Config
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.gif.GifDrawable
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.info.yikao.R
 import com.info.yikao.base.BaseActivity
 import com.info.yikao.databinding.ActivityCaptureRecordBinding
@@ -70,10 +78,14 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
     private var mediaPlayer: MediaPlayer? = null
     private val audioPlayer: AudioPlayer by lazy { AudioPlayer(this) }
     private var underRecord = false //是否开始录制是否，如果在录制视频，则开始分析人脸
-    private var emptyPersonCount = 0
-    private var returnOkCount = 0
-    private var errorNoticeCount = 0
+//    private var emptyPersonCount = 0
+//    private var returnOkCount = 0
+//    private var errorNoticeCount = 0
     private var autoStopRecord = false
+
+    private var lastHasPeople = true //默认上一帧有人
+
+    private var gifDrawable: GifDrawable? = null
 
     override fun showMajorStatusBar() {
         showTransStatusBar()
@@ -102,18 +114,25 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
             when (recordState) {
                 0 -> {
                     //当前还未开始录制，点击了开始录制
-                    recordState = 1
-                    //录制的时候右上角的切换镜头隐藏
-                    mDatabind.cameraButton.visibility = View.GONE
-                    mDatabind.cameraIcon.visibility = View.GONE
-                    mDatabind.recordTimeTv.visibility = View.VISIBLE
-                    mDatabind.recordTimeTv.text = "0秒"
-                    underRecord = true
-                    mDatabind.recordStateBg.setBackgroundResource(R.drawable.record_normal_stroke)
-                    mDatabind.recordStateBg.visibility = View.VISIBLE
-                    //开始录像
-                    captureVideo()
-                    mDatabind.captureButton.setBackgroundResource(R.mipmap.icon_under_record_vide)
+
+                    //播放倒计时gif
+                    gifDrawable?.setLoopCount(1)
+                    gifDrawable?.registerAnimationCallback(object :
+                        Animatable2Compat.AnimationCallback() {
+                        override fun onAnimationStart(drawable: Drawable?) {
+                            super.onAnimationStart(drawable)
+                        }
+
+                        override fun onAnimationEnd(drawable: Drawable?) {
+                            super.onAnimationEnd(drawable)
+                            mDatabind.countGif.visibility = View.GONE
+                            gifDrawable?.unregisterAnimationCallback(this)
+
+                            startRecord()
+                        }
+                    })
+                    mDatabind.countGif.visibility = View.VISIBLE
+                    gifDrawable?.start()
                 }
                 1 -> {
                     //录制的情况下，点击停止录制
@@ -161,6 +180,48 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
                 mDatabind.recordNoticeTv.visibility = View.GONE
             }, 3000)
         }
+
+
+        Glide.with(this).asGif().load(R.mipmap.start_record_gif)
+            .addListener(object : RequestListener<GifDrawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<GifDrawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    return true
+                }
+
+                override fun onResourceReady(
+                    resource: GifDrawable,
+                    model: Any?,
+                    target: Target<GifDrawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    gifDrawable = resource
+                    resource.setLoopCount(1)
+                    return false
+                }
+
+            }).into(mDatabind.countGif)
+    }
+
+    private fun startRecord() {
+        lastHasPeople = true
+        recordState = 1
+        //录制的时候右上角的切换镜头隐藏
+        mDatabind.cameraButton.visibility = View.GONE
+        mDatabind.cameraIcon.visibility = View.GONE
+        mDatabind.recordTimeTv.visibility = View.VISIBLE
+        mDatabind.recordTimeTv.text = "0秒"
+        underRecord = true
+        mDatabind.recordStateBg.setBackgroundResource(R.drawable.record_normal_stroke)
+        mDatabind.recordStateBg.visibility = View.VISIBLE
+        //开始录像
+        captureVideo()
+        mDatabind.captureButton.setBackgroundResource(R.mipmap.icon_under_record_vide)
     }
 
     /**
@@ -318,7 +379,7 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
                             }
 //                        val base64Image = convertBitmapToBase64(bitmap)
                             // Handle or send the base64Image as needed
-                            Thread.sleep(1000)
+                            Thread.sleep(3000)
                         }
                     }
                 }
@@ -367,62 +428,80 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
                 val tMap = TeaModel.buildMap(detectBodyCountResponse)
                 val sMap = Common.query(tMap)
 
+                //判断屏幕中人员的数量
                 val personNum = sMap.getOrDefault("body.Data.PersonNumber", "0").toInt()
+
+                Log.e("TAG", "result is  " + personNum)
                 if (personNum > 0) {
-                    //如果有人，则错误次数归零
-                    if (emptyPersonCount > 0) {
-                        returnOkCount++
-                        if (returnOkCount == 2) {
-                            //连续两秒都有人在
-                            emptyPersonCount = 0
+                    //如果有人，则判断上一帧是否有人
+                    if (lastHasPeople) {
+                        //如果上一帧也有人则不处理
+                    } else {
+                        //上一帧没有人，则恢复正常
+                        lastHasPeople = true
+                        runOnUiThread {
+                            mDatabind.noPeopleTv.visibility = View.GONE
                             mDatabind.recordStateBg.setBackgroundResource(R.drawable.record_normal_stroke)
-                            mediaPlayer?.stop()
-                            audioPlayer.stopPlaying()
                         }
+                        mediaPlayer?.stop()
+                        audioPlayer.stopPlaying()
                     }
                 } else {
-                    emptyPersonCount++
-                    if (returnOkCount > 0) {
-                        returnOkCount = 0
-                    }
-                    //如果连续3S都没人，则判断没人，播放警告声音
-                    when (emptyPersonCount) {
-                        2 -> {
-                            //连续3秒没人，开始提示错误警告界面，播放声音
+                    //如果没有人，则判断上一帧的情况
+
+                    Log.e("TAG", "result is  no people" + lastHasPeople)
+                    if (lastHasPeople) {
+                        //如果上一帧有人,则播放提示
+                        lastHasPeople = false
+                        //连续3秒没人，开始提示错误警告界面，播放声音
+                        runOnUiThread {
+                            mDatabind.noPeopleTv.visibility = View.VISIBLE
                             mDatabind.recordStateBg.setBackgroundResource(R.drawable.record_error_stroke)
-                            audioPlayer.startPlaying()
                         }
-                        20 -> {
-                            //连续20秒没人，则停止录像
-                            runOnUiThread {
-                                autoStopRecord = true
-                                underRecord = false
-                                mDatabind.recordStateBg.visibility = View.GONE
-
-                                if (recording != null) {
-                                    recording?.stop()
-                                    recording = null
-                                }
-
-                                mDatabind.recordTimeTv.visibility = View.GONE
-
-                                //重新录制
-                                recordState = 0
-                                mDatabind.cameraButton.visibility = View.VISIBLE
-                                mDatabind.cameraIcon.visibility = View.VISIBLE
-                                mDatabind.captureButton.visibility = View.VISIBLE
-                                mDatabind.processCircle.SetCurrent(0f)
-                                mDatabind.processCircle.visibility = View.VISIBLE
-                                mDatabind.redoBtn.visibility = View.GONE
-                                mDatabind.nextBtn.visibility = View.GONE
-                                mDatabind.videoViewer.visibility = View.GONE
-                                mDatabind.previewView.visibility = View.VISIBLE
-
-                                mDatabind.captureButton.setBackgroundResource(R.mipmap.icon_under_record_vide)
-
-                            }
-                        }
+                        audioPlayer.startPlaying()
+                    } else {
+                        //上一帧没有人，则不处理
                     }
+//                    emptyPersonCount++
+//                    if (returnOkCount > 0) {
+//                        returnOkCount = 0
+//                    }
+                    //如果连续3S都没人，则判断没人，播放警告声音
+//                    when (emptyPersonCount) {
+//                        2 -> {
+//
+//                        }
+//                        20 -> {
+//                            //连续20秒没人，则停止录像
+//                            runOnUiThread {
+//                                autoStopRecord = true
+//                                underRecord = false
+//                                mDatabind.recordStateBg.visibility = View.GONE
+//
+//                                if (recording != null) {
+//                                    recording?.stop()
+//                                    recording = null
+//                                }
+//
+//                                mDatabind.recordTimeTv.visibility = View.GONE
+//
+//                                //重新录制
+//                                recordState = 0
+//                                mDatabind.cameraButton.visibility = View.VISIBLE
+//                                mDatabind.cameraIcon.visibility = View.VISIBLE
+//                                mDatabind.captureButton.visibility = View.VISIBLE
+//                                mDatabind.processCircle.SetCurrent(0f)
+//                                mDatabind.processCircle.visibility = View.VISIBLE
+//                                mDatabind.redoBtn.visibility = View.GONE
+//                                mDatabind.nextBtn.visibility = View.GONE
+//                                mDatabind.videoViewer.visibility = View.GONE
+//                                mDatabind.previewView.visibility = View.VISIBLE
+//
+//                                mDatabind.captureButton.setBackgroundResource(R.mipmap.icon_under_record_vide)
+//
+//                            }
+//                        }
+//                    }
 //                    if (emptyPersonCount >2){
 //                        errorNoticeCount ++ //错误于
 //
@@ -550,11 +629,11 @@ class CaptureRecordActivity : BaseActivity<VideoRecordViewModel, ActivityCapture
                     //开始播放预览
                     "开始预览".logw()
                     if (outVideoPath != null) {
-                        if (!autoStopRecord){
+                        if (!autoStopRecord) {
                             mDatabind.videoViewer.visibility = View.VISIBLE
                             mDatabind.previewView.visibility = View.GONE
                             showVideo(outVideoPath!!)
-                        }else{
+                        } else {
                             autoStopRecord = false
                         }
                     }
